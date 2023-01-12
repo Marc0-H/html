@@ -27,6 +27,11 @@ textarea {
   height: 100px;
 }
 
+button {
+  display: block;
+  margin: 10px 0;
+}
+
 .main {
   background-color: #f3f3d4;
   padding: 10px;
@@ -43,6 +48,15 @@ textarea {
 
 .row {
   padding: 1px
+}
+
+.top-comment {
+  color: red;
+}
+
+.comment {
+  padding-top: 30px;
+  color:rgb(117, 114, 114);
 }
 
 
