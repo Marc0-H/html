@@ -19,7 +19,7 @@ var threads = [
   },
   {
     title: "Thread 2",
-    author: "robby",
+    author: "robby2",
     dat: Date.now(),
     content: "Thread content",
     comments: [
