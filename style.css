@@ -332,8 +332,8 @@ hr {
 }
 
 
-.thread_textarea:focus, .thread_textarea:hover {
-  height: 100%;
+.thread_textarea:focus {
+  height: 80%;
 }
 
 .thread_textarea {
