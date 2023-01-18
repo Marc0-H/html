@@ -362,25 +362,17 @@ hr {
 }
 
 #thread-minimize-button {
-  background-color: red;
+  background-color: gray;
   cursor: pointer;
   width: 5%;
   height: 5%;
 }
 
-.thread-maximize-button {
-  background-color: blue;
-  cursor: pointer;
-  width: 5%;
-  height: 5%;
-}
-
-/* .thread-minimize-button:focus {
-  width: 50%;
-  height: 50%;
+#thread-minimize-button:hover {
+  width: 6%;
   -webkit-transition: height .3s ease-in-out;
   transition: height .3s ease-in-out;
-} */
+}
 
 
 .thread_comment {
