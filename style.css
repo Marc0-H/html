@@ -346,6 +346,43 @@ hr {
   transition: height .3s ease-in-out;
 }
 
+.thread-image-box {
+  background-color: #aaa;
+  width: 400px;
+  height: 40px;
+  /* display: none; */
+  /* padding: 20px; */
+}
+
+#thread-image {
+  background-color: #aaa;
+  width: 100%;
+  height: 400px;
+  padding: 20px;
+}
+
+#thread-minimize-button {
+  background-color: red;
+  cursor: pointer;
+  width: 5%;
+  height: 5%;
+}
+
+.thread-maximize-button {
+  background-color: blue;
+  cursor: pointer;
+  width: 5%;
+  height: 5%;
+}
+
+/* .thread-minimize-button:focus {
+  width: 50%;
+  height: 50%;
+  -webkit-transition: height .3s ease-in-out;
+  transition: height .3s ease-in-out;
+} */
+
+
 .thread_comment {
   padding: 3%;
 }
