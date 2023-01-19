@@ -149,6 +149,7 @@ header {
     width: 140px;
     background-color: var(--background-secondary);
     box-shadow: 3px 3px 16px rgba(0, 0, 0, 0.1);
+    display: none;
 
 }
 
@@ -279,6 +280,7 @@ main {
     width: 20px;
     height: 20px;
     fill: var(--text-light);
+    fill: var(--primary);
 }
 
 .dropdown {
@@ -308,7 +310,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 input[type="checkbox"]:checked, input[type="radio"] {
-    accent-color: rgb(0, 122, 236);
+    accent-color: #2a93df;
 }
 
 .filter-button {
@@ -319,6 +321,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     border-radius: 8px;
     border: none;
     background-color: rgb(140, 140, 140);
+    background-color: var(--primary);
 
     color: var(--background-secondary);
 
@@ -329,7 +332,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
 .filter-button:hover {
     background-color: var(--primary-complement);
-    background-color: var(--primary);
+    background-color: var(--primary-complement);
     cursor: pointer;
 }
 
@@ -533,3 +536,24 @@ hr {
         display: none;
     }
   }
+
+.side-bar-description__container {
+    width: 100%;
+    background-color: var(--background-secondary);
+    position: sticky;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    padding: 20px;
+  }
+
+.side-bar-title {
+    font-size: 24px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.side-bar-description {
+    color: var(--text-normal);
+    font-size: 18px;
+    
+}
