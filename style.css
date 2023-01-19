@@ -33,20 +33,24 @@ html, body {
 }
 
 header {
-    height: 20%;
-    background-color: var(--background-secondary);
-
-
+  height: 120px;
+  width: 100%;
+  background-color: var(--background-secondary);
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.1);
 }
 
 .inner__header {
-    height: 100%;
-    /* background-color: blue; */
-    margin: 0 auto;
-    display: flex;
-    margin-left: 5%;
-    margin-right: 5%;
-    position: relative;
+  height: 100%;
+  /* background-color: blue; */
+  margin: 0 auto;
+  display: flex;
+  margin-left: 30px;
+  margin-right: 30px;
+  position: relative;
 }
 
 
@@ -75,9 +79,6 @@ header {
     width: 300px;
     /* background-color: cyan; */
 }
-
-
-
 
 .profile__container {
     height: 100%;
@@ -120,23 +121,23 @@ header {
 }
 
 .action-button__container {
-    height: 100%;
-    width: 60px;
-    /* background-color: red; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .action-button {
-    width: 100%;
-    border: none;
-    background-color: transparent;
+  width: 100%;
+  border: none;
+  background-color: transparent;
 }
 
 .action-button svg {
-    fill: var(--primary);
-    width: 60%;
+  fill: var(--primary);
+  width: 60%;
 }
 
 .action-button:hover {
@@ -228,7 +229,7 @@ main {
     background-color: var(--background-secondary);
     border-radius: 10px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
 }
 
 .thread_main-content {
@@ -293,6 +294,31 @@ hr {
     bottom: 2%;
 
 }
+
+.tag {
+
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 12px;
+  color: var(--background-secondary);
+  font-size: 16px;
+  font-weight: boSubjectld;
+  vertical-align: middle;
+}
+
+.tag-math {
+  background-color: #2b0f6e;
+}
+
+.tag-biology {
+  background-color: #14a10f;
+}
+
+.tag-english {
+  background-color: rgb(165, 14, 14);
+}
+
+
 
 .author {
     display: flex;

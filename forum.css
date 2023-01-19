@@ -1,0 +1,68 @@
+body {
+  background-color: azure;
+  margin: 10px;
+  scrollbar-base-color: brown;
+}
+
+
+h1, h3 {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+p {
+  margin: 5px 0;
+}
+
+li {
+  margin-bottom: 1px;
+}
+
+textarea {
+  width: 80%;
+  height: 100px;
+}
+
+button {
+  display: block;
+  margin: 10px 0;
+}
+
+.main {
+  background-color: #f3f3d4;
+  padding: 10px;
+}
+
+.nav {
+  padding: 1%;
+  border: 1%;
+}
+
+.top-bar {
+  padding: 0 40px;
+  background-color: lightblue;
+}
+
+.bottom {
+  display: flex;
+}
+
+.row {
+  padding: 1px
+}
+
+.top-comment {
+  color: red;
+}
+
+.comment {
+  padding-top: 30px;
+  color:rgb(117, 114, 114);
+}
+
+
+
