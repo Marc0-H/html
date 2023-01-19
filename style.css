@@ -369,7 +369,7 @@ hr {
 }
 
 #thread-minimize-button:hover {
-  width: 6%;
+  width: 5.2%;
   -webkit-transition: height .3s ease-in-out;
   transition: height .3s ease-in-out;
 }
