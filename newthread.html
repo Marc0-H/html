@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forumsite</title>
+  <title>newpost</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="main.js" defer></script>
+
 
 
 </head>
@@ -42,7 +45,7 @@
             </div>
         </div>
     </div>
-</header>
+  </header>
 
   <main>
     <div class="inner__main">
@@ -104,54 +107,35 @@
         </div>
       </div>
       <div class="main-content__container">
-        <div class="thread_main-content">
-          <div class="thread_post">
-            <div class="card-content">
-              <div class="thread-title-container">
-                <h3 class="thread-title"><span class="tag tag-math">Math</span >first thread</h3>
-              </div>
-              <hr>
-              <p class="card-text">Consectetur adipisicing elit. Error, commodi? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore ullam quaerat iure sed ipsum nisi illum nemo accusantium beatae deleniti...</p>
-              <button id="thread-minimize-button">-</button>
-              <div id='thread-image'> </div>
-              <script src="minimize.js"></script>
-              <hr>
-              <div class="card-bottom">
-                <div class="author">
-                  <p class="author-name">John Smithus</p>
-                  <div class="tag__container">
-                    <p class="tag">TA</p>
-                  </div>
+        <div class="newthread_main_content">
+          <div class="new_thread_post">
+            <div class="new_thread_content">
+              <form id="new_thread_form" action="post_upload.php">
+                <div class="new_thread-title-container">
+                    <input id="new_thread_title" type="text" placeholder="Enter post title.." required>
                 </div>
-                <p class="comment-count">5 comments </p>
-                <p class="date">12/01/2023</p>
-              </div>
-            </div>
-          </div>
-          <div class="thread_new_comment">
-            <textarea class="thread_textarea" ></textarea>
-            <button class="thread_comment_button">add comment</button>
-          </div>
-          <div class="thread_comment">
-            <p class="user">
-              Anonymous
-            </p>
-            <p class="comment-date">
-              12/01/2023
-            </p>
-            <div class="comment-content">
-              Content of comment Content of comment Content of comment Content of comment Content of comment Content of comment Content of comment 
-            </div>
-          </div>
-          <div class="thread_comment">
-            <p class="user">
-              Anonymous2
-            </p>
-            <p class="comment-date">
-              13/01/2023
-            </p>
-            <div class="comment-content">
-              Content of comment Content of comment Content of comment Content of comment Content of comment Content of comment Content of comment 
+                <hr>
+                <textarea id="new_thread_textarea" form="new_thread_form" maxlength="100" placeholder="Enter text..." required></textarea>
+                <div class="new_thread_image_container">
+                  <label for="new_thread_image">Add image:</label>
+                  <input id="new_thread_image" type="file" form="new_thread_form">
+                </div>
+                <hr>
+                <div class="new_thread_bottom">
+                  <div class="new_thread_tag">
+                    <p class="tag_text">Tag:</p>
+                    <div class="tag__container">
+                      <select id="tag_selector" form="new_thread_form">
+                        <option value="math">Math</option>
+                        <option value="biology">Biology</option>
+                        <option value="english">English</option>
+                        <option value="general">General</option>
+                      </select>
+                    </div>
+                  </div>
+                  <input type="submit" class="new_thread_post_button" value="Post">
+                </div>
+              </form>
             </div>
           </div>
         </div>
