@@ -110,12 +110,12 @@
         <div class="newthread_main_content">
           <div class="new_thread_post">
             <div class="new_thread_content">
-              <form id="new_thread_form" action="post_upload.php">
+              <form id="new_thread_form" action="post_upload.php" method="get">
                 <div class="new_thread-title-container">
-                    <input id="new_thread_title" type="text" placeholder="Enter post title.." required>
+                    <input name="post_title" id="new_thread_title" type="text" placeholder="Enter post title.." required>
                 </div>
                 <hr>
-                <textarea id="new_thread_textarea" form="new_thread_form" maxlength="100" placeholder="Enter text..." required></textarea>
+                <textarea name="post_content" id="new_thread_textarea" form="new_thread_form" maxlength="100" placeholder="Enter text..." required></textarea>
                 <div class="new_thread_image_container">
                   <label for="new_thread_image">Add image:</label>
                   <input id="new_thread_image" type="file" form="new_thread_form">
