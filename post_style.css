@@ -37,73 +37,13 @@ html, body, main {
 }
 /*General style end*/
 
+/*Thread-page style start*/
 .main_content_container {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-left: 50px;
     padding: 30px;
-    border-radius: 15px;
-    background-color: var(--secondary_background_color);
-}
-
-.main_content_container .post_container, .main_content_container  .comment_container, .main_content_container  .subcomment_container {
-    box-shadow: 0px 0px 20px var(--shadow_color);
-}
-
-/*Post style start*/
-.post_container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 30px;
-    border-radius: 15px;
-    background-color: var(--secondary_background_color);
-}
-
-.post_titlebar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 10px;
-    width: 100%;
-}
-
-.post_title {
-    font-size: xx-large;
-    font-weight: bold;
-    color: var(--title_font_color);
-}
-
-.post_tag {
-    padding: 5px 20px;
-    margin-right: 30px;
-    border-radius: 5px;
-    background-color: var(--tag_color);
-
-    font-size: large;
-    font-weight: bold;
-    color: var(--tag_font_color);
-}
-
-.comment_container {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    width: calc(100% - 50px);
-    padding: 30px;
-    margin-top: 40px;
-    border-radius: 15px;
-    background-color: var(--secondary_background_color);
-}
-
-.subcomment_container {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-    width: calc(100% - 100px);
-    padding: 30px;
-    margin-top: 20px;
     border-radius: 15px;
     background-color: var(--secondary_background_color);
 }
@@ -141,6 +81,75 @@ html, body, main {
     color: var(--primary_color);
 }
 
+.original_poster > .user_info_container > .username {
+    font-weight: bold;
+    color: var(--primary_color);
+}
+
+.reply_button {
+    border-radius: 30px;
+    padding: 6.5px 10px;
+    font-weight: bold;
+    background-clip: border-box;
+}
+
+.reply_button:hover {
+
+    background-color: var(--details_font_color);
+}
+/*Thread-page style end*/
+
+/*Post, comment and subcomment style start*/
+.post_container, .comment_container, .subcomment_container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px var(--shadow_color);
+    background-color: var(--secondary_background_color);
+}
+
+.post_container {
+    width: 100%;
+}
+
+.comment_container {
+    margin-left: auto;
+    width: calc(100% - 50px);
+    margin-top: 40px;
+}
+
+.subcomment_container {
+    margin-left: auto;
+    width: calc(100% - 100px);
+    margin-top: 20px;
+}
+
+.post_titlebar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.post_title {
+    font-size: xx-large;
+    font-weight: bold;
+    color: var(--title_font_color);
+}
+
+.post_tag {
+    padding: 5px 20px;
+    margin-right: 30px;
+    border-radius: 5px;
+    background-color: var(--tag_color);
+
+    font-size: large;
+    font-weight: bold;
+    color: var(--tag_font_color);
+}
+
 .user_info_container {
     display: flex;
     flex-direction: row;
@@ -170,11 +179,6 @@ html, body, main {
     font-size: large;
     font-weight: bold;
     color: var(--tag_font_color);
-}
-
-.original_poster > .user_info_container > .username {
-    font-weight: bold;
-    color: var(--primary_color);
 }
 
 .interaction_container {
@@ -207,19 +211,9 @@ html, body, main {
 .interaction_container > i:hover {
     background-color: var(--details_font_color);
 }
+/*Post, comment and subcomment style end*/
 
-.reply_button {
-    border-radius: 30px;
-    padding: 6.5px 10px;
-    font-weight: bold;
-    background-clip: border-box;
-}
-
-.reply_button:hover {
-
-    background-color: var(--details_font_color);
-}
-
+/*Sidebar style start*/
 .sidebar_container > * {
     min-width: 250px;
     padding: 20px;
@@ -232,3 +226,4 @@ html, body, main {
     border-radius: 15px;
     background-color: var(--secondary_background_color);
 }
+/*Sidebar style end*/
