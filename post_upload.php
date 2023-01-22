@@ -35,8 +35,8 @@ try {
           VALUES ('$post_title', '$post_content', '$post_tag')";
 
   mysqli_query($connection, $insert_post);
-  echo '<script>window.alert("Post uploade succes!")</script';
-  header('location: newthread.html');
+  echo '<script>window.alert("Post upload succes!"); window.location.href="newthread.html";</script>';
+  // header('location: newthread.html');
   
 } catch (PDOExeption $e) {
   echo $insert_post . "<br>" . $e->getMessage();

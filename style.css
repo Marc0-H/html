@@ -1,47 +1,39 @@
+/*General style start*/
 :root {
-    /* Dark mode
-    --primary: #6200EE;
-    --background: #121212 ;
-    --background-secondary: #302b2b;
-    --text-colora: aliceblue; */
-    /* LIGHT MODE */
-    --primary: #309EED;
-    --primary-complement: #2386cc;
-    /* --primary: #6200EE; */
-    --primary_background_color: #e5e5e5;
-    --secondary_background_color: #f8f8f8;
-    --shadow_color: #DEDEDE;
+  --primary_color: #309eed;
+  --primary_background_color: #E5E5E5;
+  --secondary_background_color: #F8F8F8;
+  --details_color: #0000001a;
+  --shadow_color: #DEDEDE;
 
-    --title_font_color: #7E7E7E;
-    --text_font_color: #4B4B4B;
-    --details_font_color: #B9B9B9;
-    --tag_font_color: #FFFFFF;
+  --title_font_color: #7E7E7E;
+  --text_font_color: #4B4B4B;
+  --details_font_color: #B9B9B9;
 
-    --tag_color: #06A028;
+  --post_interaction_color: #0000000d;
+  --filter_hover_color: #0000000d;
+  --primary_complement_hover: #2386cc;
 
+  --tag_font_color: #FFFFFF;
 
+  --tag_color: #06A028;
 }
 
 
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    transition: 0.2s;
-    font-size: 22px;
-    color: var(--text_font_color);
-
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  color: var(--text_font_color);
 }
-
-
-
-
 
 html, body {
     height: 100%;
     scroll-behavior: smooth;
-    background-color: var(--primary_background_color);
+    /* background-color: var(--primary_background_color); */
 }
 
 header {
@@ -319,7 +311,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
 }
 
 .filter-button:hover {
-  background-color: var(--primary-complement);
+  background-color: var(--primary-complement_hover);
   background-color: var(--primary);
   cursor: pointer;
 }
@@ -546,7 +538,7 @@ hr {
 }
 
 .new_thread_post_button:hover {
-  background-color: var(--primary-complement);
+  background-color: var(--primary-complement_hover);
   background-color: var(--primary);
   cursor: pointer;
 }
