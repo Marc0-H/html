@@ -2,7 +2,9 @@
 include 'connection.php';
 // define variables and set to empty values
 $post_title = $post_content = $post_tag = $post_id  = $post_image = "";
-$post_date = date("Y/d/m");
+date_default_timezone_set('Europe/Amsterdam');
+$post_date = date('m/d/Y h:i:s a', time());
+echo $post_date;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $post_title = test_input($_POST["post_title"]);
@@ -12,7 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // $post_image = test_input($_POST["post_image"]);
 }
 
-if (!$post_title || !$post_content ||$post_tag) {
+if (!$post_title || !$post_content || !$post_tag) {
+  echo $post_title,'poep <br', $post_content, 'poep 2<br', $post_tag;
   die("Incorrect format.");
 }
 
@@ -22,16 +25,19 @@ function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
-  return mysqli_real_escape_string($connection, $data);
+  return $data;
 }
 
 
 
 try {
-  $insert_post = "INSERT INTO posts (id, post_title, post_content, post_image, post_datetime, user_id, solution_id
-          VALUES ('0', '$post_title', '$post_content', '0', '$post_date', '0', '0')";
+  $insert_post = "INSERT INTO posts (post_title, post_content, post_tag)
+          VALUES ('$post_title', '$post_content', '$post_tag')";
 
   mysqli_query($connection, $insert_post);
+  echo '<script>window.alert("Post uploade succes!")</script';
+  header('location: newthread.html');
+  
 } catch (PDOExeption $e) {
   echo $insert_post . "<br>" . $e->getMessage();
 }

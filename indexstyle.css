@@ -435,6 +435,10 @@ hr {
   background-color: rgb(165, 14, 14);
 }
 
+.tag-general {
+  background-color: gray;
+}
+
 .post-general-info__container {
   display: flex;
   align-items: center;
