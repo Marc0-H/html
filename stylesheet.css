@@ -264,11 +264,27 @@ input[type="checkbox"]:checked, input[type="radio"] {
   padding: 5px 20px;
   border-radius: 5px;
   margin-right: 20px;
-  background-color: var(--tag_color);
+  /* background-color: var(--tag_color); */
 
   font-size: large;
   font-weight: bold;
   color: var(--tag_font_color);
+}
+
+.tag-math {
+  background-color: #2b0f6e;
+}
+
+.tag-biology {
+  background-color: #14a10f;
+}
+
+.tag-english {
+  background-color: rgb(165, 14, 14);
+}
+
+.tag-general {
+  background-color: gray;
 }
 
 .user_info_container {

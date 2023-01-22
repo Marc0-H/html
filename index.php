@@ -116,16 +116,6 @@
                 </div>
 
                 <div class="main-content">
-                  
-                
-                <!-- if (mysqli_num_rows($post_result) > 0) {
-                        // output data of each row
-                        while($row = mysqli_fetch_assoc($post_result)) {
-                          echo "id: " . $row["post_id"]. " - Title: " . $row["post_title"]. " content: " . $row["post_content"]. "<br>";
-                        }
-                      } else {
-                        echo "0 results";
-                      } -->
                   <?php 
                     $post_sql = "SELECT post_id, post_title, post_content, post_tag, post_datetime from posts ORDER BY post_id DESC";
                     $post_result = mysqli_query($connection, $post_sql);
