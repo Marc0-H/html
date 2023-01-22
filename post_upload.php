@@ -11,6 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // $post_image = test_input($_POST["post_image"]);
 }
 
+if (!$post_title || !$post_content ||$post_tag) {
+  die("Incorrect format.");
+}
+
+/* Test if input is valid data, remove any special characters */
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -28,3 +33,8 @@ tag: <?php echo $_POST["post_tag"]; ?>
 
 </body>
 </html>
+
+<?php 
+$post_db = "Edu"
+
+?>
