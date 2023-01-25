@@ -85,6 +85,13 @@
       </div>
     </div>
       <div class="main_content_container">
+        <?php 
+          if (!isset($_SESSION['userID'])) {
+            
+        ?>
+        <div>Log in to create a post</div>
+        <?php 
+        } else {?>
         <div class="new_post_main_content">
           <div class="post_container">
             <div class="new_post_content">
@@ -92,9 +99,9 @@
                 <div class="new_post-title-container">
                     <input class="new_post_title" name="post_title" id="new_post_title" type="text" placeholder="Enter post title.." required>
                 </div>
-                <textarea class="new_post_textarea" name="post_content" id="new_post_textarea" form="new_post_form" maxlength="100" placeholder="Enter text..." required></textarea>
+                <textarea class="new_post_textarea" name="post_content" id="new_post_textarea" form="new_post_form" maxlength="1000" placeholder="Enter text..." required></textarea>
                 <div class="new_post_image_container">
-                  <label for="new_post_image">Add image:</label>
+                  <label for="new_post_image">Add PNG image:</label>
                   <input id="new_post_image" name="new_post_image" type="file" form="new_post_form">
                 </div>
                 <div class="new_post_bottom">
@@ -113,6 +120,9 @@
             </div>
           </div>
         </div>
+        <?php
+        }
+        ?>
       </div>
     </div>
   </main>

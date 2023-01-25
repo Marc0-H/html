@@ -31,10 +31,10 @@
                 </button>
                 <div class="header_content_right">
                     <input class="searchbar" type="text" placeholder="Search topic..">
-                    <a href="#" class="mobile_create_post">Create post</a>
+                    <a href="newthread.html" class="mobile_create_post">Create post</a>
                     <a href="#" class="mobile_profile_settings">Settings</a>
                     
-                    <i class="material-icons">add</i>
+                    <i class="material-icons" href="newthread.html">add</i>
                     <img src="./images/profile_img.png" alt="profile">
 
                 </div>
@@ -206,22 +206,21 @@
                         <?php 
                         $post_sql = "SELECT post_id, post_title, post_content, post_tag, post_datetime, post_image from posts ORDER BY post_id DESC";
                         $post_result = mysqli_query($connection, $post_sql);
-
+                        
                         while($row = mysqli_fetch_assoc($post_result)) {
                         
                         ?>
-                        <a href="" class="post_btn"></a>
                         <div class="post_container">
+                          <script src="post_trabvel.js"></script>
+                          <script> </script>
                             <div class="post_image_container">
-                                <?php
-                                    //check if image is null
-                                    if (!is_null($row["post_image"])) {
-                                        ?>
-                                        <img src="./images/<?php echo $row["post_image"]?>" alt="card1">
-                                        <?php
-                                    }
-                                ?>
-
+                            <?php
+                                if (!is_null($row["post_image"])) {
+                                    ?>
+                                    <img src='data:image/png;base64, <?php echo $row["post_image"]?>' alt="Post image" />
+                                    <?php
+                                }
+                            ?>
                             </div>
                             <div class="post_title"><span class="post_tag"><?php echo $row["post_tag"]?></span><?php echo $row["post_title"]?></div>
                             <div class="user_info_container">
