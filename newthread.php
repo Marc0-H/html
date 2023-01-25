@@ -86,7 +86,8 @@
     </div>
       <div class="main_content_container">
         <?php 
-          if (!isset($_SESSION['userID'])) {
+          if (1 == 2){ //USER ID VERIFICATION????
+          // if (!isset($_SESSION['userID'])) {
             
         ?>
         <div>Log in to create a post</div>
@@ -112,6 +113,12 @@
                       <option value="biology">Biology</option>
                       <option value="english">English</option>
                       <option value="general">General</option>
+                    </select>
+                    <select name="tag_color" id="tag_color" form="new_post_form">
+                      <option value="red">Red</option>
+                      <option value="blue">Blue</option>
+                      <option value="green">Green</option>
+                      <option value="yellow">Yellow</option>
                     </select>
                   </div>
                   <input type="submit" class="new_post_button" value="Post">
