@@ -1,4 +1,8 @@
 <?php
+session_start();
+?>
+
+<?php
 include 'connection.php';
 session_start();
 // define variables and set to empty values

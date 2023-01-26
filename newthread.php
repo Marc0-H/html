@@ -90,13 +90,6 @@ session_start();
       </div>
     </div>
       <div class="main_content_container">
-        <?php 
-          if (1 == 2){ //USER ID VERIFICATION???? vraag georgi
-          // if (!isset($_SESSION['userId'])) {
-        ?>
-        <div>Log in to create a post</div>
-        <?php 
-        } else {?>
         <div class="new_post_main_content">
           <div class="post_container">
             <div class="new_post_content">
@@ -126,9 +119,6 @@ session_start();
             </div>
           </div>
         </div>
-        <?php
-        }
-        ?>
       </div>
     </div>
   </main>
