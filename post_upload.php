@@ -2,7 +2,7 @@
 include 'connection.php';
 session_start();
 // define variables and set to empty values
-$post_title = $post_content = $post_tag = $tag_color = $post_image = "";
+$post_title = $post_content = $post_tag = $post_image = "";
 date_default_timezone_set('Europe/Amsterdam');
 $post_datetime = date('Y-d-m H:i', time());
 
@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $post_title = test_input($_POST["post_title"]);
   $post_content = test_input($_POST["post_content"]);
   $post_tag = test_input($_POST["post_tag"]);
-  $tag_color= test_input($_POST["tag_color"]);
     
   if($filename != NULL) {
     $check = getimagesize($_FILES["new_post_image"]["tmp_name"]);
@@ -65,11 +64,7 @@ try {
   $insert_post_query = "INSERT INTO posts (post_title, post_content, post_tag, post_datetime, post_image, user_id) 
           VALUES ('$post_title', '$post_content', '$post_tag', '$post_datetime', '$post_image', '$user_id')";
   mysqli_query($connection, $insert_post_query);
-  $post_id = mysqli_insert_id($connection);  
-  
-  $insert_tag_query = "INSERT INTO post_tags (tag_name, post_id, tag_color)   
-          VALUES ('$post_tag', '$post_id', '$tag_color')";                
-  mysqli_query($connection, $insert_tag_query);       
+  // $post_id = mysqli_insert_id($connection);   
 
   echo "<script>window.alert('Post upload succes!');";
   echo "window.location.href='index.php';";
