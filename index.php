@@ -14,6 +14,8 @@ session_start();
         <script src="filter.js" defer></script>
         <script src="masonry.js" defer></script>
         <script src="header.js" defer></script>
+        <script src="cards.js" defer></script>
+        <script src="user_info_resize.js" defer></script>
     </head>
     <body>
         <?php
