@@ -195,7 +195,7 @@ session_start();
                                     <?php echo $tag_row["tag_name"]?></span> <?php echo $row["post_title"]?></div>
                                 <div class="user_info_container">
                                     <img src="images/profile_img.png">
-                                    <div class="username" title="The_Brichkeeper"><?php echo $user_row["userUid"]?></div>
+                                    <div class="username" title="<?php echo $user_row["userUid"]?>"><?php echo $user_row["userUid"]?></div>
                                     <div class="user_tag">PhD.</div>
                                     <!-- <i class="material-icons">query_builder</i> -->
                                     <div class="date" title="<?php echo $row["post_datetime"]?>"><?php echo $row["post_datetime"]?></div>
