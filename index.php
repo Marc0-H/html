@@ -45,7 +45,7 @@ session_start();
                     // Show if logged in.
                     ?>
                         <i class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
-                        
+
                         <div class="dropdown_menu_profile">
                             <img src="./images/profile_img.png" alt="profile" class="profile_button">
                             <div class="dropdown_content">
@@ -129,51 +129,78 @@ session_start();
                 <div class="main_content_container">
                     <div class="main_content_title">The latest posts...</div>
                     <div class="main_content_posts">
+                        <?php
+                        $query = "SELECT * FROM posts";
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            if (isset($_POST["filter-subject"])) {
+                                $subject = array();
+                                foreach($_POST["filter-subject"] as $filter) {
 
-                        <?php 
-                        $post_sql = "SELECT post_id, post_title, post_content, post_tag, post_datetime, post_image FROM posts ORDER BY post_id DESC";
-                        $post_result = mysqli_query($connection, $post_sql);
+                                    if (strpos($filter, "math") !== false) {
+                                        
+                                        $subject[] = "math";
+                                    }
+                                    if (strpos($filter, "english") !== false) {
+                                        
+                                        $subject[] = "english";
+                                    }
+                                    if (strpos($filter, "biology") !== false) {
+                                        
+                                        $subject[] = "biology";
+                                    }
+                                }
+
+                                if (!empty($subject)) {
+                                    $query .= " WHERE post_tag IN ('" . implode("','", $subject) . "')";
+                                }
+                                $result = mysqli_query($connection, $query);
+                            }
+
+                        }
+                        // $result .= "ORDER BY post_id DESC";
+                        $post_result = mysqli_query($connection, $query);
+
+
+                        // $post_sql = "SELECT post_id, post_title, post_content, post_tag, post_datetime, post_image from posts ORDER BY post_id DESC";
+                        // $post_result = mysqli_query($connection, $post_sql);
 
                         while($row = mysqli_fetch_assoc($post_result)) {
-                        
                         ?>
 
                         <div class="post_container">
                             <div class="post_image_container">
-
                                 <?php
-                                    // Check if image is null.
                                     if (!is_null($row["post_image"])) {
                                         ?>
-                                        <img src="./images/<?php echo $row["post_image"]?>" alt="card1">
+                                        <img src="data:image/png;base64,<?php echo $row["post_image"]?>" alt="card1">
                                         <?php
                                     }
                                 ?>
 
                             </div>
-                            <div class="post_title"><span class="post_tag"><?php echo $row["post_tag"]?></span><?php echo $row["post_title"]?></div>
-                            <div class="user_info_container">
-                                <img src="images/profile_img.png">
-                                <div class="username">The Brichkeeper</div>
-                                <div class="user_tag">PhD.</div>
-                                <i class="material-icons">query_builder</i>
-                                <div class="date"><?php echo $row["post_datetime"]?></div>
+                            <div class="post_content_container">
+                                <div class="post_title"><span class="post_tag post_tag_<?php echo $row["post_tag"]?>"><?php echo $row["post_tag"]?></span><?php echo $row["post_title"]?></div>
+                                <div class="user_info_container">
+                                    <img src="images/profile_img.png">
+                                    <div class="username" title="The_Brichkeeper">The_Brichkeeper</div>
+                                    <div class="user_tag">PhD.</div>
+                                    <!-- <i class="material-icons">query_builder</i> -->
+                                    <div class="date" title="<?php echo $row["post_datetime"]?>"><?php echo $row["post_datetime"]?></div>
+                                </div>
+                                <div class="post_content">
+                                    <p><?php echo $row["post_content"]?></p>
+                                </div>
+                                <div class="interaction_container">
+                                    <i class="material-icons">thumb_up</i>
+                                    <div class="post_like_count">12</div>
+                                    <i class="material-icons">forum</i>
+                                    <div class="post_comment_count">4</div>
+                                </div>
                             </div>
-                            <div class="post_content">
-                                <p><?php echo $row["post_content"]?></p>
-                            </div>
-                            <div class="interaction_container">
-                                <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
-                                <div class="post_like_count">12</div>
-                                <i class="material-icons tooltip">forum<div class="tooltip_text">Show replies</div></i>
-                                <div class="post_comment_count">4</div>
-                            </div>
-                        </div>                        
-
-                        <?php 
+                        </div>
+                        <?php
                             }
                         ?>
-
                     </div>
                 </div>
             </div>
