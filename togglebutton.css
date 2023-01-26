@@ -1,0 +1,48 @@
+/* The container */
+.toggle-container {
+margin-top: 20px;
+display: inline-block;
+position: relative;
+cursor: pointer;
+}
+
+/* The toggle button */
+.toggle-container input {
+display: none;
+}
+
+/* The toggle button's label */
+.toggle-container .toggle-label {
+position: absolute;
+top: 0;
+left: 0;
+width: 100px;
+height: 50px;
+border-radius: 50px;
+background-color: #ddd;
+transition: background-color 0.2s;
+}
+
+/* The toggle button's slider */
+.toggle-container .toggle-label:before {
+position: absolute;
+content: "";
+top: 4px;
+left: 4px;
+width: 42px;
+height: 42px;
+border-radius: 42px;
+background-color: #fff;
+transition: transform 0.2s;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* The toggle button's checked state */
+.toggle-container input:checked + .toggle-label {
+background-color: #66b3ff;
+}
+
+/* The toggle button's checked state's slider */
+.toggle-container input:checked + .toggle-label:before {
+transform: translateX(46px);
+}

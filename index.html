@@ -1,19 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onze Website</title>
+<html>
+    <head>
+        <style>
 
-</head>
-<body>
+            body {
+                background-color: #e5e5e5;
+            }
 
-    <h1>Hallo test</h1>
-<p>kleinere test</p>
-<p>Hallo werkt dit?</p>
-<p>Marcello test</p>
-<p> git push test</p>
+            p {
+                font-family: Arial, Helvetica, sans-serif;
+                color: rgba(100, 100, 100, 1);
+                margin-left: 35px;
+                font-size: 30px;
+            }
 
-</body>
+            .instellingen-container {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .rand {
+                background-color: #e5e5e5;
+                width: 20px;
+            }
+
+            .instellingen-page {
+                background-color: #f8f8f8;
+                height: 100%;
+                width: 100%;
+                border-radius: 100px;
+                margin-top: 50px;
+            }
+
+            .instellingen-header {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 50px;
+                color: #309EED;
+                margin-left: 35px;
+                margin-bottom: 6px;
+                display: inline-block;
+            }
+
+            .instellingen-underline {
+                margin-left: 35px;
+                border-bottom: solid;
+                display: inline-block;
+                width: 208px;
+                border-color: #e5e5e5;
+                margin-bottom: 100px;
+            }
+
+            .standard-container {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .on-off-button {
+                background-color: #555;
+                color: white;
+                cursor: pointer;
+                padding: 12px 24px;
+                font-size: 16px;
+                border: none;
+                outline: none;
+            }
+
+            .collapsible-button {
+                background-color: #f8f8f8;
+                color: white;
+                cursor: pointer;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 15px;
+            }
+
+            .collapsible-content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.2s ease-out;
+            }
+
+            .E-mail-wijzig-container {
+                display: flex;
+                margin-left: 30px;
+                background-color: #e5e5e5;
+                height: 250px;
+                width: 400px;
+                border-radius: 50px;
+                flex-direction: column;
+            }
+
+            form {
+                width: 300px;
+                margin: 0 auto;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            input[type="email"], input[type="text"], input[type="password"] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+            }
+
+            input[type="submit"] {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+            .wachtwoord-herhalen {
+                margin: 1px 20px 10px 30px;
+                font-size: 23px;
+            }
+
+        </style>
+        <link rel="stylesheet" href="togglebutton.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <script src="main.js"></script>
+        <div class="instellingen-container">
+            <div class="rand"></div>
+            <div class="instellingen-page">
+                <div><h1 class="instellingen-header">Instellingen</h1></div>
+                <div class="instellingen-underline"></div>
+                <div class="standard-container">
+                    <div style="flex:1; max-width: 350px;"><p class="darkmode-text">Donkere modus</p></div>
+                    <div style="width: 125px;">
+                      <label class="toggle-container">
+                        <input type="checkbox" id="toggle-button">
+                        <span class="toggle-label"></span>
+                      </label>
+                    </div>
+                </div>
+                <div class="standard-container">
+                    <div class="collapsible">
+                        <button class="collapsible-button"><p>Gebruikersnaam wijzigen <strong>+</strong></p></button>
+                        <div class="collapsible-content">
+                            <div class="E-mail-wijzig-container">
+                                <div><p>Nieuwe gebruikersnaam:</p></div>
+                                <div>
+                                    <form action="update_data.php" method="post" id="username-form">
+                                        <input type="text" id="new-username" name="new-username">
+                                        <input type="submit" value="Submit" id="submit-btn" onclick="sendData('username-form')">
+                                      </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="standard-container">
+                    <div class="collapsible">
+                        <button class="collapsible-button"><p>Profielfoto wijzigen <strong>+</strong></p></button>
+                        <div class="collapsible-content">
+                            <div class="E-mail-wijzig-container">
+                                <div style="margin-left: 35px;"><p>Nieuwe profielfoto:</p></div>
+                                <div>
+                                    <form action="update_data.php" method="post">
+                                        <input type="file" id="myFile" name="filename" accept=".png, .jpg, .jpeg" style="margin-left: 45px; margin-bottom: 25px;">
+                                        <input type="submit" value="Submit" onclick="clearField('myFile')">
+                                      </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="standard-container">
+                    <div class="collapsible">
+                        <button class="collapsible-button"><p>E-mail wijzigen <strong>+</strong></p></button>
+                        <div class="collapsible-content">
+                            <div class="E-mail-wijzig-container">
+                                <div style="margin-left: 60px;"><p>Nieuwe e-mail:</p></div>
+                                <div>
+                                    <form action="update_data.php" method="post" id="email-form">
+                                        <input type="email" id="new-email" name="new-email">
+                                        <input type="submit" value="Submit" id="submit-btn" onclick="sendData('email-form')">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="standard-container">
+                    <div class="collapsible">
+                        <button class="collapsible-button">
+                            <p>Wachtwoord wijzigen <strong>+</strong></p>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="E-mail-wijzig-container" style="padding-bottom: 90px;">
+                                <div style="margin-left: 30px;"><p>Nieuw wachtwoord:</p></div>
+                                <div>
+                                    <form action="update_data.php" method="post" id="password-form">
+                                        <input type="password" id="password" name="new-password">
+                                        <p class="wachtwoord-herhalen">Wachtwoord herhalen:</p>
+                                        <input type="password" id="password-repeat" name="new-password">
+                                        <input type="submit" id="submit-btn" value="Submit" onclick="sendData('password-form')">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 100px; height: 100px; display: block;"></div>
+            </div>
+            <div class="rand"></div>
+        </div>
+
+        <script>
+            function sendData(formtype) {
+            $(document).ready(function() {
+                var form = $("#" + formtype);
+                var submitBtn = $("#submit-btn");
+
+                if (formtype == 'password-form') {
+                    password_logic();
+                }
+
+                document.getElementById(formtype).reset();
+
+                submitBtn.on("click", function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "update_data.php",
+                        data: form.serialize(),
+                        success: function(data) {
+                            if (data == "success") {
+                            document.getElementById(formtype).reset();
+                            alert("Wijziging is aangebracht!");
+                            }
+                        }
+                    });
+                });
+            });
+        }
+        </script>
+
+
+        <script>
+            calculate_maxheight();
+        </script>
+    </body>
 </html>
