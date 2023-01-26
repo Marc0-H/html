@@ -169,7 +169,7 @@ session_start();
                         while($row = mysqli_fetch_assoc($post_result)) {
                         ?>
 
-                        <div class="post_container">
+                        <div id="<?php echo $row["post_id"]?>" class="post_container">
                             <div class="post_image_container">
                                 <?php
                                     if (!is_null($row["post_image"])) {
