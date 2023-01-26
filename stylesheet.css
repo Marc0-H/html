@@ -534,6 +534,10 @@ input[type="checkbox"]:checked, input[type="radio"] {
     background-color: var(--secondary_background_color);
 }
 
+.thread_content_container > .post_container {
+    padding: 30px;
+}
+
 .solution_container {
     display: flex;
     flex-direction: row;

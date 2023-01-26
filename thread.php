@@ -44,7 +44,7 @@ session_start();
                     // Show if logged in.
                     ?>
                         <i class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
-                        
+
                         <div class="dropdown_menu_profile">
                             <img src="./images/profile_img.png" alt="profile" class="profile_button">
                             <div class="dropdown_content">
