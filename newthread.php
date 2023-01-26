@@ -106,10 +106,10 @@ session_start();
                   <div class="tag_container">
                     <p class="tag_text">Tag:</p>
                     <select name="post_tag" id="tag_selector" form="new_post_form">
-                      <option value="Math" data-color="red" >Math</option>
+                      <option value="Math" data-color="purple" >Math</option>
                       <option value="Biology" data-color="green">Biology</option>
-                      <option value="English" data-color="yellow">English</option>
-                      <option value="General" data-color="grey">General</option>
+                      <option value="English" data-color="green">English</option>
+                      <option value="General" data-color="green">General</option>
                     </select>
                     <input type="hidden" name="tag_color" id="tag_color">
                   </div>
