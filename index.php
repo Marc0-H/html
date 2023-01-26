@@ -167,12 +167,21 @@ session_start();
                         // $post_result = mysqli_query($connection, $post_sql);
 
                         while($row = mysqli_fetch_assoc($post_result)) {
+                          $post_id = $row['post_id'];
+                          $tag_query = "SELECT tag_name, tag_color from post_tags WHERE post_id = $post_id";
+                          $tag_result = mysqli_query($connection, $tag_query);
+                          $tag_row = mysqli_fetch_assoc($tag_result);
+                          
+                          $user_id = $row['user_id'];
+                          $user_query = "SELECT userUid, profile_image from users where userId = $user_id";
+                          $user_result = mysqli_query($connection, $user_query);
+                          $user_row = mysqli_fetch_assoc($user_result);
                         ?>
 
-                        <div id="<?php echo $row["post_id"]?>" class="post_container">
+                        <div class="post_container">
                             <div class="post_image_container">
                                 <?php
-                                    if (!is_null($row["post_image"])) {
+                                    if (!empty($row["post_image"])) {
                                         ?>
                                         <img src="data:image/png;base64,<?php echo $row["post_image"]?>" alt="card1">
                                         <?php
@@ -181,10 +190,12 @@ session_start();
 
                             </div>
                             <div class="post_content_container">
-                                <div class="post_title"><span class="post_tag post_tag_<?php echo $row["post_tag"]?>"><?php echo $row["post_tag"]?></span><?php echo $row["post_title"]?></div>
+                                <div class="post_title">
+                                  <span class="post_tag" style="background-color:<?php echo $tag_row["tag_color"]?>";> 
+                                    <?php echo $tag_row["tag_name"]?></span> <?php echo $row["post_title"]?></div>
                                 <div class="user_info_container">
                                     <img src="images/profile_img.png">
-                                    <div class="username" title="The_Brichkeeper">The_Brichkeeper</div>
+                                    <div class="username" title="The_Brichkeeper"><?php echo $user_row["userUid"]?></div>
                                     <div class="user_tag">PhD.</div>
                                     <!-- <i class="material-icons">query_builder</i> -->
                                     <div class="date" title="<?php echo $row["post_datetime"]?>"><?php echo $row["post_datetime"]?></div>
