@@ -180,7 +180,7 @@ header('Cache-Control: max-age=900');
                           $user_row = mysqli_fetch_assoc($user_result);
                         ?>
 
-                        <div class="post_container">
+                        <div id="<?php echo $row["post_id"]?>" class="post_container">
                             <div class="post_image_container">
                                 <?php
                                     if (!empty($row["post_image"])) {
