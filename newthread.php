@@ -113,7 +113,7 @@
                       <option value="math" data-color="red" >Math</option>
                       <option value="biology" data-color="green">Biology</option>
                       <option value="english" data-color="yellow">English</option>
-                      <option value="general" data-color="gray">General</option>
+                      <option value="general" data-color="grey">General</option>
                     </select>
                     <input type="hidden" name="tag_color" id="tag_color">
                   </div>

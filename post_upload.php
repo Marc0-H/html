@@ -3,7 +3,7 @@ include 'connection.php';
 // define variables and set to empty values
 $post_title = $post_content = $post_tag = $tag_color = $post_image = "";
 date_default_timezone_set('Europe/Amsterdam');
-$post_date = date('m/d/Y h:i:s a', time());
+$post_date = date('Y-m-d H:i', time());
 
 // $file = $_FILES["new_post_image"];
 $filename = $_FILES["new_post_image"]["name"];
