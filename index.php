@@ -120,7 +120,6 @@
                         ?>
                         <div class="post_container">
                           <script src="post_trabvel.js"></script>
-                          <script> </script>
                             <div class="post_image_container">
                             <?php
                                 if (!is_null($row["post_image"])) {

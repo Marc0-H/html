@@ -110,10 +110,10 @@
                   <div class="tag_container">
                     <p class="tag_text">Tag:</p>
                     <select name="post_tag" id="tag_selector" form="new_post_form">
-                      <option value="math" data-color="red" >Math</option>
-                      <option value="biology" data-color="green">Biology</option>
-                      <option value="english" data-color="yellow">English</option>
-                      <option value="general" data-color="grey">General</option>
+                      <option value="Math" data-color="red" >Math</option>
+                      <option value="Biology" data-color="green">Biology</option>
+                      <option value="English" data-color="yellow">English</option>
+                      <option value="General" data-color="grey">General</option>
                     </select>
                     <input type="hidden" name="tag_color" id="tag_color">
                   </div>
