@@ -507,6 +507,12 @@ input[type="checkbox"]:checked, input[type="radio"] {
     cursor: pointer;
 }
 
+.main_content_posts {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
 .column {
     flex: 1;
     display: flex;
