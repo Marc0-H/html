@@ -18,7 +18,7 @@
 
     --tag_font_color: #FFFFFF;
 
-    --tag_color: #06A028;
+    --tag_color: #d35400;
 }
 
 * {
@@ -351,22 +351,6 @@ input[type="checkbox"]:checked, input[type="radio"] {
     font-size: large;
     font-weight: bold;
     color: var(--tag_font_color);
-}
-
-.post_tag_math {
-    background-color: #2b0f6e;
-}
-
-.post_tag_biology {
-    background-color: #14a10f;
-}
-
-.post_tag_english {
-    background-color: rgb(165, 14, 14);
-}
-
-.post_tag_general {
-    background-color: rgb(192, 78, 11);
 }
 
 .user_info_container {
