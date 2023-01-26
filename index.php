@@ -192,7 +192,7 @@ session_start();
                             <div class="post_content_container">
                                 <div class="post_title">
                                   <span class="post_tag" style="background-color:<?php echo $tag_row["tag_color"]?>";> 
-                                    <?php echo $tag_row["tag_name"]?></span> <?php echo $row["post_title"]?></div>
+                                    <?php echo $tag_row["tag_name"]?></span> <?php echo $row["post_title"] . "tagcolor:" . $tag_row["tag_color"]?></div>
                                 <div class="user_info_container">
                                     <img src="images/profile_img.png">
                                     <div class="username" title="<?php echo $user_row["userUid"]?>"><?php echo $user_row["userUid"]?></div>
