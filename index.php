@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,46 +26,6 @@ session_start();
             }
 
         ?>
-        <header>
-            <div class="header_container">
-                <img src="" alt="EDUZONE">
-                <button class="hamburger_menu_btn">
-                    <span class="bar" id="bar1"></span>
-                    <span class="bar" id="bar2"></span>
-                    <span class="bar" id="bar3"></span>
-                </button>
-                <div class="header_content_right">
-                    <input class="searchbar" type="text" placeholder="Search topic..">
-
-                    <?php
-                    if (!isset($_SESSION["userId"])) {
-                    // Show if not logged in.
-                    ?>
-                        <a href="login_signup/signup_page.php" class="register_button">Register</a>
-                        <a href="login_signup/login_page.php" class="login_button" >Login</a>
-                    <?php
-                    } else {
-                    // Show if logged in.
-                    ?>
-                        <i class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
-
-                        <div class="dropdown_menu_profile">
-                            <img src="./images/profile_img.png" alt="profile" class="profile_button">
-                            <div class="dropdown_content">
-                                <a href="#" class="settings_button">Settings</a>
-                                <a href="login_signup/php_scripts/log_out.php" class="log_out_button">Log out</a>
-                            </div>
-                        </div>
-
-                        <a href="#" class="mobile_create_post">Create post</a>
-                        <a href="#" class="mobile_profile_settings">Settings</a>
-                        <a href="login_signup/php_scripts/log_out.php" class="mobile_logout_button">Log out</a>
-                    <?php
-                    }
-                    ?>
-                </div>
-            </div>
-        </header>
         <main>
             <div class="main_container">
 
@@ -139,15 +100,15 @@ session_start();
                                 foreach($_POST["filter-subject"] as $filter) {
 
                                     if (strpos($filter, "math") !== false) {
-                                        
+
                                         $subject[] = "math";
                                     }
                                     if (strpos($filter, "english") !== false) {
-                                        
+
                                         $subject[] = "english";
                                     }
                                     if (strpos($filter, "biology") !== false) {
-                                        
+
                                         $subject[] = "biology";
                                     }
                                 }
@@ -171,7 +132,7 @@ session_start();
                           $tag_query = "SELECT tag_name, tag_color from post_tags WHERE post_id = $post_id";
                           $tag_result = mysqli_query($connection, $tag_query);
                           $tag_row = mysqli_fetch_assoc($tag_result);
-                          
+
                           $user_id = $row['user_id'];
                           $user_query = "SELECT userUid, profile_image from users where userId = $user_id";
                           $user_result = mysqli_query($connection, $user_query);
@@ -191,7 +152,7 @@ session_start();
                             </div>
                             <div class="post_content_container">
                                 <div class="post_title">
-                                  <span class="post_tag" style="background-color:<?php echo $tag_row["tag_color"]?>";> 
+                                  <span class="post_tag" style="background-color:<?php echo $tag_row["tag_color"]?>";>
                                     <?php echo $tag_row["tag_name"]?></span> <?php echo $row["post_title"] . "tagcolor:" . $tag_row["tag_color"]?></div>
                                 <div class="user_info_container">
                                     <img src="images/profile_img.png">
