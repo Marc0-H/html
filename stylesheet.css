@@ -16,7 +16,7 @@
 
     --tag_font_color: #FFFFFF;
 
-    --tag_color: #06A028;
+    /* --tag_color: #06A028; */
 }
 
 * {
@@ -276,7 +276,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     padding: 5px 20px;
     border-radius: 5px;
     margin-right: 20px;
-    background-color: var(--tag_color);
+    /* background-color: var(--tag_color); */
 
     font-size: large;
     font-weight: bold;

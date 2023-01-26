@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="main.js" defer></script>
+  <script src="tag_color.js" defer></script>
 
 
 </head>
@@ -86,7 +87,7 @@
     </div>
       <div class="main_content_container">
         <?php 
-          if (1 == 2){ //USER ID VERIFICATION????
+          if (1 == 2){ //USER ID VERIFICATION???? vraag georgi
           // if (!isset($_SESSION['userID'])) {
             
         ?>
@@ -109,17 +110,12 @@
                   <div class="tag_container">
                     <p class="tag_text">Tag:</p>
                     <select name="post_tag" id="tag_selector" form="new_post_form">
-                      <option value="math">Math</option>
-                      <option value="biology">Biology</option>
-                      <option value="english">English</option>
-                      <option value="general">General</option>
+                      <option value="math" data-color="red" >Math</option>
+                      <option value="biology" data-color="green">Biology</option>
+                      <option value="english" data-color="yellow">English</option>
+                      <option value="general" data-color="gray">General</option>
                     </select>
-                    <select name="tag_color" id="tag_color" form="new_post_form">
-                      <option value="red">Red</option>
-                      <option value="blue">Blue</option>
-                      <option value="green">Green</option>
-                      <option value="yellow">Yellow</option>
-                    </select>
+                    <input type="hidden" name="tag_color" id="tag_color">
                   </div>
                   <input type="submit" class="new_post_button" value="Post">
                 </div>
