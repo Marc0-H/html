@@ -353,6 +353,25 @@ input[type="checkbox"]:checked, input[type="radio"] {
     color: var(--tag_font_color);
 }
 
+.tag-Math {
+  background-color: lightskyblue;
+}
+
+.tag-Biology {
+  background-color: greenyellow;
+  
+}
+
+.tag-English {
+  background-color: red;
+  
+}
+
+.tag-History {
+  background-color: darkorange;
+  
+}
+
 .user_info_container {
     display: flex;
     align-items: center;
