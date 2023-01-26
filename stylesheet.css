@@ -298,9 +298,6 @@ input[type="checkbox"]:checked, input[type="radio"] {
 /*Sidebar style end*/
 
 /*Post, comment and subcomment style start*/
-/* .container { display:none; } */
-
-
 .post_container {
     display: flex;
     flex-direction: column;
