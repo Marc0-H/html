@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,8 +92,7 @@
       <div class="main_content_container">
         <?php 
           if (1 == 2){ //USER ID VERIFICATION???? vraag georgi
-          // if (!isset($_SESSION['userID'])) {
-            
+          // if (!isset($_SESSION['userId'])) {
         ?>
         <div>Log in to create a post</div>
         <?php 

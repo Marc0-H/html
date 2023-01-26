@@ -1,5 +1,6 @@
 <?php
 include 'connection.php';
+session_start();
 // define variables and set to empty values
 $post_title = $post_content = $post_tag = $tag_color = $post_image = "";
 date_default_timezone_set('Europe/Amsterdam');
@@ -60,8 +61,9 @@ if ($upload_ok == 1 && $image_file_type != "png" || !$post_title || !$post_conte
 
 try {
   //userID from users
-  $insert_post_query = "INSERT INTO posts (post_title, post_content, post_tag, post_datetime, post_image) 
-          VALUES ('$post_title', '$post_content', '$post_tag', '$post_datetime', '$post_image')";
+  $user_id = $_SESSION["userId"];
+  $insert_post_query = "INSERT INTO posts (post_title, post_content, post_tag, post_datetime, post_image, user_id) 
+          VALUES ('$post_title', '$post_content', '$post_tag', '$post_datetime', '$post_image', '$user_id')";
   mysqli_query($connection, $insert_post_query);
   $post_id = mysqli_insert_id($connection);  
   
