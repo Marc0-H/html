@@ -10,7 +10,7 @@ if (isset($_POST["reset_submit"])) {
 
     $email = $_POST["email"];
     if (userExists($connection, $email, $email) === NULL) {
-        header("location: https://webtech-in07.webtech-uva.nl/~georgia/login_page.php?error=nouser");
+        header("location: ../login_page.php?error=nouser");
     }
     else {
     $selector = bin2hex(random_bytes(8));
@@ -45,7 +45,7 @@ if (isset($_POST["reset_submit"])) {
     mysqli_stmt_close($stmt);
     mysqli_close();
 
-    
+
 }
 }
 else {

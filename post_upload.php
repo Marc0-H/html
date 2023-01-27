@@ -98,5 +98,4 @@ tag: <?php echo $_POST["post_tag"]; ?>
 
 <?php 
 $post_db = "Eduzone"
-
 ?>
