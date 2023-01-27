@@ -358,17 +358,21 @@ input[type="checkbox"]:checked, input[type="radio"] {
     color: var(--tag_font_color);
 }
 
+.tag-General {
+  background-color: rgb(207, 93, 17);
+}
+
 .tag-Math {
-  background-color: lightskyblue;
+  background-color: #2b0f6e;
 }
 
 .tag-Biology {
-  background-color: greenyellow;
+  background-color: #14a10f;
   
 }
 
 .tag-English {
-  background-color: red;
+  background-color: rgb(165, 14, 14);
   
 }
 
