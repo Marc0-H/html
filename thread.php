@@ -21,7 +21,6 @@ session_start();
             if (!$connection) {
                 die("Connection to server failed. !");
             }
-            include 'header.php';
 
             include 'header.php';
         ?>
@@ -114,6 +113,8 @@ session_start();
                             </div>
                         </div>
                     </div>
+
+                    
 
                     <div class="comment_container">
                         <div class="user_info_container">
