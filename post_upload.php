@@ -3,6 +3,7 @@ include 'connection.php';
 session_start();
 // define variables and set to empty values
 $post_title = $post_content = $post_tag = $post_image = "";
+$error_msg = "unknown error";
 date_default_timezone_set('Europe/Amsterdam');
 $post_datetime = date('Y-d-m H:i', time());
 
@@ -34,10 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
       $upload_ok = 0;
     }
-    if ($_FILES["new_post_image"]["size"] > 500000) {
+    if ($_FILES["new_post_image"]["size"] > 5000000) {
+      $error_msg = "file size incorrect, please select a smaller file";
       $upload_ok = 0;
     } 
     if($image_file_type != "png") {
+      $error_msg = "file type incorrect, please use png";
       $upload_ok = 0;
     }
   }   
@@ -50,8 +53,9 @@ if($upload_ok == 1) {
   $post_image = base64_encode($img);
 }
 
-if ($upload_ok == 1 && $image_file_type != "png" || !$post_title || !$post_content || !$post_tag) {
-  echo "Incorrect format, please <a href='newthread.php'>try again.</a><br>";
+if (($upload_ok == 0 && $image_file_type != "png" )|| !$post_title || !$post_content || !$post_tag) {
+  
+  echo $error_msg . "<br><a href='newthread.php'>try again.</a><br>";
   die("Post upload failed.");
 }
 

@@ -84,7 +84,7 @@ include 'header.php';
       <?php 
           if (!isset($_SESSION['userId'])) {
         ?>
-        <div>Log in to create a post</div>
+        <div><a href="login_signup/lofin_page.php">Log in</a> to create a post</div>
         <?php 
         } else {?>
         <div class="new_post_main_content">
