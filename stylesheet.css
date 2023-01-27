@@ -434,7 +434,6 @@ input[type="checkbox"]:checked, input[type="radio"] {
     margin-right: 2px;
     border-radius: 100%;
     background-clip: border-box;
-    z-index: 2;
 }
 
 .interaction_container > i:hover {
