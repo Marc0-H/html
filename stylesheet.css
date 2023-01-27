@@ -65,10 +65,15 @@ header {
     box-shadow: 0px 0px 20px var(--shadow_color);
 }
 
-.header_container > img {
+.header_container > a {
+    height: 80%;
+}
+
+.header_container > a > img {
     color: var(--primary_color);
     font-size: 32px;
     font-weight: bold;
+    height: 100%;
 }
 
 .header_content_right {
@@ -346,11 +351,30 @@ input[type="checkbox"]:checked, input[type="radio"] {
     padding: 5px 20px;
     border-radius: 5px;
     margin-right: 20px;
-    background-color: var(--tag_color);
+    /* background-color: var(--tag_color); */
 
     font-size: large;
     font-weight: bold;
     color: var(--tag_font_color);
+}
+
+.tag-Math {
+  background-color: lightskyblue;
+}
+
+.tag-Biology {
+  background-color: greenyellow;
+  
+}
+
+.tag-English {
+  background-color: red;
+  
+}
+
+.tag-History {
+  background-color: darkorange;
+  
 }
 
 .user_info_container {
