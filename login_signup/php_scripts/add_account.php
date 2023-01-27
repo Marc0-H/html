@@ -8,24 +8,33 @@ $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST["uPas
 $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]));
 
 if (checkUid($name) === FALSE) {
-    header("location: https://webtech-in07.webtech-uva.nl/login_signup/signup_page.php?error=invalidusername");
+    header("location: ../signup_page.php?error=invalidusername");
     exit();
 }
 if (checkEmail($email) === FALSE) {
-    header("location: https://webtech-in07.webtech-uva.nl/~georgia/signup_page.php?error=invalidemail");
+    header("location: ../signup_page.php?error=invalidemail");
     exit();
 }
 if (userExists($connection, $name, $email) === FALSE) {
     try {
-        $hashed_pw = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (userEmail, userUid, userPwd) VALUES ('$email', '$name', '$hashed_pw')";
-        mysqli_query($connection, $sql);
+        $sql = "INSERT INTO users (userEmail, userUid, userPwd) VALUES (?, ?, ?)";
+        $stmt = mysqli_stmt_init($connection);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: ../signup_page.php?error=stmtfailed");
+            exit();
+        }
+        else {
+            $hashed_pw = password_hash($password, PASSWORD_DEFAULT);
+            mysqli_stmt_bind_param($stmt, "sss", $email, $name, $hashed_pw);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+            header("location: ../../index.php");
+        }
     } catch(PDOexception $e) {
         echo $sql . "<br>" . $e->getMessage();
     }
 }
 else {
-    header("location: https://webtech-in07.webtech-uva.nl/~georgia/signup_page.php?error=userexists");
+    header("location: ../signup_page.php?error=userexists");
 }
-
 ?>

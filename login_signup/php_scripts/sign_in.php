@@ -11,7 +11,7 @@ $connection = new mysqli("$serverName", "$dbUsername", "$dbPassword", "$dbName")
 function loginUser($connection, $name, $password) {
     $user = userExists($connection, $name, $name);
     if ($user === FALSE) {
-        header("location: https://webtech-in07.webtech-uva.nl/~georgia/login_page.php?error=wrongcombination");
+        header("location: ../login_page.php?error=wrongcombination");
         exit();
     }
 
@@ -19,19 +19,19 @@ function loginUser($connection, $name, $password) {
 
     $checkPW = password_verify($password, $hashedPW);
     if ($checkPW === FALSE) {
-        header("location: https://webtech-in07.webtech-uva.nl/~georgia/login_page.php?error=wrongcombination");
+        header("location: ../login_page.php?error=wrongcombination");
     }
     else if ($checkPW === TRUE) {
         session_start();
         $_SESSION["userId"] = $user["userId"];
         $_SESSION["userUid"] = $user["userUid"];
-        $_session["userPfp"] = $user["profile_image"];
+        $_SESSION["userPfp"] = $user["profile_image"];
 
-        header("location: ../../index.php");
+        header("location: /index.php");
         exit();
     }
     else {
-        header("location: https://webtech-in07.webtech-uva.nl/~georgia/login_page.php?error=verifyfailed");
+        header("location: ../login_page.php?error=verifyfailed");
         exit();
     }
 }
