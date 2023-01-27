@@ -52,6 +52,9 @@ include 'header.php';
                                 <label class="dropdown-label">
                                     <input name="filter-subject[]" value="english" type="checkbox">English
                                 </label>
+                                <label class="dropdown-label">
+                                    <input name="filter-subject[]" value="general" type="checkbox">General
+                                </label>
                             </div>
                             <button id="filter-option-sortby" class="dropdown-button" type="button">
                                 Sort by
@@ -112,6 +115,10 @@ include 'header.php';
                                     if (strpos($filter, "biology") !== false) {
 
                                         $subject[] = "biology";
+                                    }
+                                    if (strpos($filter, "general") !== false) {
+
+                                        $subject[] = "general";
                                     }
                                 }
 
