@@ -13,6 +13,7 @@ session_start();
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="filter.js" defer></script>
         <script src="header.js" defer></script>
+        <script src="thread.js" defer></script>
         <script src="textarea_resize.js" defer></script>
     </head>
     <body>
@@ -70,14 +71,15 @@ session_start();
                                 </div>
 
                                 <div class="post_content"><?php echo $post_result["post_content"]?></div>
+                                <div id="bookmark"></div>
                                 <div class="interaction_container">
                                     <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
                                     <div class="post_like_count">12</div>
-                                    <i class="material-icons tooltip">forum<div class="tooltip_text">Go to replies</div></i>
+                                    <a href="#bookmark" class="material-icons tooltip">forum<div class="tooltip_text">Go to replies</div></a>
                                     <div class="post_comment_count"><?php echo $comment_count["COUNT(post_id)"]?></div>
-                                    <div class="reply_button">Reply</div>
+                                    <div id="reply-post" class="reply_button">Reply</div>
                                 </div>
-                                <form action="comment_upload.php" method="post">
+                                <form id="form-reply-post" action="comment_upload.php" method="post">
                                     <textarea class="comment_box" name="comment_content" autocomplete="off" placeholder="Add a reply..." rows="1" required></textarea>
                                     <input type="hidden" name="post_id" value="<?php echo $_GET["v"]?>">
                                     <input type="hidden" name="parent_comment_id" value="">
@@ -85,6 +87,7 @@ session_start();
                                 </form>
                             </div>
 
+                            
                     <?php
                         }
                     ?>
@@ -144,11 +147,11 @@ session_start();
                                 <div class="interaction_container">
                                     <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
                                     <div class="post_like_count">12</div>
-                                    <i class="material-icons tooltip">forum<div class="tooltip_text">Show replies</div></i>
+                                    <i id="hide-<?php echo $comment_id ?>" class="material-icons tooltip hide_replies">forum<div class="tooltip_text">Show replies</div></i>
                                     <div class="post_comment_count"><?php echo $subcomment_count["COUNT(parent_comment_id)"]?></div>
-                                    <div class="reply_button">Reply</div>
+                                    <div id="reply-<?php echo $comment_id ?>" class="reply_button">Reply</div>
                                 </div>
-                                <form action="comment_upload.php" method="post">
+                                <form id="form-reply-<?php echo $comment_id ?>" action="comment_upload.php" method="post">
                                     <textarea class="comment_box" name="comment_content" autocomplete="off" placeholder="Add a reply..." rows="1" required></textarea>
                                     <input type="hidden" name="post_id" value="">
                                     <input type="hidden" name="parent_comment_id" value="<?php echo $comment_row["id"] ?>">
@@ -165,7 +168,7 @@ session_start();
                                     $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
                                     $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
                             ?>   
-                                    <div class="subcomment_container <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
+                                    <div class="subcomment_container child-of-hide-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                                         <div class="user_info_container">
                                             <img src="images/profile_img.png">
                                             <div class="username"><?php echo $user_result["userUid"]?></div>

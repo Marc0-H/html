@@ -1,5 +1,3 @@
-
-
 let allPosts = document.querySelectorAll('.post_container');
 
 allPosts.forEach(post => {
