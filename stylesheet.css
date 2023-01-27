@@ -65,10 +65,15 @@ header {
     box-shadow: 0px 0px 20px var(--shadow_color);
 }
 
-.header_container > img {
+.header_container > a {
+    height: 80%;
+}
+
+.header_container > a > img {
     color: var(--primary_color);
     font-size: 32px;
     font-weight: bold;
+    height: 100%;
 }
 
 .header_content_right {

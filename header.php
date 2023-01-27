@@ -1,6 +1,6 @@
 <header>
     <div class="header_container">
-        <img src="" alt="EDUZONE">
+        <a href="index.php"><img src="images/logo.png" alt="EDUZONE"></a>
         <button class="hamburger_menu_btn">
             <span class="bar" id="bar1"></span>
             <span class="bar" id="bar2"></span>
