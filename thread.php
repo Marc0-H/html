@@ -13,6 +13,7 @@ session_start();
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="filter.js" defer></script>
         <script src="header.js" defer></script>
+        <script src="textarea_resize.js" defer></script>
     </head>
     <body>
         <?php
@@ -21,48 +22,8 @@ session_start();
                 die("Connection to server failed. !");
             }
 
+            include 'header.php';
         ?>
-        <header>
-            <div class="header_container">
-                <img src="" alt="EDUZONE">
-                <button class="hamburger_menu_btn">
-                    <span class="bar" id="bar1"></span>
-                    <span class="bar" id="bar2"></span>
-                    <span class="bar" id="bar3"></span>
-                </button>
-                <div class="header_content_right">
-                    <input class="searchbar" type="text" placeholder="Search topic..">
-
-                    <?php
-                    if (!isset($_SESSION["userId"])) {
-                    // Show if not logged in.
-                    ?>
-                        <a href="login_signup/signup_page.php" class="register_button">Register</a>
-                        <a href="login_signup/login_page.php" class="login_button" >Login</a>
-                    <?php
-                    } else {
-                    // Show if logged in.
-                    ?>
-                      <a href="newthread.php">
-                        <i class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
-                      </a>
-                        <div class="dropdown_menu_profile">
-                            <img src="./images/profile_img.png" alt="profile" class="profile_button">
-                            <div class="dropdown_content">
-                                <a href="#" class="settings_button">Settings</a>
-                                <a href="login_signup/php_scripts/log_out.php" class="log_out_button">Log out</a>
-                            </div>
-                        </div>
-
-                        <a href="#" class="mobile_create_post">Create post</a>
-                        <a href="#" class="mobile_profile_settings">Settings</a>
-                        <a href="login_signup/php_scripts/log_out.php" class="mobile_logout_button">Log out</a>
-                    <?php
-                    }
-                    ?>
-                </div>
-            </div>
-        </header>
         <main>
             <div class="main_container">
                 <div class="sidebar_container">
@@ -130,21 +91,42 @@ session_start();
 
                     <?php
                         if (isset($_GET["v"])) {
-                            $id = $_GET["v"];
-                            $post_sql = "SELECT * FROM posts WHERE post_id = $id";
-                            $post_result = mysqli_query($connection, $post_sql);
+                            $post_id = $_GET["v"];
+                            $post_query = "SELECT * FROM posts WHERE post_id = $post_id";
+                            $post_result = mysqli_query($connection, $post_query);
                             $post_result = mysqli_fetch_assoc($post_result);
-                            ?>
+
+                            $op_id = $post_result["user_id"];
+                            $op_query = "SELECT userUid, profile_image from users where userId = $op_id";
+                            $op_result = mysqli_query($connection, $op_query);
+                            $op_result = mysqli_fetch_assoc($op_result);
+                    ?>
 
                             <div class="post_container original_poster">
-                                <div class="post_title"><span class="post_tag"><?php echo $post_result["post_tag"]?></span><?php echo $post_result["post_title"]?></div>
+                                <div class="post_title">
+                                    <span class="post_tag tag-<?php echo $post_result["post_tag"]?>">
+                                        <?php echo $post_result["post_tag"]?>
+                                    </span>
+                                    <?php echo $post_result["post_title"]?>
+                                </div>
                                 <div class="user_info_container">
-                                    <img src="images/profile_img.png">
-                                    <div class="username">The Bridgekeeper</div>
+                                    <img src="images/default.png">
+                                    <div class="username"><?php echo $op_result["userUid"]?></div>
                                     <div class="user_tag">PhD.</div>
                                     <i class="material-icons">query_builder</i>
                                     <div class="date"><?php echo $post_result["post_datetime"]?></div>
                                 </div>
+
+                                <div class="post_image_container">
+                                    <?php
+                                        if (!empty($post_result["post_image"])) {
+                                    ?>
+                                            <img src="data:image/png;base64,<?php echo $post_result["post_image"]?>" alt="card1">
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+
                                 <div class="post_content"><?php echo $post_result["post_content"]?></div>
                                 <div class="interaction_container">
                                     <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
@@ -153,9 +135,11 @@ session_start();
                                     <div class="post_comment_count">4</div>
                                     <div class="reply_button">Reply</div>
                                 </div>
-                                <form>
+                                <form action="comment_upload.php" method="post">
                                     <textarea class="comment_box" name="comment_content" autocomplete="off" placeholder="Add a reply..." rows="1" required></textarea>
-                                    <input type="submit" class="submit_button" value="Submit">
+                                    <input type="hidden" name="post_id" value="<?php echo $_GET["v"]?>">
+                                    <input type="hidden" name="parent_comment_id" value="">
+                                    <input class="submit_button" type="submit" value="Submit">
                                 </form>
                             </div>
 

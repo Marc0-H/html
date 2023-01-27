@@ -140,9 +140,9 @@ header('Cache-Control: max-age=900');
                             <div class="post_image_container">
                                 <?php
                                     if (!empty($row["post_image"])) {
-                                        ?>
+                                ?>
                                         <img src="data:image/png;base64,<?php echo $row["post_image"]?>" alt="card1">
-                                        <?php
+                                <?php
                                     }
                                 ?>
 
