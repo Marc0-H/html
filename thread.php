@@ -37,9 +37,11 @@ session_start();
                             $post_result = mysqli_fetch_assoc($post_result);
 
                             $op_id = $post_result["user_id"];
-                            $op_query = "SELECT userUid, profile_image from users where userId = $op_id";
-                            $op_result = mysqli_query($connection, $op_query);
-                            $op_result = mysqli_fetch_assoc($op_result);
+                            $op_query = "SELECT userUid, profile_image FROM users WHERE userId = $op_id";
+                            $op_result = mysqli_fetch_assoc(mysqli_query($connection, $op_query));
+
+                            $comment_count_query = "SELECT COUNT(post_id) FROM comments WHERE post_id = $post_id";
+                            $comment_count = mysqli_fetch_assoc(mysqli_query($connection, $comment_count_query));
                     ?>
 
                             <div class="post_container original_poster">
@@ -72,7 +74,7 @@ session_start();
                                     <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
                                     <div class="post_like_count">12</div>
                                     <i class="material-icons tooltip">forum<div class="tooltip_text">Go to replies</div></i>
-                                    <div class="post_comment_count">4</div>
+                                    <div class="post_comment_count"><?php echo $comment_count["COUNT(post_id)"]?></div>
                                     <div class="reply_button">Reply</div>
                                 </div>
                                 <form action="comment_upload.php" method="post">
@@ -86,7 +88,7 @@ session_start();
                     <?php
                         }
                     ?>
-
+                    <!--
                     <div class="solution_container">
                         <div class="solution_sign">
                             <div class="solution_bar"></div>
@@ -113,45 +115,76 @@ session_start();
                             </div>
                         </div>
                     </div>
+                    -->
+                    <?php
+                        $comment_query = "SELECT * FROM comments WHERE post_id = $post_id ORDER BY comment_datetime DESC";
+                        $comment_result = mysqli_query($connection, $comment_query);
+                        
+                        while($comment_row = mysqli_fetch_assoc($comment_result)) {
+                            $user_id = $comment_row['user_id'];
+                            $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+                            $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
 
-                    
+                            $comment_id = $comment_row["id"];
+                            $subcomment_count_query = "SELECT COUNT(parent_comment_id) FROM comments WHERE parent_comment_id = $comment_id";
+                            $subcomment_count = mysqli_fetch_assoc(mysqli_query($connection, $subcomment_count_query));
+                    ?>
 
-                    <div class="comment_container">
-                        <div class="user_info_container">
-                            <img src="images/profile_img.png">
-                            <div class="username">Arthur</div>
-                            <div class="user_tag">King of the Britons</div>
-                            <i class="material-icons">query_builder</i>
-                            <div class="date">2 hours ago</div>
-                        </div>
-                        <div class="comment_content">
-                            <p>What do you mean? An African or European swallow? </p>
-                        </div>
-                        <div class="interaction_container">
-                            <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
-                            <div class="post_like_count">12</div>
-                            <i class="material-icons tooltip">forum<div class="tooltip_text">Show replies</div></i>
-                            <div class="post_comment_count">4</div>
-                            <div class="reply_button">Reply</div>
-                        </div>
-                    </div>
+                            <div class="comment_container <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
+                                <div class="user_info_container">
+                                    <img src="images/profile_img.png">
+                                    <div class="username"><?php echo $user_result["userUid"]?></div>
+                                    <div class="user_tag">Leerling</div>
+                                    <i class="material-icons">query_builder</i>
+                                    <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
+                                </div>
+                                <div class="comment_content">
+                                    <p><?php echo $comment_row["comment_content"]?></p>
+                                </div>
+                                <div class="interaction_container">
+                                    <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
+                                    <div class="post_like_count">12</div>
+                                    <i class="material-icons tooltip">forum<div class="tooltip_text">Show replies</div></i>
+                                    <div class="post_comment_count"><?php echo $subcomment_count["COUNT(parent_comment_id)"]?></div>
+                                    <div class="reply_button">Reply</div>
+                                </div>
+                                <form action="comment_upload.php" method="post">
+                                    <textarea class="comment_box" name="comment_content" autocomplete="off" placeholder="Add a reply..." rows="1" required></textarea>
+                                    <input type="hidden" name="post_id" value="">
+                                    <input type="hidden" name="parent_comment_id" value="<?php echo $comment_row["id"] ?>">
+                                    <input class="submit_button" type="submit" value="Submit">
+                                </form>
+                            </div>
 
-                    <div class="subcomment_container original_poster">
-                        <div class="user_info_container">
-                            <img src="images/profile_img.png">
-                            <div class="username">The Bridgekeeper</div>
-                            <div class="user_tag">PhD.</div>
-                            <i class="material-icons">query_builder</i>
-                            <div class="date">2 hours ago</div>
-                        </div>
-                        <div class="comment_content">
-                            <p>Huh? I-- I don't know that.</p>
-                        </div>
-                        <div class="interaction_container">
-                            <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
-                            <div class="post_like_count">12</div>
-                        </div>
-                    </div>
+                            <?php
+                                $subcomment_query = "SELECT * FROM comments WHERE parent_comment_id = $comment_id ORDER BY comment_datetime DESC";
+                                $subcomment_result = mysqli_query($connection, $subcomment_query);
+
+                                while($subcomment_row = mysqli_fetch_assoc($subcomment_result)) {
+                                    $user_id = $subcomment_row['user_id'];
+                                    $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+                                    $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
+                            ?>   
+                                    <div class="subcomment_container <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
+                                        <div class="user_info_container">
+                                            <img src="images/profile_img.png">
+                                            <div class="username"><?php echo $user_result["userUid"]?></div>
+                                            <div class="user_tag">PhD.</div>
+                                            <i class="material-icons">query_builder</i>
+                                            <div class="date"><?php echo $subcomment_row["comment_datetime"]?></div>
+                                        </div>
+                                        <div class="comment_content">
+                                            <p><?php echo $subcomment_row["comment_content"]?></p>
+                                        </div>
+                                        <div class="interaction_container">
+                                            <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
+                                            <div class="post_like_count">12</div>
+                                        </div>
+                                    </div>
+                    <?php
+                                }
+                        }
+                    ?>
                 </div>
             </div>
         </main>

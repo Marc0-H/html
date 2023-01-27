@@ -755,6 +755,11 @@ input[type="checkbox"]:checked, input[type="radio"] {
         display: none;
     }
 
+    .thread_content_container {
+        width: 100%;
+        margin: 0px;
+    }
+
     .header_content_right {
         position: absolute;
         transform: translateX(100vw);
