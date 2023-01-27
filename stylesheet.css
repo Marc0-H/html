@@ -107,7 +107,7 @@ header {
 .header_content_right > .searchbar {
     height: 50px;
     width: 270px;
-    border-radius: 100px;
+    border-radius: 8px;
     border: 2px solid var(--details_font_color);
     color: var(--title_font_color);
     background-color: transparent;
@@ -117,6 +117,29 @@ header {
 
 .header_content_right > .searchbar:focus {
     border: 2px solid var(--primary_color);
+}
+
+.header_container_right > a {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    vertical-align: bottom;
+}
+
+.header_content_right > .login_button, .header_content_right > .register_button {
+    height: 50px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.header_content_right > .login_button {
+    background-color: transparent;
+    border: 3px solid var(--primary_color);
+    color: var(--primary_color);
+}
+
+.header_content_right > .register_button {
+    border: 3px solid var(--primary_color);
 }
 
 .hamburger_menu_btn, .mobile_create_post, .mobile_profile_settings, .mobile_logout_button {
@@ -325,7 +348,13 @@ input[type="checkbox"]:checked, input[type="radio"] {
 }
 
 .post_content {
-    overflow-wrap: break-word;
+    max-height: 200px;
+    overflow: hidden;
+
+}
+
+.post_content > p {
+    word-break: break-all;
 }
 
 .comment_container {
