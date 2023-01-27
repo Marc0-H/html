@@ -129,19 +129,14 @@ header('Cache-Control: max-age=900');
                         // $post_sql = "SELECT post_id, post_title, post_content, post_tag, post_datetime, post_image from posts ORDER BY post_id DESC";
                         // $post_result = mysqli_query($connection, $post_sql);
 
-                        while($row = mysqli_fetch_assoc($post_result)) {
-                          $post_id = $row['post_id'];
-                          $tag_query = "SELECT tag_name, tag_color from post_tags WHERE post_id = $post_id";
-                          $tag_result = mysqli_query($connection, $tag_query);
-                          $tag_row = mysqli_fetch_assoc($tag_result);
-
+                        while($row = mysqli_fetch_assoc($post_result)) {                        
                           $user_id = $row['user_id'];
                           $user_query = "SELECT userUid, profile_image from users where userId = $user_id";
                           $user_result = mysqli_query($connection, $user_query);
                           $user_row = mysqli_fetch_assoc($user_result);
                         ?>
 
-                        <div class="post_container">
+                        <div id="<?php echo $row["post_id"]?>" class="post_container">
                             <div class="post_image_container">
                                 <?php
                                     if (!empty($row["post_image"])) {
@@ -154,8 +149,8 @@ header('Cache-Control: max-age=900');
                             </div>
                             <div class="post_content_container">
                                 <div class="post_title">
-                                  <span class="post_tag" style="background-color:<?php echo $tag_row["tag_color"]?>";>
-                                    <?php echo $tag_row["tag_name"]?></span> <?php echo $row["post_title"] . "tagcolor:" . $tag_row["tag_color"]?></div>
+                                  <span class="post_tag tag-<?php echo $row["post_tag"]?>">
+                                    <?php echo $row["post_tag"]?></span> <?php echo $row["post_title"]?></div>
                                 <div class="user_info_container">
                                     <img src="images/default.png">
                                     <div class="username" title="<?php echo $user_row["userUid"]?>"><?php echo $user_row["userUid"]?></div>

@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+header('Cache-Control: max-age=900');
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,22 +15,10 @@ session_start();
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script src="main.js" defer></script>
-  <script src="tag_color.js" defer></script>
 
 
 </head>
 <body>
-  <header>
-    <div class="header_container">
-      <img src="" alt="EDUZONE">
-      <div class="header_content_right">
-        <input class="searchbar" type="text" placeholder="Search topic..">
-        <i class="material-icons">add</i>
-        <img src="./images/profile_img.png" alt="profile">
-      </div>
-    </div>
-  </header>
-
   <main>
     <div class="main_container">
       <div class="sidebar_container">
@@ -106,12 +97,13 @@ session_start();
                   <div class="tag_container">
                     <p class="tag_text">Tag:</p>
                     <select name="post_tag" id="tag_selector" form="new_post_form">
-                      <option value="Math" data-color="red" >Math</option>
-                      <option value="Biology" data-color="green">Biology</option>
-                      <option value="English" data-color="yellow">English</option>
-                      <option value="General" data-color="grey">General</option>
+                      <option value="Math"  >Math</option>
+                      <option value="Biology" >Biology</option>
+                      <option value="English" >English</option>
+                      <option value="History" >History</option>
+                      <option value="General" >General</option>
+
                     </select>
-                    <input type="hidden" name="tag_color" id="tag_color">
                   </div>
                   <input type="submit" class="new_post_button" value="Post">
                 </div>

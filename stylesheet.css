@@ -346,11 +346,30 @@ input[type="checkbox"]:checked, input[type="radio"] {
     padding: 5px 20px;
     border-radius: 5px;
     margin-right: 20px;
-    background-color: var(--tag_color);
+    /* background-color: var(--tag_color); */
 
     font-size: large;
     font-weight: bold;
     color: var(--tag_font_color);
+}
+
+.tag-Math {
+  background-color: lightskyblue;
+}
+
+.tag-Biology {
+  background-color: greenyellow;
+  
+}
+
+.tag-English {
+  background-color: red;
+  
+}
+
+.tag-History {
+  background-color: darkorange;
+  
 }
 
 .user_info_container {
