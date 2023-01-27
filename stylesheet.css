@@ -340,7 +340,6 @@ input[type="checkbox"]:checked, input[type="radio"] {
 .post_content {
     max-height: 200px;
     overflow: hidden;
-
 }
 
 .post_content > p {
@@ -607,6 +606,10 @@ input[type="checkbox"]:checked, input[type="radio"] {
     object-fit: contain;
     max-height: 500px;
     margin: auto;
+}
+
+.thread_content_container .post_content, .thread_content_container .comment_content {
+    overflow-wrap: break-word;
 }
 
 .solution_container {
