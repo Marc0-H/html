@@ -119,42 +119,32 @@ header {
     border: 2px solid var(--primary_color);
 }
 
-.header_container_right > a {
-    display: flex;
-    align-items: center;
-    vertical-align: middle;
-    vertical-align: bottom;
-}
-
-.header_content_right > .login_button, .header_content_right > .register_button {
-    height: 50px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.header_content_right > .login_button {
-    background-color: transparent;
-    border: 3px solid var(--primary_color);
-    color: var(--primary_color);
-}
-
-.header_content_right > .register_button {
-    border: 3px solid var(--primary_color);
-}
-
-.hamburger_menu_btn, .mobile_create_post, .mobile_profile_settings, .mobile_logout_button {
-    display: none;
-}
-
-.header_content_right > a {
+.login_button, .register_button {
     padding: 10px 20px;
-    border-radius: 50px;
-    background-color: var(--primary_color);
-
     font-size: large;
     font-weight: bold;
     text-decoration: none;
+    height: 50px;
+    border-radius: 8px;
+    text-align: center;
+    border: 3px solid var(--primary_color);
+}
+
+.login_button {
+    color: var(--primary_color);
+}
+
+.header_content_right > .login_button:hover {
+    background-color: var(--shadow_color);
+}
+
+.register_button {
+    background-color: var(--primary_color);
     color: var(--tag_font_color);
+}
+
+.hamburger_menu_btn, .mobile_button {
+    display: none;
 }
 
 .header_content_right > a:hover {
@@ -780,7 +770,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
 /*Mobile view style start*/
 @media only screen and (max-width: 1100px) {
-    .sidebar_container {
+    .sidebar_container, .dropdown_menu_profile, .header_content_right > .register_button, .header_content_right > .login_button, .header_content_right > i {
         display: none;
     }
 
@@ -819,11 +809,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
         transform: translateX(0vw);
     }
 
-    .header_content_right > i, .header_content_right > .dropdown_menu_profile{
-        display: none;
-    }
-
-    .header_content_right > a{
+    .header_content_right > a {
         display: block;
         padding: 20px;
         border-radius: 4px;

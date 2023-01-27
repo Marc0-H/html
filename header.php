@@ -15,6 +15,9 @@
             ?>
                 <a href="login_signup/signup_page.php" class="register_button">Register</a>
                 <a href="login_signup/login_page.php" class="login_button" >Login</a>
+
+                <a href="login_signup/signup_page.php" class="mobile_button">Register</a>
+                <a href="login_signup/login_page.php" class="mobile_button" >Login</a>
             <?php
             } else {
             // Show if logged in.
@@ -29,9 +32,9 @@
                     </div>
                 </div>
 
-                <a href="#" class="mobile_create_post">Create post</a>
-                <a href="#" class="mobile_profile_settings">Settings</a>
-                <a href="login_signup/php_scripts/log_out.php" class="mobile_logout_button">Log out</a>
+                <a href="#" class="mobile_button">Create post</a>
+                <a href="#" class="mobile_button">Settings</a>
+                <a href="login_signup/php_scripts/log_out.php" class="mobile_button">Log out</a>
             <?php
             }
             ?>
