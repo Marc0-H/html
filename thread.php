@@ -37,7 +37,7 @@ session_start();
                             ?>
 
                             <div class="post_container original_poster">
-                                <div class="post_title"><span class="post_tag tag-<?php echo $row["post_tag"]?>"><?php echo $post_result["post_tag"]?></span><?php echo $post_result["post_title"]?></div>
+                                <div class="post_title"><span class="post_tag tag-<?php echo $post_result["post_tag"]?>"><?php echo $post_result["post_tag"]?></span><?php echo $post_result["post_title"]?></div>
                                 <div class="user_info_container">
                                     <img src="images/profile_img.png">
                                     <div class="username">The Bridgekeeper</div>
