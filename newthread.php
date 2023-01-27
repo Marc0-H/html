@@ -81,6 +81,12 @@ include 'header.php';
       </div>
     </div>
       <div class="main_content_container">
+      <?php 
+          if (!isset($_SESSION['userId'])) {
+        ?>
+        <div><a href="login_signup/login_page.php">Log in</a> to create a post</div>
+        <?php 
+        } else {?>
         <div class="new_post_main_content">
           <div class="post_container">
             <div class="new_post_content">
@@ -111,6 +117,9 @@ include 'header.php';
             </div>
           </div>
         </div>
+        <?php
+          }
+        ?>
       </div>
     </div>
   </main>
