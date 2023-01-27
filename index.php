@@ -2,7 +2,6 @@
 session_start();
 
 header('Cache-Control: max-age=900');
-include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +26,7 @@ include 'header.php';
                 die("Connection to server failed. !");
             }
 
+            include 'header.php';
         ?>
         <main>
             <div class="main_container">
