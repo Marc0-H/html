@@ -85,7 +85,7 @@ session_start();
                                 <i id="post-like-<?php echo $post_id ?>" class="material-icons tooltip like_button <?php if ($user_like["COUNT(user_id)"] > 0) { echo 'liked'; }?>">thumb_up<div class="tooltip_text">Like</div></i>
                                 <div class="like_count"><?php echo $like_count["COUNT(post_id)"]?></div>
                                 <a href="#bookmark" class="material-icons tooltip">forum<div class="tooltip_text">Go to replies</div></a>
-                                <div class="post_comment_count"><?php echo $comment_count["COUNT(post_id)"]?></div>
+                                <div class="comment_count"><?php echo $comment_count["COUNT(post_id)"]?></div>
                                 <div id="reply-post" class="reply_button">Reply</div>
                             </div>
                             <form id="form-reply-post" action="comment_upload.php?v=<?php echo $_GET["v"]?>" method="post">
@@ -118,7 +118,7 @@ session_start();
                             <i class="material-icons tooltip">thumb_up<div class="tooltip_text">Like</div></i>
                                 <div class="like_count">12</div>
                                 <i class="material-icons tooltip">forum<div class="tooltip_text">Show replies</div></i>
-                                <div class="post_comment_count">4</div>
+                                <div class="comment_count">4</div>
                                 <div class="reply_button">Reply</div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@ session_start();
                                     <i id="comment-like-<?php echo $comment_id ?>" class="material-icons tooltip like_button <?php if ($user_like["COUNT(user_id)"] > 0) { echo 'liked'; }?>">thumb_up<div class="tooltip_text">Like</div></i>
                                     <div class="like_count"><?php echo $like_count["COUNT(comment_id)"]?></div>
                                     <i id="subcomment-<?php echo $comment_id ?>" class="material-icons tooltip hide_replies">forum<div class="tooltip_text">Show replies</div></i>
-                                    <div class="post_comment_count"><?php echo $subcomment_count["COUNT(parent_comment_id)"]?></div>
+                                    <div class="comment_count"><?php echo $subcomment_count["COUNT(parent_comment_id)"]?></div>
                                     <div id="reply-<?php echo $comment_id ?>" class="reply_button">Reply</div>
                                 </div>
                                 <form id="form-reply-<?php echo $comment_id ?>" action="comment_upload.php?v=<?php echo $_GET["v"]?>" method="post">

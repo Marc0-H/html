@@ -460,7 +460,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     margin-right: 30px;
 }
 
-.interaction_container > .post_comment_count {
+.interaction_container > .comment_count {
     margin-right: 20px;
 }
 

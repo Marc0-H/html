@@ -107,9 +107,9 @@ header('Cache-Control: max-age=900');
                                 </div>
                                 <div class="interaction_container">
                                     <i class="material-icons">thumb_up</i>
-                                    <div class="post_like_count">12</div>
+                                    <div class="like_count">12</div>
                                     <i class="material-icons">forum</i>
-                                    <div class="post_comment_count">4</div>
+                                    <div class="comment_count">4</div>
                                 </div>
                             </div>
                         </div>
