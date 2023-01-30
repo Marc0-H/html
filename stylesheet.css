@@ -312,7 +312,6 @@ input[type="checkbox"]:checked, input[type="radio"] {
     background-color: var(--primary_complement_hover);
     cursor: pointer;
 }
-
 /*Sidebar style end*/
 
 /*Post, comment and subcomment style start*/
@@ -457,7 +456,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     font-size: large;
 }
 
-.interaction_container > .post_like_count {
+.interaction_container > .like_count {
     margin-right: 30px;
 }
 
@@ -476,6 +475,10 @@ input[type="checkbox"]:checked, input[type="radio"] {
 .interaction_container > i:hover , .interaction_container > a:hover{
     background-color: var(--post_interaction_color);
     cursor: pointer;
+}
+
+.interaction_container > .liked {
+    color: var(--primary_color);
 }
 /*Post, comment and subcomment style end*/
 
