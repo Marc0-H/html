@@ -48,31 +48,31 @@ $(".filter_form").submit(function(event) {
     });
 });
 
-// $(".search_form").submit(function(event) {
-//     event.preventDefault();  // prevent the form from submitting
-//     $.ajax({
-//         type: "GET",
-//         url: "filtered_results.php",
-//         data: $(this).serialize(),
-//         success: function (data) {
-//             $(".main_content_posts").html(data);
-//             $.getScript("masonry.js");
-//             $.getScript("cards.js");
-//         }
-//     });
-// });
-
-
 $(".search_form").submit(function(event) {
-
     event.preventDefault();  // prevent the form from submitting
     $.ajax({
         type: "GET",
-        url: "filtered_results_thread.php" + window.location.search,
+        url: "filtered_results.php",
         data: $(this).serialize(),
         success: function (data) {
-            $(".thread_content_container").html(data);
- 
+            $(".main_content_posts").html(data);
+            $.getScript("masonry.js");
+            $.getScript("cards.js");
         }
     });
 });
+
+
+// $(".search_form").submit(function(event) {
+
+//     event.preventDefault();  // prevent the form from submitting
+//     $.ajax({
+//         type: "GET",
+//         url: "filtered_results_thread.php" + window.location.search,
+//         data: $(this).serialize(),
+//         success: function (data) {
+//             $(".thread_content_container").html(data);
+ 
+//         }
+//     });
+// });
