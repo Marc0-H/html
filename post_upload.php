@@ -2,6 +2,7 @@
 include 'connection.php';
 require_once("vendor/autoload.php");
 include "config.php";
+include "post_confirmed.js";
 
 \Tinify\setKey(API_KEY); // robbysapikey
 session_start();
@@ -58,8 +59,7 @@ if($upload_ok == 1) {
   $post_image = base64_encode($img);
 }
 
-if (($upload_ok == 0 && $image_file_type != "png" )|| !$post_title || !$post_content || !$post_tag) {
-  
+if (($upload_ok == 1 && $image_file_type != "png" )|| !$post_title || !$post_content || !$post_tag) {
   echo $error_msg . "<br><a href='newthread.php'>try again.</a><br>";
   die("Post upload failed.");
 }
@@ -73,20 +73,14 @@ try {
   $insert_post_query = "INSERT INTO posts (post_title, post_content, post_tag, post_datetime, post_image, user_id) 
           VALUES ('$post_title', '$post_content', '$post_tag', '$post_datetime', '$post_image', '$user_id')";
   mysqli_query($connection, $insert_post_query);
-  // $post_id = mysqli_insert_id($connection);   
 
   echo "<script>window.alert('Post upload succes!');";
   echo "window.location.href='index.php';";
   echo "</script>";
-  // header('location: newthread.html'); 
   
-} catch (PDOExeption $e) {
+} catch (PDOException $e) {
   echo "ERROR!!!<br>";
   echo $insert_post_query . "<br>" . $e->getMessage();
 }
 
-?>
-
-<?php 
-$post_db = "Eduzone"
 ?>
