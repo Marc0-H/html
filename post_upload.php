@@ -2,10 +2,10 @@
 include 'connection.php';
 require_once("vendor/autoload.php");
 include "config.php";
-include "post_confirmed.js";
 
 \Tinify\setKey(API_KEY); // robbysapikey
 session_start();
+
 // define variables and set to empty values
 $post_title = $post_content = $post_tag = $post_image = "";
 $error_msg = "unknown error";
@@ -73,9 +73,10 @@ try {
   $insert_post_query = "INSERT INTO posts (post_title, post_content, post_tag, post_datetime, post_image, user_id) 
           VALUES ('$post_title', '$post_content', '$post_tag', '$post_datetime', '$post_image', '$user_id')";
   mysqli_query($connection, $insert_post_query);
-
+  
+  $post_id = mysqli_insert_id($connection);
   echo "<script>window.alert('Post upload succes!');";
-  echo "window.location.href='index.php';";
+  echo "window.location.href='thread.php?v=" . $post_id ."';";
   echo "</script>";
   
 } catch (PDOException $e) {
