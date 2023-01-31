@@ -1,11 +1,16 @@
 <header>
     <div class="header_container">
         <a href="./index.php"><img src="images/logo.png" alt="EDUZONE"></a>
-        <button class="hamburger_menu_btn">
-            <span class="bar" id="bar1"></span>
-            <span class="bar" id="bar2"></span>
-            <span class="bar" id="bar3"></span>
-        </button>
+        <div class="mobile_right">
+            <button class="mobile_filter_btn">
+                <i class="material-icons tooltip">filter_alt<div class="tooltip_text">Filter</div></i>
+            </button>
+            <button class="hamburger_menu_btn">
+                <span class="bar" id="bar1"></span>
+                <span class="bar" id="bar2"></span>
+                <span class="bar" id="bar3"></span>
+            </button>
+        </div>
         <div class="header_content_right">
             <input class="searchbar" type="text" placeholder="Search topic..">
 
