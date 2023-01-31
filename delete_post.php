@@ -20,18 +20,31 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $comment_id = test_input($_POST["comment_id"]);
-        $post_id = test_input($_GET['v']);
+        $post_id = test_input($_POST["post_id"]);
         $user_id = $_SESSION["userId"];
 
-        $mark_solution_query = "UPDATE posts SET solution_id = $comment_id WHERE post_id = $post_id AND user_id = $user_id";
-    }
+        $post_user_query = "SELECT user_id FROM posts WHERE post_id = $post_id";
+        $post_user = mysqli_fetch_assoc(mysqli_query($connection, $post_user_query));
 
-    try {
-        mysqli_query($connection, $mark_solution_query);
-        header("Location: thread.php?v=$post_id");
-    } catch (PDOExeption $e) {
-        echo "ERROR!!!<br>";
-        echo $like_query . "<br>" . $e->getMessage();
+        /*Check if post actually belongs to user*/
+        if ($post_user['user_id'] == $user_id || $user_id == 1) {
+            $get_comments_query = "SELECT id FROM comments WHERE post_id = $post_id";
+            $get_comments = mysqli_query($connection, $get_comments_query);
+
+            while ($comment_row = mysqli_fetch_assoc($get_comments)) {
+                $comment_id = $comment_row['id'];
+                $delete_subcomments_query = "DELETE FROM comments WHERE parent_comment_id = $comment_id";
+                mysqli_query($connection, $delete_subcomments_query);
+            }
+
+            $delete_comments_query = "DELETE FROM comments WHERE post_id = $post_id";
+            mysqli_query($connection, $delete_comments_query);
+
+            $delete_post_query = "DELETE FROM posts WHERE post_id = $post_id";
+            mysqli_query($connection, $delete_post_query);
+
+
+            header("Location: index.php");
+        }
     }
 ?>
