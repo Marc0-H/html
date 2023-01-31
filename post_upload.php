@@ -87,20 +87,6 @@ try {
 
 ?>
 
-
-
-
-<!-- <html>   // testing
-<body>
-
-Welcome tipoeperstle:<?php echo $_POST["post_title"]; ?><br>
-Post content: <?php echo $_POST["post_content"]; ?><br>
-Post image: <?php echo $post_image; ?><br>
-tag: <?php echo $_POST["post_tag"]; ?>
-
-</body>
-</html> -->
-
 <?php 
 $post_db = "Eduzone"
 ?>
