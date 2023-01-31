@@ -18,6 +18,10 @@
 
     --tag_font_color: #FFFFFF;
 
+    --delete_button: #cf2900;
+    --delete_button_hover: #af0808;
+
+
     --tag_color: #d35400;
 }
 
@@ -710,6 +714,51 @@ input[type="checkbox"]:checked, input[type="radio"] {
     background-color: var(--primary_complement_hover);
     cursor: pointer;
 }
+
+.post_title_container {
+    display: flex;
+    flex: row;
+}
+
+.button_container {
+    display: flex;
+    margin-left: auto;
+    height: 35px;
+}
+
+.post_title_container .delete_button, .user_info_container .delete_button {
+    margin-left: 10px;
+    border-radius: 50px;
+    padding: 5px 0;
+    font-size: 25px;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    color: var(--tag_font_color);
+    background-color: var(--delete_button);
+}
+
+.post_title_container .delete_button:hover, .user_info_container .delete_button:hover {
+    background-color: var(--delete_button_hover);
+    cursor: pointer;
+}
+
+.user_info_container .solution_button {
+    border-radius: 50px;
+    padding: 5px 0;
+    font-size: 25px;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    color: var(--tag_font_color);
+    background-color: var(--primary_color);
+}
+
+.user_info_container .solution_button:hover {
+    background-color: var(--primary_complement_hover);
+    cursor: pointer;
+}
+
 /*Thread-page style end*/
 
 
