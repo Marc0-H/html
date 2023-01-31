@@ -364,7 +364,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     padding: 30px;
 }
 
-.post_content {
+.post_container > .post_content_container > .post_content {
     max-height: 200px;
     overflow: hidden;
 }

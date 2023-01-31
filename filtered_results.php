@@ -4,6 +4,7 @@
 
     $query;
     $subjects_query = "";
+    $role_query = "";
 
 
     if (isset($_GET["filter-subject"])) {
@@ -23,21 +24,55 @@
                 $subjects[] = "general";
             }
         }
-        if(count($subjects) > 0){
-            $subjects_query = "WHERE post_tag IN ('".implode("','", $subjects)."')";
 
-        }
+
+        $subjects_query = "WHERE post_tag IN ('".implode("','", $subjects)."')";
+        
+    } else {
+        $subjects_query = "WHERE 2 = 1";
     }
+
+
+//start
+
+    if (isset($_GET["filter-role"])) {
+        ?>
+            <script>console.log("WOWOFOWOFJ");</script>
+
+        <?php
+        $roles = array();
+        foreach($_GET["filter-role"] as $filter) {
+
+            if (strpos($filter, "student") !== false) {
+                $roles[] = "student";
+            }
+            if (strpos($filter, "admin") !== false) {
+                $roles[] = "admin";
+            }
+            if (strpos($filter, "teacher") !== false) {
+                $roles[] = "teacher";
+            }
+        }
+
+
+        $role_query = "AND tag IN ('".implode("','", $roles)."')";
+        
+    } else {
+        $role_query = "AND 2 = 1";
+    }
+
+// eint
+
 
     if (isset($_GET["filter-sortby"])) {
         $sortby = $_GET["filter-sortby"];
         if (!empty($sortby)) {
             if ($sortby == "latest") {
-                $query = "SELECT * FROM posts " . $subjects_query . " ORDER BY post_id DESC";
+                $query = "SELECT * FROM posts JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " ORDER BY post_id DESC";
             } else if ($sortby == "populairity") {
-                $query = "SELECT posts.*,COUNT(post_upvote_link.post_id) AS likes FROM posts LEFT JOIN post_upvote_link ON posts.post_id = post_upvote_link.post_id " . $subjects_query . " GROUP BY posts.post_id ORDER BY likes DESC";
+                $query = "SELECT posts.*,COUNT(post_upvote_link.post_id) AS likes FROM posts LEFT JOIN post_upvote_link ON posts.post_id = post_upvote_link.post_id JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " GROUP BY posts.post_id ORDER BY likes DESC";
             } else if ($sortby == "controversial") {
-                $query = "SELECT posts.*, COUNT(comments.post_id) AS comments_count FROM posts LEFT JOIN comments ON posts.post_id = comments.post_id " . $subjects_query . " GROUP BY posts.post_id ORDER BY comments_count DESC";
+                $query = "SELECT posts.*, COUNT(comments.post_id) AS comments_count FROM posts LEFT JOIN comments ON posts.post_id = comments.post_id JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " GROUP BY posts.post_id ORDER BY comments_count DESC";
             }
         } 
     } else {
