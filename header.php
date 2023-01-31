@@ -12,7 +12,12 @@
             </button>
         </div>
         <div class="header_content_right">
-            <input class="searchbar" type="text" placeholder="Search topic..">
+            <form class="search_form" method="get">
+                <input name="search" class="searchbar" type="text" placeholder="Search topic..">
+                <button class="searchbar_submit">
+                    <i class="material-icons tooltip">search<div class="tooltip_text">Search</div></i>
+                </button>
+            </form>
 
             <?php
             if (!isset($_SESSION["userId"])) {

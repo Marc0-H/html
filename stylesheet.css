@@ -108,19 +108,38 @@ header {
     cursor: pointer;
 }
 
-.header_content_right > .searchbar {
+.header_content_right > form {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--details_font_color);
+    border-radius: 8px;
+}
+
+.header_content_right > form > button > i {
+    color: var(--details_font_color);
+}
+
+.header_content_right > form > .searchbar {
     height: 50px;
     width: 270px;
     border-radius: 8px;
-    border: 2px solid var(--details_font_color);
+    border: none;
     color: var(--title_font_color);
     background-color: transparent;
     font-size: 18px;
     padding: 0px 12px;
 }
 
-.header_content_right > .searchbar:focus {
+.header_content_right > form > .searchbar:focus {
     border: 2px solid var(--primary_color);
+}
+
+.header_content_right > form > .searchbar_submit {
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
 }
 
 .login_button, .register_button {
