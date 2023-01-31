@@ -1,6 +1,6 @@
 <?php
 
-include '../../connection.php';
+include 'connection.php';
 require_once 'functions.php';
 
 $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]));
@@ -11,7 +11,6 @@ if (isset($_POST["reset_submit"])) {
         header("location: ../reset_page.php?error=nouser");
     }
     else {
-
         $selector = bin2hex(random_bytes(8));
 
         $token = random_bytes(32);

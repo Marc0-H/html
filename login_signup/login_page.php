@@ -31,7 +31,7 @@ if ($_SERVER['HTTPS'] != 'on') {
             <button class="submit_button" name="submit">submit</button>
 
             <div class="external">
-                <div class="pass-reset"> Forgot your password? <a href="../reset/reset_page.php">Reset here</a></div>
+                <div class="pass-reset"> Forgot your password? <a href="../pwupdate/reset_page.php">Reset here</a></div>
                 <div class="signup"> Need an account? <a href="signup_page.php">Sign-up here</a></div>
             </div>
             <?php
