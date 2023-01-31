@@ -11,7 +11,6 @@ $error_msg = "unknown error";
 date_default_timezone_set('Europe/Amsterdam');
 $post_datetime = date('Y-d-m H:i', time());
 
-// $file = $_FILES["new_post_image"];
 $filename = $_FILES["new_post_image"]["name"];
 $temp_file = $_FILES["new_post_image"]["tmp_name"];
 $upload_ok = 0;
