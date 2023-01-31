@@ -38,7 +38,7 @@
                     <?php echo $post_result["post_title"]?>
                 </div>
                 <div class="button_container">
-                    <?php if ($session_id == $op_id) {?>
+                    <?php if ($session_id == $op_id || $session_id == 1) {?>
                         <i id="delete-post-<?php echo $post_id?>" class="material-icons tooltip delete_button delete_post">delete<div class="tooltip_text">Delete post</div></i>
                     <?php }?>
                 </div>
@@ -124,7 +124,7 @@
                             <i class="material-icons">query_builder</i>
                             <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
                             <div class="button_container">
-                                <?php if ($session_id == $user_id) {?>
+                                <?php if ($session_id == $user_id || $session_id == 1) {?>
                                     <i id="delete-comment-<?php echo $comment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                 <?php }?>
                             </div>
@@ -178,7 +178,7 @@
                             <i class="material-icons">query_builder</i>
                             <div class="date"><?php echo $subcomment_row["comment_datetime"]?></div>
                             <div class="button_container">
-                                <?php if ($session_id == $user_id) {?>
+                                <?php if ($session_id == $user_id || $session_id == 1) {?>
                                     <i id="delete-comment-<?php echo $subcomment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                 <?php }?>
                             </div>
@@ -250,7 +250,7 @@
                     <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
                     <div class="button_container">
                         <?php 
-                        if ($session_id == $user_id) {?>
+                        if ($session_id == $user_id || $session_id == 1) {?>
                             <i id="delete-comment-<?php echo $comment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                         <?php }
                         if ($session_id == $op_id && $session_id != $user_id) {?>
@@ -307,7 +307,7 @@
                             <i class="material-icons">query_builder</i>
                             <div class="date"><?php echo $subcomment_row["comment_datetime"]?></div>
                             <div class="button_container">
-                                <?php if ($session_id == $user_id) {?>
+                                <?php if ($session_id == $user_id || $session_id == 1) {?>
                                     <i id="delete-comment-<?php echo $subcomment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                 <?php }?>
                             </div>

@@ -52,13 +52,13 @@
                     <?php } ?>
                     <div class="dropdown_content">
                         <a href="#" class="settings_button">Settings</a>
-                        <a href="login_signup/php_scripts/log_out.php" class="log_out_button">Log out</a>
+                        <a href="login_signup/logout.php" class="log_out_button">Log out</a>
                     </div>
                 </div>
 
                 <a href="newthread.php" class="mobile_button">Create post</a>
                 <a href="#" class="mobile_button">Settings</a>
-                <a href="login_signup/php_scripts/log_out.php" class="mobile_button">Log out</a>
+                <a href="login_signup/logout.php" class="mobile_button">Log out</a>
             <?php
             }
             ?>
