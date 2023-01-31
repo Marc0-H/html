@@ -1,3 +1,11 @@
+<?php
+    if (isset($_SESSION["userId"])) {
+        $session_id = $_SESSION["userId"];
+        $user_result_query = "SELECT profile_image FROM users WHERE userId = $session_id"; 
+        $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_result_query));
+    }
+?>
+
 <header>
     <div class="header_container">
         <a href="./index.php"><img src="images/logo.png" alt="EDUZONE"></a>
@@ -35,7 +43,11 @@
                 <i id="create_post" class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
 
                 <div class="dropdown_menu_profile">
-                    <img src="./images/profile_img.png" alt="profile" class="profile_button">
+                    <?php if (!empty($user_result["profile_image"])) { ?>
+                            <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture" class="profile_button">
+                    <?php } else { ?>
+                            <img src="images/default.png" alt="default picture" class="profile_button">
+                    <?php } ?>
                     <div class="dropdown_content">
                         <a href="#" class="settings_button">Settings</a>
                         <a href="login_signup/php_scripts/log_out.php" class="log_out_button">Log out</a>

@@ -64,7 +64,7 @@
     foreach($results as $row) {
         $user_id = $row['user_id'];
         $post_id = $row['post_id'];
-        $user_query = "SELECT userUid, profile_image from users where userId = $user_id";
+        $user_query = "SELECT userUid, profile_image, tag from users where userId = $user_id";
         $user_result = mysqli_query($connection, $user_query);
         $user_row = mysqli_fetch_assoc($user_result);
 
@@ -81,7 +81,7 @@
                 <?php
                     if (!empty($row["post_image"])) {
                 ?>
-                        <img src="data:image/png;base64,<?php echo $row["post_image"]?>" alt="card1">
+                        <img src="data:image/png;base64,<?php echo $row["post_image"]?>" alt="post image">
                 <?php
                     }
                 ?>
@@ -92,10 +92,14 @@
                     <span class="post_tag tag-<?php echo $row["post_tag"]?>">
                     <?php echo $row["post_tag"]?></span> <?php echo $row["post_title"]?></div>
                 <div class="user_info_container">
-                    <img src="images/default.png">
+                    <?php if (!empty($user_row["profile_image"])) { ?>
+                            <img src="data:image/png;base64,<?php echo $user_row["profile_image"]?>" alt="profile picture">
+                    <?php } else { ?>
+                            <img src="images/default.png" alt="default picture">
+                    <?php } ?>
                     <div class="username" title="<?php echo $user_row["userUid"]?>"><?php echo $user_row["userUid"]?></div>
-                    <div class="user_tag">PhD.</div>
-                    <!-- <i class="material-icons">query_builder</i> -->
+                    <div class="user_tag"><?php echo $user_row["tag"]?></div>
+                    <i class="material-icons">query_builder</i>
                     <div class="date" title="<?php echo $row["post_datetime"]?>"><?php echo $row["post_datetime"]?></div>
                 </div>
                 <div class="post_content">
