@@ -1,4 +1,6 @@
 <?php
+    include_once 'connection.php';
+
     if (isset($_SESSION["userId"])) {
         $session_id = $_SESSION["userId"];
         $user_result_query = "SELECT profile_image FROM users WHERE userId = $session_id"; 
