@@ -1,6 +1,10 @@
 <?php
+if ($_SERVER('HTTPS') != 'on') {
+  $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+  header("location: $url");
+  exit;
+}
 session_start();
-
 header('Cache-Control: max-age=900');
 include 'header.php';
 ?>
