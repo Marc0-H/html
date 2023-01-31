@@ -1,10 +1,17 @@
+<?php
+if ($_SERVER['HTTPS'] != 'on') {
+    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("location: $url");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>signup</title>
     <link href="test.css" rel="stylesheet">
 </head>
 <body>
@@ -33,6 +40,15 @@
     <input required type="email" id="email" name="email" placeholder="Enter your email">
     </div>
 
+    <div class="userInfo">
+    <label for="tag">Select</label>
+    <select name="selectbox" class="selectbox">
+        <option value="MBO"> MBO student</option>
+        <option value="HBO"> HBO student </option>
+        <option value="WO"> WO student</option>
+    </select>
+    </div>
+
     <div>
         <button class="submit_button" style="transform: translateY(10px); transform:translateX(5px)" type="submit" name="submit">submit</a>
     </div>
@@ -57,7 +73,12 @@
     }
     else if ($_GET["error"] === "stmtfailed") {
         echo "<div class='error_message'>
-        <p> Something went wrong. Try again.. </p>
+        <p> Something went wrong. Try again. </p>
+        </div>";
+    }
+    else if ($_GET["error"] === "fetchfailed") {
+        echo "<div class='error_message'>
+        <p> No account to reset. Make one here. </p>
         </div>";
     }
 
@@ -70,12 +91,12 @@
     let pw = document.getElementById("uPassword");
     let re_pw = document.getElementById("uMatch");
 
-    function checkMatch() {
-        console.log("in function");
+    //sanitize inputs
+    pw = htmlspecialchars(strip_tags(trim(pw)));
+    re_pw = htmlspecialchars(strip_tags(trim(re_pw)));
 
+    function checkMatch() {
         if (pw.value != re_pw.value) {
-            console.log("pw " + pw.value);
-            console.log("rePW " + re_pw.value);
             uMatch.setCustomValidity("Passwords don't match.");
             uMatch.reportValidity();
         }
@@ -86,6 +107,5 @@
     pw.addEventListener("change", checkMatch);
     re_pw.addEventListener("keyup", checkMatch);
 </script>
-
 </body>
 </html>

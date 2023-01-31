@@ -1,12 +1,7 @@
 <?php
-include 'connection.php';
-include 'functions.php';
 
-$serverName = "localhost";
-$dbUsername = "georgia";
-$dbPassword = "bHAreNszkCISspyfqrSamkOtgkzVldah";
-$dbName = "Eduzone";
-$connection = new mysqli("$serverName", "$dbUsername", "$dbPassword", "$dbName");
+include '../../connection.php';
+include 'functions.php';
 
 function loginUser($connection, $name, $password) {
     $user = userExists($connection, $name, $name);
@@ -27,7 +22,7 @@ function loginUser($connection, $name, $password) {
         $_SESSION["userUid"] = $user["userUid"];
         $_SESSION["userPfp"] = $user["profile_image"];
 
-        header("location: /index.php");
+        header("location: ../../index.php");
         exit();
     }
     else {
@@ -39,8 +34,6 @@ function loginUser($connection, $name, $password) {
 if (isset($_POST["submit"])) {
     $name = mysqli_real_escape_string($connection, htmlspecialchars($_POST["username"]));
     $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST["password"]));
-    echo $name, $password;
-
     loginUser($connection, $name, $password);
 }
 ?>
