@@ -48,14 +48,65 @@ let likeButtons = document.querySelectorAll('.like_button');
 likeButtons.forEach(like_button => {
     like_button.addEventListener("click", () => {
         var id = like_button.id;
-        var url = 'like.php' + window.location.search;
+        var url_like = 'like.php' + window.location.search;
         if (id.slice(0,9) == "post-like") {
             var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="post_id" value="' + id + '" />' + '<input type="hidden" name="comment_id" value=""/></form>');
         } else {
             var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="comment_id" value="' + id + '" />' + '<input type="text" name="post_id" value=""/></form>');
         }
+
+        $.ajax({
+            type: "POST",
+            url: url_like,
+            data: { comment_id: id}
+        })
+
+        /*
         $('body').append(form);
         form.submit();
+        */
     });
 });
 
+/*Delete post knop*/
+let deletePostButton = document.querySelector('.delete_post');
+
+deletePostButton.addEventListener("click", () => {
+    if (confirm("Are you sure you want to delete this post?") == true) {
+        var id = deletePostButton.id;
+        var url = 'delete_post.php';
+        var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="post_id" value="' + id + '" />' + '</form>');
+        $('body').append(form);
+        form.submit();
+    }
+});
+
+/*Delete comment knop*/
+let deleteCommentButtons = document.querySelectorAll('.delete_comment');
+
+deleteCommentButtons.forEach(delete_button => {
+    delete_button.addEventListener("click", () => {
+        if (confirm("Are you sure you want to delete this comment?") == true) {
+            var id = delete_button.id;
+            var url = 'delete_comment.php' + window.location.search;
+            var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="comment_id" value="' + id + '" />' + '</form>');
+            $('body').append(form);
+            form.submit();
+        }
+    });
+});
+
+/*Markeer oplossing knop*/
+let solutionButtons = document.querySelectorAll('.solution_button');
+
+solutionButtons.forEach(solution_button => {
+    solution_button.addEventListener("click", () => {
+        if (confirm("Are you sure you want to mark this comment as solution?") == true) {
+            var id = solution_button.id;
+            var url = 'mark_solution.php' + window.location.search;
+            var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="comment_id" value="' + id + '" />' + '</form>');
+            $('body').append(form);
+            form.submit();
+        }
+    });
+});
