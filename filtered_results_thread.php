@@ -3,6 +3,9 @@
 
 <?php
     /* Check if post has parameter */
+
+    include 'connection.php';
+
     if (!isset($_GET["v"])) {
         ?><p>Post could not be found</p><?php
     } else {
@@ -211,12 +214,56 @@
         // $comment_query = "SELECT comments.*, (SELECT COUNT(*) FROM comments as sub_comments WHERE sub_comments.parent_comment_id = comments.id) as sub_comment_count FROM comments JOIN posts ON comments.post_id = posts.post_id WHERE comments.parent_comment_id IS NULL AND posts.post_id = $post_id ORDER BY sub_comment_count DESC";
 
         
+        $roles_query = "";
+        $comment_query = "";
+
+        if (isset($_GET["filter-thread-role"])) {
+            $roles = array();
+            foreach($_GET["filter-thread-role"] as $filter) {
+
+                if (strpos($filter, "student") !== false) {
+                    $roles[] = "student";
+                }
+                if (strpos($filter, "teacher") !== false) {
+                    $roles[] = "teacher";
+                }
+                if (strpos($filter, "admin") !== false) {
+                    $roles[] = "admin";
+                }
+
+            }
+
+
+            $roles_query = "AND tag IN ('".implode("','", $roles)."')";
+            
+        } else {
+            $roles_query = "AND 2 = 1";
+        }
+
+
+        if (isset($_GET["filter-thread-sortby"])) {
+            $sortby = $_GET["filter-thread-sortby"];
+            if (!empty($sortby)) {
+                if ($sortby == "latest") {
+                    $comment_query = "SELECT * FROM comments JOIN users ON comments.user_id = users.userId WHERE post_id = $post_id " . $roles_query . " ORDER BY comment_datetime DESC";
+                } else if ($sortby == "populairity") {
+                    $comment_query = "SELECT comments.*, (SELECT COUNT(*) FROM comment_upvote_link JOIN users ON comments.user_id = users.userId WHERE comments.id = comment_upvote_link.comment_id) as upvotes, users.tag FROM comments JOIN posts ON comments.post_id = posts.post_id JOIN users ON comments.user_id = users.userId WHERE posts.post_id = $post_id AND NOT id = $solution_id " . $roles_query . " ORDER BY upvotes DESC";
+
+                } else if ($sortby == "controversial") {
+                    $comment_query = "SELECT comments.*, (SELECT COUNT(*) FROM comments as sub_comments WHERE sub_comments.parent_comment_id = comments.id) as sub_comment_count, users.tag FROM comments JOIN posts ON comments.post_id = posts.post_id JOIN users ON comments.user_id = users.userId WHERE comments.parent_comment_id IS NULL AND posts.post_id = $post_id AND NOT comments.id = $solution_id " . $roles_query . " ORDER BY sub_comment_count DESC";
+
+                }
+            } 
+        } else {
+            $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
+        }
+
 
 
         // FILTER END
 
 
-        $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
+        // $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
         $comment_result = mysqli_query($connection, $comment_query);
         
         while($comment_row = mysqli_fetch_assoc($comment_result)) {

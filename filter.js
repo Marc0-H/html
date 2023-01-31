@@ -35,6 +35,7 @@ function toggleDropdown(buttonEl, dropdownEl) {
 
 
 $(".filter_form").submit(function(event) {
+
     event.preventDefault();  // prevent the form from submitting
     $.ajax({
         type: "GET",
@@ -49,6 +50,9 @@ $(".filter_form").submit(function(event) {
 });
 
 $(".search_form").submit(function(event) {
+    if(window.location.href.indexOf("thread") > -1) {
+        window.location.href = window.location.origin;
+    }
     event.preventDefault();  // prevent the form from submitting
     $.ajax({
         type: "GET",
@@ -63,16 +67,15 @@ $(".search_form").submit(function(event) {
 });
 
 
-// $(".search_form").submit(function(event) {
-
-//     event.preventDefault();  // prevent the form from submitting
-//     $.ajax({
-//         type: "GET",
-//         url: "filtered_results_thread.php" + window.location.search,
-//         data: $(this).serialize(),
-//         success: function (data) {
-//             $(".thread_content_container").html(data);
- 
-//         }
-//     });
-// });
+$(".filter_form_thread").submit(function(event) {
+    event.preventDefault();  // prevent the form from submitting
+    $.ajax({
+        type: "GET",
+        url: "filtered_results_thread.php?v=" + v,
+        data: $(this).serialize(),
+        success: function (data) {
+            $(".thread_content_container").html(data);
+            $.getScript("thread.js");
+        }
+    });
+});
