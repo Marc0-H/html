@@ -48,7 +48,7 @@ let likeButtons = document.querySelectorAll('.like_button');
 likeButtons.forEach(like_button => {
     like_button.addEventListener("click", () => {
         var id = like_button.id;
-        var url_like = 'like.php' + window.location.search;
+        var url = 'like.php' + window.location.search;
         if (id.slice(0,9) == "post-like") {
             var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="post_id" value="' + id + '" />' + '<input type="hidden" name="comment_id" value=""/></form>');
         } else {

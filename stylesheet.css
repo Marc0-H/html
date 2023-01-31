@@ -431,8 +431,12 @@ input[type="checkbox"]:checked, input[type="radio"] {
   
 }
 
-.tag-General {
-    background-color: blue;
+.tag-Science {
+  background-color: rgb(55, 141, 55);
+}
+
+.tag-Physics {
+  background-color: rgb(67, 88, 207);
 }
 
 .user_info_container {
@@ -833,7 +837,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
   width: 100%;
   margin-top: 14px;
   display: flex;
-  align-items: center;
+  align-items: end;
 }
 
 .new_post_button {
@@ -855,6 +859,10 @@ input[type="checkbox"]:checked, input[type="radio"] {
   background-color: var(--primary_complement_hover);
   cursor: pointer;
   
+}
+
+.tag_text {
+  margin-right: 5px;
 }
 
 .tag_container {

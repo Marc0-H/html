@@ -13,7 +13,7 @@
         $post_result = mysqli_fetch_assoc(mysqli_query($connection, $post_query));
 
         $op_id = $post_result["user_id"];
-        $op_query = "SELECT userUid, profile_image FROM users WHERE userId = $op_id";
+        $op_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $op_id";
         $op_result = mysqli_fetch_assoc(mysqli_query($connection, $op_query));
 
         $comment_count_query = "SELECT COUNT(post_id) FROM comments WHERE post_id = $post_id";
@@ -38,15 +38,19 @@
                     <?php echo $post_result["post_title"]?>
                 </div>
                 <div class="button_container">
-                    <?php if ($session_id == $op_id) {?>
+                    <?php if ($session_id == $op_id || $session_id == 1) {?>
                         <i id="delete-post-<?php echo $post_id?>" class="material-icons tooltip delete_button delete_post">delete<div class="tooltip_text">Delete post</div></i>
                     <?php }?>
                 </div>
             </div>
             <div class="user_info_container">
-                <img src="images/default.png">
+                <?php if (!empty($op_result["profile_image"])) { ?>
+                        <img src="data:image/png;base64,<?php echo $op_result["profile_image"]?>" alt="profile picture">
+                <?php } else { ?>
+                        <img src="images/default.png" alt="default picture">
+                <?php } ?>
                 <div class="username"><?php echo $op_result["userUid"]?></div>
-                <div class="user_tag">PhD.</div>
+                <div class="user_tag"><?php echo $op_result["tag"]?></div>
                 <i class="material-icons">query_builder</i>
                 <div class="date"><?php echo $post_result["post_datetime"]?></div>
             </div>
@@ -87,7 +91,7 @@
                 $comment_row = mysqli_fetch_assoc(mysqli_query($connection, $comment_query));
 
                 $user_id = $comment_row['user_id'];
-                $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+                $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
                 $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
 
                 $comment_id = $comment_row["id"];
@@ -110,13 +114,17 @@
                     </div>
                     <div class="comment_container <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                         <div class="user_info_container">
-                            <img src="images/default.png">
+                            <?php if (!empty($user_result["profile_image"])) { ?>
+                                    <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">
+                            <?php } else { ?>
+                                    <img src="images/default.png" alt="default picture">
+                            <?php } ?>
                             <div class="username"><?php echo $user_result["userUid"]?></div>
-                            <div class="user_tag">Leerling</div>
+                            <div class="user_tag"><?php echo $user_result["tag"]?></div>
                             <i class="material-icons">query_builder</i>
                             <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
                             <div class="button_container">
-                                <?php if ($session_id == $user_id) {?>
+                                <?php if ($session_id == $user_id || $session_id == 1) {?>
                                     <i id="delete-comment-<?php echo $comment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                 <?php }?>
                             </div>
@@ -147,7 +155,7 @@
                     $subcomment_id = $subcomment_row['id'];
 
                     $user_id = $subcomment_row['user_id'];
-                    $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+                    $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
                     $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
 
                     $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $subcomment_id";
@@ -160,13 +168,17 @@
             ?>   
                     <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                         <div class="user_info_container">
-                            <img src="images/default.png">
+                            <?php if (!empty($user_result["profile_image"])) { ?>
+                                    <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">
+                            <?php } else { ?>
+                                    <img src="images/default.png" alt="default picture">
+                            <?php } ?>
                             <div class="username"><?php echo $user_result["userUid"]?></div>
-                            <div class="user_tag">PhD.</div>
+                            <div class="user_tag"><?php echo $user_result["tag"]?></div>
                             <i class="material-icons">query_builder</i>
                             <div class="date"><?php echo $subcomment_row["comment_datetime"]?></div>
                             <div class="button_container">
-                                <?php if ($session_id == $user_id) {?>
+                                <?php if ($session_id == $user_id || $session_id == 1) {?>
                                     <i id="delete-comment-<?php echo $subcomment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                 <?php }?>
                             </div>
@@ -209,7 +221,7 @@
         
         while($comment_row = mysqli_fetch_assoc($comment_result)) {
             $user_id = $comment_row['user_id'];
-            $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+            $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
             $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
 
             $comment_id = $comment_row["id"];
@@ -227,14 +239,18 @@
 
             <div class="comment_container <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                 <div class="user_info_container">
-                    <img src="images/default.png">
+                    <?php if (!empty($user_result["profile_image"])) { ?>
+                            <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">
+                    <?php } else { ?>
+                            <img src="images/default.png" alt="default picture">
+                    <?php } ?>
                     <div class="username"><?php echo $user_result["userUid"]?></div>
-                    <div class="user_tag">Leerling</div>
+                    <div class="user_tag"><?php echo $user_result["tag"]?></div>
                     <i class="material-icons">query_builder</i>
                     <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
                     <div class="button_container">
                         <?php 
-                        if ($session_id == $user_id) {?>
+                        if ($session_id == $user_id || $session_id == 1) {?>
                             <i id="delete-comment-<?php echo $comment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                         <?php }
                         if ($session_id == $op_id && $session_id != $user_id) {?>
@@ -268,7 +284,7 @@
                     $subcomment_id = $subcomment_row['id'];
 
                     $user_id = $subcomment_row['user_id'];
-                    $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+                    $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
                     $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
 
                     $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $subcomment_id";
@@ -281,13 +297,17 @@
             ?>   
                     <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                         <div class="user_info_container">
-                            <img src="images/default.png">
+                            <?php if (!empty($user_result["profile_image"])) { ?>
+                                    <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">
+                            <?php } else { ?>
+                                    <img src="images/default.png" alt="default picture">
+                            <?php } ?>
                             <div class="username"><?php echo $user_result["userUid"]?></div>
-                            <div class="user_tag">PhD.</div>
+                            <div class="user_tag"><?php echo $user_result["tag"]?></div>
                             <i class="material-icons">query_builder</i>
                             <div class="date"><?php echo $subcomment_row["comment_datetime"]?></div>
                             <div class="button_container">
-                                <?php if ($session_id == $user_id) {?>
+                                <?php if ($session_id == $user_id || $session_id == 1) {?>
                                     <i id="delete-comment-<?php echo $subcomment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                 <?php }?>
                             </div>
