@@ -1,11 +1,6 @@
 <?php
-if ($_SERVER('HTTPS') != 'on') {
-    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-    header("location: $url");
-    exit;
-}
 
-include 'connection.php';
+include '../../connection.php';
 include 'functions.php';
 
 function loginUser($connection, $name, $password) {
@@ -39,8 +34,6 @@ function loginUser($connection, $name, $password) {
 if (isset($_POST["submit"])) {
     $name = mysqli_real_escape_string($connection, htmlspecialchars($_POST["username"]));
     $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST["password"]));
-    echo $name, $password;
-
     loginUser($connection, $name, $password);
 }
 ?>

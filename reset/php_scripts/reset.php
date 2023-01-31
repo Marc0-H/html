@@ -1,6 +1,6 @@
 <?php
 
-include 'connection.php';
+include '../../connection.php';
 require_once 'functions.php';
 
 $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]));
@@ -21,7 +21,7 @@ if (isset($_POST["reset_submit"])) {
         $url = "https://webtech-in07.webtech-uva.nl/reset/update_page.php?selector=" . $selector ."&token=" . bin2hex($token);
 
         $expiration = time() + 900;
-        
+
         //remove any tokens still saved, to avoid errors
         $sql = "DELETE FROM reset WHERE resetEmail = ?";
         $stmt = mysqli_stmt_init($connection);

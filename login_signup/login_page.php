@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER('HTTPS') != 'on') {
+if ($_SERVER['HTTPS'] != 'on') {
     $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     header("location: $url");
     exit;
@@ -14,7 +14,6 @@ if ($_SERVER('HTTPS') != 'on') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link href="test.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -49,12 +48,11 @@ if ($_SERVER('HTTPS') != 'on') {
                 }
             }
             ?>
-    </div>
+            </div>
     </div>
 
     </form>
 
 </body>
-
 
 </html>

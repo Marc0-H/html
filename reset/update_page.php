@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER('HTTPS') != 'on') {
+if ($_SERVER['HTTPS'] != 'on') {
     $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     header("location: $url");
     exit;
@@ -84,10 +84,9 @@ if (isset($_GET["error"])) {
         <p>Too late, please retry. </p>
         </div>";
     }
-
 }
 ?>
-    </div>
+</div>
 </body>
 <script>
     let pw = document.getElementById("uPassword");

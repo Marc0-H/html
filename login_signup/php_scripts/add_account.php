@@ -1,11 +1,6 @@
 <?php
-if ($_SERVER('HTTPS') != 'on') {
-    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-    header("location: $url");
-    exit;
-}
 
-include 'connection.php';
+include '../../connection.php';
 require_once 'functions.php';
 
 echo var_dump($_POST);
