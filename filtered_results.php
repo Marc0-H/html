@@ -23,6 +23,15 @@
             if (strpos($filter, "general") !== false) {
                 $subjects[] = "general";
             }
+            if (strpos($filter, "history") !== false) {
+                $subjects[] = "history";
+            }
+            if (strpos($filter, "physics") !== false) {
+                $subjects[] = "physics";
+            }
+            if (strpos($filter, "science") !== false) {
+                $subjects[] = "science";
+            }
         }
 
 

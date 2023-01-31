@@ -54,6 +54,16 @@ header('Cache-Control: max-age=900');
                                     <input name="filter-subject[]" value="english" type="checkbox" checked>English
                                 </label>
                                 <label class="dropdown-label">
+                                    <input name="filter-subject[]" value="history" type="checkbox" checked>History
+                                </label>
+                                <label class="dropdown-label">
+                                    <input name="filter-subject[]" value="physics" type="checkbox" checked>Physics
+                                </label>
+                                <label class="dropdown-label">
+                                    <input name="filter-subject[]" value="science" type="checkbox" checked>Science
+                                </label>
+                                
+                                <label class="dropdown-label">
                                     <input name="filter-subject[]" value="general" type="checkbox" checked>General
                                 </label>
                             </div>
