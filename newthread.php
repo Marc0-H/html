@@ -50,12 +50,13 @@ include 'header.php';
                 <div class="tag_container">
                   <p class="tag_text">Tag:</p>
                   <select name="post_tag" id="tag_selector" form="new_post_form">
-                    <option value="Math"  >Math</option>
+                    <option value="General"  >General</option>
                     <option value="Biology" >Biology</option>
                     <option value="English" >English</option>
                     <option value="History" >History</option>
-                    <option value="General" >General</option>
-
+                    <option value="Math" >Math</option>
+                    <option value="Physics" >Physics</option>
+                    <option value="Science" >Science</option>
                   </select>
                 </div>
                 <input type="submit" class="new_post_button" value="Submit">
