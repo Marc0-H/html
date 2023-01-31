@@ -35,7 +35,6 @@ function toggleDropdown(buttonEl, dropdownEl) {
 
 
 $(".filter_form").submit(function(event) {
-
     event.preventDefault();  // prevent the form from submitting
     $.ajax({
         type: "GET",
@@ -50,9 +49,6 @@ $(".filter_form").submit(function(event) {
 });
 
 $(".search_form").submit(function(event) {
-    if(window.location.href.indexOf("thread") > -1) {
-        window.location.href = window.location.origin;
-    }
     event.preventDefault();  // prevent the form from submitting
     $.ajax({
         type: "GET",
@@ -68,6 +64,10 @@ $(".search_form").submit(function(event) {
 
 
 $(".filter_form_thread").submit(function(event) {
+    const url = window.location.href;
+    const params = new URLSearchParams(new URL(url).search);
+    const v = params.get("v");
+
     event.preventDefault();  // prevent the form from submitting
     $.ajax({
         type: "GET",
