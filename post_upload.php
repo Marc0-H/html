@@ -1,5 +1,9 @@
 <?php
 include 'connection.php';
+require_once("vendor/autoload.php");
+include "config.php";
+
+\Tinify\setKey(API_KEY); // robbysapikey
 session_start();
 // define variables and set to empty values
 $post_title = $post_content = $post_tag = $post_image = "";
@@ -49,6 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // upload is ok
 if($upload_ok == 1) {
+  $source = \Tinify\fromFile($temp_file);   //send to tinipng API
+  $source->toFile($temp_file);
   $img = file_get_contents($temp_file);
   $post_image = base64_encode($img);
 }
