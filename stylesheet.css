@@ -833,7 +833,6 @@ input[type="checkbox"]:checked, input[type="radio"] {
   width: 100%;
   margin-top: 14px;
   display: flex;
-  bottom: 2%;
   align-items: center;
 }
 
@@ -873,8 +872,8 @@ input[type="checkbox"]:checked, input[type="radio"] {
     .sidebar_container, .dropdown_menu_profile, .header_content_right > .register_button, .header_content_right > .login_button, .header_content_right > i {
         display: none;
     }
-
-    .thread_content_container {
+    
+    .thread_content_container, .new_post_main_content, .new_post_main_content_container {
         width: 100%;
         margin: 0px;
     }
