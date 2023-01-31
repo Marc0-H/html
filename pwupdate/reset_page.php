@@ -15,7 +15,7 @@ if ($_SERVER['HTTPS'] != 'on') {
     <link href="test.css" rel="stylesheet">
 </head>
 <body>
-    <form method="post" action="php_scripts/reset.php">
+    <form method="post" action="../../pwupdate/php_scripts/reset.php">
 
     <div class="reset_prompt">
         <h1>Enter your email to reset.</h1>
