@@ -1020,5 +1020,22 @@ input[type="checkbox"]:checked, input[type="radio"] {
         transform: translateX(0vw);
         display: block;
     }
+    
+    .header_content_right > form {
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+    .search_form {
+        width: 80%;
+        position: relative;
+    }
+
+    .searchbar_submit {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
 }
 /*Mobile view style end*/
