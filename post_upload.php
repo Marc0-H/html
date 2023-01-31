@@ -1,5 +1,9 @@
 <?php
 include 'connection.php';
+require_once("vendor/autoload.php");
+include "config.php";
+
+\Tinify\setKey(API_KEY); // robbysapikey
 session_start();
 // define variables and set to empty values
 $post_title = $post_content = $post_tag = $post_image = "";
@@ -7,7 +11,6 @@ $error_msg = "unknown error";
 date_default_timezone_set('Europe/Amsterdam');
 $post_datetime = date('Y-d-m H:i', time());
 
-// $file = $_FILES["new_post_image"];
 $filename = $_FILES["new_post_image"]["name"];
 $temp_file = $_FILES["new_post_image"]["tmp_name"];
 $upload_ok = 0;
@@ -49,6 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // upload is ok
 if($upload_ok == 1) {
+  $source = \Tinify\fromFile($temp_file);   //send to tinipng API
+  $source->toFile($temp_file);
   $img = file_get_contents($temp_file);
   $post_image = base64_encode($img);
 }
@@ -81,20 +86,6 @@ try {
 }
 
 ?>
-
-
-
-
-<!-- <html>   // testing
-<body>
-
-Welcome tipoeperstle:<?php echo $_POST["post_title"]; ?><br>
-Post content: <?php echo $_POST["post_content"]; ?><br>
-Post image: <?php echo $post_image; ?><br>
-tag: <?php echo $_POST["post_tag"]; ?>
-
-</body>
-</html> -->
 
 <?php 
 $post_db = "Eduzone"

@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <a href="#" class="mobile_button">Create post</a>
+                <a href="newthread.php" class="mobile_button">Create post</a>
                 <a href="#" class="mobile_button">Settings</a>
                 <a href="login_signup/php_scripts/log_out.php" class="mobile_button">Log out</a>
             <?php
