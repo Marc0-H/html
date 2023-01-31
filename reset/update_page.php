@@ -93,12 +93,12 @@ if (isset($_GET["error"])) {
     let pw = document.getElementById("uPassword");
     let re_pw = document.getElementById("uMatch");
 
-    function checkMatch() {
-        console.log("in function");
+    //sanitize inputs
+    pw = htmlspecialchars(strip_tags(trim(pw)));
+    re_pw = htmlspecialchars(strip_tags(trim(re_pw)));
 
+    function checkMatch() {
         if (pw.value != re_pw.value) {
-            console.log("pw " + pw.value);
-            console.log("rePW " + re_pw.value);
             uMatch.setCustomValidity("Passwords don't match.");
             uMatch.reportValidity();
         }

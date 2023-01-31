@@ -1,12 +1,12 @@
 <?php
+if ($_SERVER('HTTPS') != 'on') {
+    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("location: $url");
+    exit;
+}
+
 include 'connection.php';
 include 'functions.php';
-
-$serverName = "localhost";
-$dbUsername = "georgia";
-$dbPassword = "bHAreNszkCISspyfqrSamkOtgkzVldah";
-$dbName = "Eduzone";
-$connection = new mysqli("$serverName", "$dbUsername", "$dbPassword", "$dbName");
 
 function loginUser($connection, $name, $password) {
     $user = userExists($connection, $name, $name);
@@ -27,7 +27,7 @@ function loginUser($connection, $name, $password) {
         $_SESSION["userUid"] = $user["userUid"];
         $_SESSION["userPfp"] = $user["profile_image"];
 
-        header("location: /index.php");
+        header("location: ../../index.php");
         exit();
     }
     else {

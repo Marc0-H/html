@@ -1,3 +1,10 @@
+<?php
+if ($_SERVER('HTTPS') != 'on') {
+    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("location: $url");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +32,7 @@
             <button class="submit_button" name="submit">submit</button>
 
             <div class="external">
-                <div class="pass-reset"> Forgot your password? <a href="reset_prompt_page.php">Reset here</a></div>
+                <div class="pass-reset"> Forgot your password? <a href="../reset/reset_page.php">Reset here</a></div>
                 <div class="signup"> Need an account? <a href="signup_page.php">Sign-up here</a></div>
             </div>
             <?php
@@ -41,7 +48,7 @@
                     </div>";
                 }
             }
-?>
+            ?>
     </div>
     </div>
 
