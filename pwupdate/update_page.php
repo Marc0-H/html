@@ -16,7 +16,7 @@ require_once 'php_scripts/functions.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>update_password</title>
-    <link href="test.css" rel="stylesheet">
+    <link href="../test2.css" type="html/css" rel="stylesheet">
 </head>
 <body>
 <?php
