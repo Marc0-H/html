@@ -12,7 +12,7 @@ if ($_SERVER['HTTPS'] != 'on') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>enter_email</title>
-    <link href="test.css" type="text/css" rel="stylesheet">
+    <link href="../test2.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <form method="post" action="../../pwupdate/php_scripts/reset.php">

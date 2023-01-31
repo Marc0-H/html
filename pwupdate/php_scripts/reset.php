@@ -17,7 +17,7 @@ if (isset($_POST["reset_submit"])) {
 
         //Create url for user to access update page. Selector used to find token in database to compare to token in URL.
         //Done to authenticate user identity through email.
-        $url = "https://webtech-in07.webtech-uva.nl/reset/update_page.php?selector=" . $selector ."&token=" . bin2hex($token);
+        $url = "https://webtech-in07.webtech-uva.nl/pwupdate/update_page.php?selector=" . $selector ."&token=" . bin2hex($token);
 
         $expiration = time() + 900;
 
