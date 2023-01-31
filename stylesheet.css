@@ -108,19 +108,38 @@ header {
     cursor: pointer;
 }
 
-.header_content_right > .searchbar {
+.header_content_right > form {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--details_font_color);
+    border-radius: 8px;
+}
+
+.header_content_right > form > button > i {
+    color: var(--details_font_color);
+}
+
+.header_content_right > form > .searchbar {
     height: 50px;
     width: 270px;
     border-radius: 8px;
-    border: 2px solid var(--details_font_color);
+    border: none;
     color: var(--title_font_color);
     background-color: transparent;
     font-size: 18px;
     padding: 0px 12px;
 }
 
-.header_content_right > .searchbar:focus {
+.header_content_right > form > .searchbar:focus {
     border: 2px solid var(--primary_color);
+}
+
+.header_content_right > form > .searchbar_submit {
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
 }
 
 .login_button, .register_button {
@@ -206,6 +225,11 @@ header {
         transform: scaleY(1);
     }
 }
+
+.mobile_filter_btn {
+    display: none;
+}
+
 /*Header style end*/
 
 /*Sidebar style start*/
@@ -760,6 +784,23 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
 
 /*New-thread page style start*/
+.new_post_main_content_container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 240px;
+  margin-right: 240px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: var(--secondary_background_color);
+  min-height: 500px;
+}
+
+.new_post_main_content {
+  width: 100%;
+  padding: 10px;
+}
+
 .new_post_title {
   font-size: xx-large;
   font-weight: bold;
@@ -784,7 +825,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
   resize: none;
   margin-bottom: 10px;
   width: 100%;
-  height: 200px;
+  height: 300px;
   color: var(--text_font_color);
 }
 
@@ -793,30 +834,33 @@ input[type="checkbox"]:checked, input[type="radio"] {
   margin-top: 14px;
   display: flex;
   bottom: 2%;
+  align-items: center;
 }
 
 .new_post_button {
-  width: calc(100% - 40px);
-  width: 15%;
-  height: 35px;
-  border-radius: 8px;
-  border: none;
-  background-color: rgb(140, 140, 140);
-  color: var(--secondary_background_color);
-  font-size: 24px;
-  font-weight: bold;
+  margin-top: 10px;
+  width: 100px;
   margin-left: auto;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: var(--primary_color);
+  border: none;
+
+  font-size: large;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--tag_font_color);
 }
 
 .new_post_button:hover {
-  background-color: var(--primary_color);
+  background-color: var(--primary_complement_hover);
   cursor: pointer;
+  
 }
 
 .tag_container {
   border-radius: 5px;
   display: flex;
-  align-items: center;
 }
 
 /*New-thread page style end*/
@@ -861,7 +905,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
         transform: rotate(-45deg) translateY(-12px) translateX(5px);
     }
 
-    .hamburger_active + .header_content_right{
+    .hamburger_active{
         transform: translateX(0vw);
     }
 
@@ -907,6 +951,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
         display: block;
         background-color: transparent;
         border: none;
+        margin-left: 20px;
     }
 
     .hamburger_menu_btn:hover {
@@ -925,5 +970,72 @@ input[type="checkbox"]:checked, input[type="radio"] {
         margin: 6px 0px 6px 0px;
         border-radius: 6px;
     }
+
+    .mobile_right {
+        display: flex;
+    }
+
+    .mobile_filter_btn {
+        display: block;
+    }
+
+    .mobile_filter_btn {
+        border: none;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+
+    .mobile_filter_btn:hover {
+        cursor: pointer;
+    }
+
+    .mobile_filter_btn > i {
+        color: var(--primary_color);
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+    }
+
+    .sidebar_container {
+        transform: translatex(-100vw);
+        position: fixed;
+        z-index: 1;
+        width: 60%;
+        top: 120px;
+
+        /* padding: 20px; */
+        border-radius: 12px;
+        box-shadow: 0px 0px 20px var(--shadow_color);
+    }
+    
+    .sidebar_description {
+        display: none;
+    }
+
+    .sidebar_active {
+        transform: translateX(0vw);
+        display: block;
+    }
+    
+    .header_content_right > form {
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+    .search_form {
+        width: 80%;
+        position: relative;
+    }
+
+    .searchbar_submit {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
 }
 /*Mobile view style end*/

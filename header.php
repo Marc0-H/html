@@ -1,13 +1,23 @@
 <header>
     <div class="header_container">
         <a href="./index.php"><img src="images/logo.png" alt="EDUZONE"></a>
-        <button class="hamburger_menu_btn">
-            <span class="bar" id="bar1"></span>
-            <span class="bar" id="bar2"></span>
-            <span class="bar" id="bar3"></span>
-        </button>
+        <div class="mobile_right">
+            <button class="mobile_filter_btn">
+                <i class="material-icons tooltip">filter_alt<div class="tooltip_text">Filter</div></i>
+            </button>
+            <button class="hamburger_menu_btn">
+                <span class="bar" id="bar1"></span>
+                <span class="bar" id="bar2"></span>
+                <span class="bar" id="bar3"></span>
+            </button>
+        </div>
         <div class="header_content_right">
-            <input class="searchbar" type="text" placeholder="Search topic..">
+            <form class="search_form" method="get">
+                <input name="search" class="searchbar" type="text" placeholder="Search topic..">
+                <button class="searchbar_submit">
+                    <i class="material-icons tooltip">search<div class="tooltip_text">Search</div></i>
+                </button>
+            </form>
 
             <?php
             if (!isset($_SESSION["userId"])) {
@@ -22,7 +32,7 @@
             } else {
             // Show if logged in.
             ?>
-                <i class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
+                <i id="create_post" class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
 
                 <div class="dropdown_menu_profile">
                     <img src="./images/profile_img.png" alt="profile" class="profile_button">

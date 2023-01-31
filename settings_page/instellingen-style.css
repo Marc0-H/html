@@ -1,0 +1,175 @@
+:root {
+    --primary_color: #309eed;
+    --primary_background_color: #E5E5E5;
+    --secondary_background_color: #F8F8F8;
+    --details_color: #0000001a;
+    --shadow_color: #DEDEDE;
+
+    --tooltip_background_color: #4B4B4B;
+
+    --title_font_color: #7E7E7E;
+    --text_font_color: #4B4B4B;
+    --details_font_color: #B9B9B9;
+
+    --post_interaction_color: #0000000d;
+    --filter_hover_color: #0000000d;
+    --primary_complement_hover: #2386cc;
+
+    --tag_font_color: #FFFFFF;
+
+    --tag_color: #d35400;
+}
+
+body {
+    background-color: var(--primary_background_color);
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text_font_color);
+    margin-left: 35px;
+    font-size: 30px;
+}
+
+.instellingen-container {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+}
+
+.rand {
+    background-color: var(--primary_background_color);
+    width: 20px;
+}
+
+.instellingen-page {
+    background-color: var(--secondary_background_color);
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    margin-top: 50px;
+}
+
+.instellingen-header {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 50px;
+color: var(--primary_color);
+margin-left: 40px;
+margin-bottom: 6px;
+display: inline-block;
+margin-top: 16px;
+}
+
+.instellingen-underline {
+    margin-left: 35px;
+    border-bottom: solid;
+    display: inline-block;
+    width: 208px;
+    border-color: var(--primary_background_color);
+    margin-bottom: 5px;
+}
+
+.standard-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.collapsible-content {
+    max-height: 390px;
+    margin-top: 15px
+}
+
+.on-off-button {
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+
+.collapsible-button {
+    background-color: var(--secondary_background_color);
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.E-mail-wijzig-container {
+    display: flex;
+    margin-left: 30px;
+    background-color: var(--primary_background_color);
+    height: 250px;
+    width: 400px;
+    border-radius: 50px;
+    flex-direction: column;
+}
+
+.wachtwoord-wijzig-container {
+    display: flex;
+    margin-left: 30px;
+    background-color: var(--primary_background_color);
+    height: 370px;
+    width: 400px;
+    border-radius: 50px;
+    flex-direction: column;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="email"], input[type="text"], input[type="password"] {
+    color: black;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    width: calc(100% - 40px);
+    width: 100%;
+    height: 60px;
+    margin-top: 30px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--primary_color);
+
+    color: var(--tag_font_color);
+
+    font-size: 24px;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: var(--primary_complement_hover);
+    background-color: var(--primary_complement_hover);
+    cursor: pointer;
+}
+
+.wachtwoord-herhalen {
+    margin: 1px 20px 10px 30px;
+    font-size: 23px;
+}
