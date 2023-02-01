@@ -221,9 +221,6 @@
                 if (strpos($filter, "teacher") !== false) {
                     $roles[] = "teacher";
                 }
-                if (strpos($filter, "admin") !== false) {
-                    $roles[] = "admin";
-                }
 
             }
 

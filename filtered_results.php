@@ -55,9 +55,6 @@
             if (strpos($filter, "student") !== false) {
                 $roles[] = "student";
             }
-            if (strpos($filter, "admin") !== false) {
-                $roles[] = "admin";
-            }
             if (strpos($filter, "teacher") !== false) {
                 $roles[] = "teacher";
             }

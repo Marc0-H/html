@@ -28,11 +28,11 @@ include 'header.php';
     <div class="main_container">
     <!-- <?php include 'sidebar.php'; ?> -->
     <div class="new_post_main_content_container">
-      <?php 
+      <?php
           if (!isset($_SESSION['userId'])) {
         ?>
         <div><a href="login_signup/login_page.php">Log in</a> to create a post</div>
-        <?php 
+        <?php
         } else {?>
         <div class="new_post_main_content">
           <div class="new_post_content">
@@ -41,7 +41,7 @@ include 'header.php';
                   <input autocomplete="off" class="new_post_title" name="post_title" id="new_post_title" type="text" placeholder="Enter post title..." required>
               </div>
               <textarea class="new_post_textarea" name="post_content" id="new_post_textarea" form="new_post_form" maxlength="1000" placeholder="Enter text..." required></textarea>
-              
+
               <div class="new_post_bottom">
                 <div class="new_post_image_container">
                   <label for="new_post_image">Add PNG image:</label>

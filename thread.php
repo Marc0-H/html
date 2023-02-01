@@ -61,9 +61,6 @@ session_start();
                                 <label  class="dropdown-label">
                                     <input name="filter-thread-role[]" value="teacher" type="checkbox" checked>Teacher
                                 </label>
-                                <label class="dropdown-label">
-                                    <input name="filter-thread-role[]" value="admin" type="checkbox" checked>Admin
-                                </label>
                             </div>
                             <input type="submit" value="Apply" class="filter-button">
                         </form>

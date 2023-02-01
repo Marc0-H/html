@@ -16,23 +16,6 @@ uploadField.onchange = function() {
 };
 }
 
-// function submitUsernameForm() {
-//     clearField('$new-username')
-//     fetch ('update_data.php', {
-//         method: 'POST',
-//         body: new FormData(document.getElementById('username-form'))
-//     })
-//     .then(response => response.text())
-//     .then(data => {
-//         if(data.startsWith("Error")){
-//             alert(data);
-//         }else{
-//             document.getElementById('new-username').setCustomValidity("Wijziging is aangebracht!");
-//         }
-//     })
-//     .catch(error => console.error('Error:', error));
-// }
-
 function clearPasswordFields() {
     document.getElementById('password').value = '';
     document.getElementById('password-repeat').value = '';
@@ -112,11 +95,7 @@ function switchColorScheme() {
         root.style.setProperty('--primary_complement_hover', '#2386cc');
         root.style.setProperty('--tag_font_color', '#FFFFFF');
         root.style.setProperty('--tag_color', '#d35400');
-        if (checkCookie('consent')) {
-            setCookie("dark_mode", 'true', 365);
-        } else {
-            sessionStorage.setItem("darkmode", "true");
-        }
+            return "darkmodeSession";
     } else {
         // lightmode colorscheme
         root.style.setProperty('--primary_color', '#309eed');
@@ -133,11 +112,7 @@ function switchColorScheme() {
         root.style.setProperty('--primary_complement_hover', '#2386cc');
         root.style.setProperty('--tag_font_color', '#FFFFFF');
         root.style.setProperty('--tag_color', '#d35400');
-        if (checkCookie("dark_mode")) {
-            deleteCookie("dark_mode");
-        } else if (sessionStorage.getItem("darkmode") == "true") {
-            sessionStorage.clear();
-        }
+            return "lightmodeSession";
     }
 }
 
