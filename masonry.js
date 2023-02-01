@@ -11,7 +11,7 @@ for (let i = 0; i < cards.length; i++) {
 
 
 function generateMasonryGrid(columns, posts) {
-    grid.innerHTML = '';
+
 
     //store all column arrays which contains the relevant posts.
     let columnWrappers = {};
@@ -43,10 +43,12 @@ function generateMasonryGrid(columns, posts) {
 }
 
 window.addEventListener('resize', () => {
+    grid.innerHTML = '';
     handleResize();
 });
 
 window.addEventListener('load', () => {
+    grid.innerHTML = '';
     handleResize();
 })
 
@@ -61,3 +63,6 @@ function handleResize() {
         generateMasonryGrid(1, posts);
     }
 }
+
+grid.innerHTML = '';
+handleResize();

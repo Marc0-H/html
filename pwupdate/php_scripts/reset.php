@@ -1,14 +1,21 @@
 <?php
 
-include 'connection.php';
+include '../../connection.php';
 require_once 'functions.php';
 
 $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]));
 
 if (isset($_POST["reset_submit"])) {
+
     $email = $_POST["email"];
-    if (userExists($connection, $email, $email) === NULL) {
+
+    if (userExists($connection, $email, $email) === FALSE) {
         header("location: ../reset_page.php?error=nouser");
+        exit();
+    }
+    //if there was an error in the function, exit the script
+    else if (userExists($connection, $email, $email) === NULL) {
+        exit();
     }
     else {
         $selector = bin2hex(random_bytes(8));
@@ -17,7 +24,7 @@ if (isset($_POST["reset_submit"])) {
 
         //Create url for user to access update page. Selector used to find token in database to compare to token in URL.
         //Done to authenticate user identity through email.
-        $url = "https://webtech-in07.webtech-uva.nl/reset/update_page.php?selector=" . $selector ."&token=" . bin2hex($token);
+        $url = "https://webtech-in07.webtech-uva.nl/pwupdate/update_page.php?selector=" . $selector ."&token=" . bin2hex($token);
 
         $expiration = time() + 900;
 
@@ -32,7 +39,9 @@ if (isset($_POST["reset_submit"])) {
             mysqli_stmt_bind_param($stmt, "s", $email);
             mysqli_stmt_execute($stmt);
         }
+
         $userUid = findUid($connection, $email);
+        if ($userUid === NULL) exit();
 
         $sql = "INSERT INTO reset(resetEmail, userId, pwdSelector, pwdToken, expirationDate) VALUES (?, ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($connection);
@@ -49,8 +58,6 @@ if (isset($_POST["reset_submit"])) {
 
             mysqli_stmt_close($stmt);
         }
-
-        //stuck :(
     }
     $to = "$email";
     $title = "Password reset";
@@ -69,5 +76,4 @@ if (isset($_POST["reset_submit"])) {
 else {
     header("location: ../../login_signup/login_page.php");
 }
-
 ?>

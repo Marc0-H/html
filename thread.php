@@ -28,292 +28,46 @@ session_start();
         ?>
         <main>
             <div class="main_container">
-            <?php include 'sidebar.php'; ?>
+                <div class="sidebar_container">
+                    <div class="sidebar_description">
+                        <h2>Find your Study Buddy</h2>
+                        <p>Welcome to our community! Here you can connect with fellow students and share knowledge and resources. Whether you need help with a specific subject or just want to discuss your coursework with others, our forum is the place to be. Join now and start building your support network!<br><br> Made with ❤️ by the brainy-bunch.</p>
+                    </div>
+                    <div class="sidebar_filter">
+                        <form class="filter_form_thread" method="get">
+                            <button id="filter-option-sortby" class="dropdown-button" type="button">
+                                Sort by
+                                <svg class="dropdown-button-icon" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><title/><path d="M81.8457,25.3876a6.0239,6.0239,0,0,0-8.45.7676L48,56.6257l-25.396-30.47a5.999,5.999,0,1,0-9.2114,7.6879L43.3943,69.8452a5.9969,5.9969,0,0,0,9.2114,0L82.6074,33.8431A6.0076,6.0076,0,0,0,81.8457,25.3876Z"/></svg>
+                            </button>
+                            <div class="dropdown" id="dropdown-sortby">
+                                <label class="dropdown-label">
+                                    <input name="filter-thread-sortby" value="latest" type="radio" checked>Latest
+                                </label>
+                                <label class="dropdown-label">
+                                    <input name="filter-thread-sortby" value="populairity" type="radio">Populairity
+                                </label>
+                                <label class="dropdown-label">
+                                    <input name="filter-thread-sortby" value="controversial" type="radio">Controversial
+                                </label>
+                            </div>
+                            <button id="filter-option-user-role" class="dropdown-button" type="button">
+                                User role
+                                <svg class="dropdown-button-icon" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><title/><path d="M81.8457,25.3876a6.0239,6.0239,0,0,0-8.45.7676L48,56.6257l-25.396-30.47a5.999,5.999,0,1,0-9.2114,7.6879L43.3943,69.8452a5.9969,5.9969,0,0,0,9.2114,0L82.6074,33.8431A6.0076,6.0076,0,0,0,81.8457,25.3876Z"/></svg>
+                            </button>
+                            <div class="dropdown" id="dropdown-user-role">
+                                <label class="dropdown-label">
+                                    <input name="filter-thread-role[]" value="student" type="checkbox" checked>Student
+                                </label>
+                                <label  class="dropdown-label">
+                                    <input name="filter-thread-role[]" value="teacher" type="checkbox" checked>Teacher
+                                </label>
+                            </div>
+                            <input type="submit" value="Apply" class="filter-button">
+                        </form>
+                    </div>
+                </div>
                 <div class="thread_content_container">
-                <?php
-                    /* Check if post has parameter */
-                    if (!isset($_GET["v"])) {
-                        ?><p>Post could not be found</p><?php
-                    } else {
-                        $session_id = "";
-
-                        $post_id = $_GET["v"];
-                        $post_query = "SELECT * FROM posts WHERE post_id = $post_id";
-                        $post_result = mysqli_fetch_assoc(mysqli_query($connection, $post_query));
-
-                        $op_id = $post_result["user_id"];
-                        $op_query = "SELECT userUid, profile_image FROM users WHERE userId = $op_id";
-                        $op_result = mysqli_fetch_assoc(mysqli_query($connection, $op_query));
-
-                        $comment_count_query = "SELECT COUNT(post_id) FROM comments WHERE post_id = $post_id";
-                        $comment_count = mysqli_fetch_assoc(mysqli_query($connection, $comment_count_query));
-
-                        $like_count_query = "SELECT COUNT(post_id) FROM post_upvote_link WHERE post_id = $post_id";
-                        $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
-
-                        if (isset($_SESSION["userId"])) {
-                            $session_id = $_SESSION["userId"];
-                            $user_like_query = "SELECT COUNT(user_id) FROM post_upvote_link WHERE user_id = $session_id AND post_id = $post_id";
-                            $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
-                        }
-                ?>
-
-                        <div class="post_container original_poster">
-                            <div class="post_title_container">
-                                <div class="post_title">
-                                    <span class="post_tag tag-<?php echo $post_result["post_tag"]?>">
-                                        <?php echo $post_result["post_tag"]?>
-                                    </span>
-                                    <?php echo $post_result["post_title"]?>
-                                </div>
-                                <div class="button_container">
-                                    <?php if ($session_id == $op_id) {?>
-                                        <i id="delete-post-<?php echo $post_id?>" class="material-icons tooltip delete_button delete_post">delete<div class="tooltip_text">Delete post</div></i>
-                                    <?php }?>
-                                </div>
-                            </div>
-                            <div class="user_info_container">
-                                <img src="images/default.png">
-                                <div class="username"><?php echo $op_result["userUid"]?></div>
-                                <div class="user_tag">PhD.</div>
-                                <i class="material-icons">query_builder</i>
-                                <div class="date"><?php echo $post_result["post_datetime"]?></div>
-                            </div>
-
-                            <div class="post_image_container">
-                                <?php
-                                    if (!empty($post_result["post_image"])) {
-                                        ?><img src="data:image/png;base64,<?php echo $post_result["post_image"]?>" alt="card1"><?php
-                                    }
-                                ?>
-                            </div>
-
-                            <div class="post_content"><?php echo $post_result["post_content"]?></div>
-                            <div id="bookmark"></div>
-                            <div class="interaction_container">
-                                <i id="post-like-<?php echo $post_id ?>" class="material-icons tooltip like_button <?php if ($user_like["COUNT(user_id)"] > 0) { echo 'liked'; }?>">thumb_up<div class="tooltip_text">Like</div></i>
-                                <div class="like_count"><?php echo $like_count["COUNT(post_id)"]?></div>
-                                <a href="#bookmark" class="material-icons tooltip">forum<div class="tooltip_text">Go to replies</div></a>
-                                <div class="comment_count"><?php echo $comment_count["COUNT(post_id)"]?></div>
-                                <div id="reply-post" class="reply_button">Reply</div>
-                            </div>
-                            <form id="form-reply-post" action="comment_upload.php?v=<?php echo $_GET["v"]?>" method="post">
-                                <textarea class="comment_box" name="comment_content" autocomplete="off" placeholder="Add a reply..." rows="1" required></textarea>
-                                <input type="hidden" name="post_id" value="<?php echo $_GET["v"]?>">
-                                <input type="hidden" name="parent_comment_id" value="">
-                                <input class="submit_button" type="submit" value="Submit">
-                            </form>
-                        </div>
-
-                        <?php
-                            $solution_id = 0; // Zero is not used as a possible id
-                            if (!is_null($post_result["solution_id"])) {
-                                $solution_id = $post_result["solution_id"];
-
-                                $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND id = $solution_id";
-                                $comment_row = mysqli_fetch_assoc(mysqli_query($connection, $comment_query));
-
-                                $user_id = $comment_row['user_id'];
-                                $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
-                                $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
-
-                                $comment_id = $comment_row["id"];
-                                $subcomment_count_query = "SELECT COUNT(parent_comment_id) FROM comments WHERE parent_comment_id = $comment_id";
-                                $subcomment_count = mysqli_fetch_assoc(mysqli_query($connection, $subcomment_count_query));
-
-                                $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $comment_id";
-                                $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
-
-                                if (isset($_SESSION["userId"])) {
-                                    $user_like_query = "SELECT COUNT(user_id) FROM comment_upvote_link WHERE user_id = $session_id AND comment_id = $comment_id";
-                                    $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
-                                }
-                        ?>
-                                <div class="solution_container">
-                                    <div class="solution_sign">
-                                        <div class="solution_bar"></div>
-                                        <i class="material-icons">check_mark</i>
-                                        <div class="solution_bar"></div>
-                                    </div>
-                                    <div class="comment_container <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
-                                        <div class="user_info_container">
-                                            <img src="images/default.png">
-                                            <div class="username"><?php echo $user_result["userUid"]?></div>
-                                            <div class="user_tag">Leerling</div>
-                                            <i class="material-icons">query_builder</i>
-                                            <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
-                                            <div class="button_container">
-                                                <?php if ($session_id == $user_id) {?>
-                                                    <i id="delete-comment-<?php echo $comment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
-                                                <?php }?>
-                                            </div>
-                                        </div>
-                                        <div class="comment_content">
-                                            <p><?php echo $comment_row["comment_content"]?></p>
-                                        </div>
-                                        <div class="interaction_container">
-                                            <i id="comment-like-<?php echo $comment_id ?>" class="material-icons tooltip like_button <?php if ($user_like["COUNT(user_id)"] > 0) { echo 'liked'; }?>">thumb_up<div class="tooltip_text">Like</div></i>
-                                            <div class="like_count"><?php echo $like_count["COUNT(comment_id)"]?></div>
-                                            <i id="subcomment-<?php echo $comment_id ?>" class="material-icons tooltip hide_replies">forum<div class="tooltip_text">Show replies</div></i>
-                                            <div class="comment_count"><?php echo $subcomment_count["COUNT(parent_comment_id)"]?></div>
-                                            <div id="reply-<?php echo $comment_id ?>" class="reply_button">Reply</div>
-                                        </div>
-                                        <form id="form-reply-<?php echo $comment_id ?>" action="comment_upload.php?v=<?php echo $_GET["v"]?>" method="post">
-                                            <textarea class="comment_box" name="comment_content" autocomplete="off" placeholder="Add a reply..." rows="1" required></textarea>
-                                            <input type="hidden" name="post_id" value="">
-                                            <input type="hidden" name="parent_comment_id" value="<?php echo $comment_row["id"] ?>">
-                                            <input class="submit_button" type="submit" value="Submit">
-                                        </form>
-                                    </div>
-                                </div>
-                            <?php
-                                $subcomment_query = "SELECT * FROM comments WHERE parent_comment_id = $comment_id ORDER BY comment_datetime ASC";
-                                $subcomment_result = mysqli_query($connection, $subcomment_query);
-
-                                while($subcomment_row = mysqli_fetch_assoc($subcomment_result)) {
-                                    $subcomment_id = $subcomment_row['id'];
-
-                                    $user_id = $subcomment_row['user_id'];
-                                    $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
-                                    $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
-
-                                    $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $subcomment_id";
-                                    $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
-
-                                    if (isset($_SESSION["userId"])) {
-                                    $user_like_query = "SELECT COUNT(user_id) FROM comment_upvote_link WHERE user_id = $session_id AND comment_id = $subcomment_id";
-                                    $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
-                                    }
-                            ?>
-                                    <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
-                                        <div class="user_info_container">
-                                            <img src="images/default.png">
-                                            <div class="username"><?php echo $user_result["userUid"]?></div>
-                                            <div class="user_tag">PhD.</div>
-                                            <i class="material-icons">query_builder</i>
-                                            <div class="date"><?php echo $subcomment_row["comment_datetime"]?></div>
-                                            <div class="button_container">
-                                                <?php if ($session_id == $user_id) {?>
-                                                    <i id="delete-comment-<?php echo $subcomment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
-                                                <?php }?>
-                                            </div>
-                                        </div>
-                                        <div class="comment_content">
-                                            <p><?php echo $subcomment_row["comment_content"]?></p>
-                                        </div>
-                                        <div class="interaction_container">
-                                            <i id="comment-like-<?php echo $subcomment_id ?>" class="material-icons tooltip like_button <?php if ($user_like["COUNT(user_id)"] > 0) { echo 'liked'; }?>">thumb_up<div class="tooltip_text">Like</div></i>
-                                            <div class="like_count"><?php echo $like_count["COUNT(comment_id)"]?></div>
-                                        </div>
-                                    </div>
-                        <?php
-                                }
-                            }
-                        ?>
-
-
-                    <?php
-                        $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
-                        $comment_result = mysqli_query($connection, $comment_query);
-
-                        while($comment_row = mysqli_fetch_assoc($comment_result)) {
-                            $user_id = $comment_row['user_id'];
-                            $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
-                            $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
-
-                            $comment_id = $comment_row["id"];
-                            $subcomment_count_query = "SELECT COUNT(parent_comment_id) FROM comments WHERE parent_comment_id = $comment_id";
-                            $subcomment_count = mysqli_fetch_assoc(mysqli_query($connection, $subcomment_count_query));
-
-                            $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $comment_id";
-                            $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
-
-                            if (isset($_SESSION["userId"])) {
-                                $user_like_query = "SELECT COUNT(user_id) FROM comment_upvote_link WHERE user_id = $session_id AND comment_id = $comment_id";
-                                $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
-                            }
-                    ?>
-
-                            <div class="comment_container <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
-                                <div class="user_info_container">
-                                    <img src="images/default.png">
-                                    <div class="username"><?php echo $user_result["userUid"]?></div>
-                                    <div class="user_tag">Leerling</div>
-                                    <i class="material-icons">query_builder</i>
-                                    <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
-                                    <div class="button_container">
-                                        <?php
-                                        if ($session_id == $user_id) {?>
-                                            <i id="delete-comment-<?php echo $comment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
-                                        <?php }
-                                        if ($session_id == $op_id && $session_id != $user_id) {?>
-                                            <i id="solution-<?php echo $comment_id?>" class="material-icons tooltip solution_button">done<div class="tooltip_text">Mark as solution</div></i>
-                                        <?php }?>
-                                    </div>
-                                </div>
-                                <div class="comment_content">
-                                    <p><?php echo $comment_row["comment_content"]?></p>
-                                </div>
-                                <div class="interaction_container">
-                                    <i id="comment-like-<?php echo $comment_id ?>" class="material-icons tooltip like_button <?php if ($user_like["COUNT(user_id)"] > 0) { echo 'liked'; }?>">thumb_up<div class="tooltip_text">Like</div></i>
-                                    <div class="like_count"><?php echo $like_count["COUNT(comment_id)"]?></div>
-                                    <i id="subcomment-<?php echo $comment_id ?>" class="material-icons tooltip hide_replies">forum<div class="tooltip_text">Show replies</div></i>
-                                    <div class="comment_count"><?php echo $subcomment_count["COUNT(parent_comment_id)"]?></div>
-                                    <div id="reply-<?php echo $comment_id ?>" class="reply_button">Reply</div>
-                                </div>
-                                <form id="form-reply-<?php echo $comment_id ?>" action="comment_upload.php?v=<?php echo $_GET["v"]?>" method="post">
-                                    <textarea class="comment_box" name="comment_content" autocomplete="off" placeholder="Add a reply..." rows="1" required></textarea>
-                                    <input type="hidden" name="post_id" value="">
-                                    <input type="hidden" name="parent_comment_id" value="<?php echo $comment_row["id"] ?>">
-                                    <input class="submit_button" type="submit" value="Submit">
-                                </form>
-                            </div>
-
-                            <?php
-                                $subcomment_query = "SELECT * FROM comments WHERE parent_comment_id = $comment_id ORDER BY comment_datetime ASC";
-                                $subcomment_result = mysqli_query($connection, $subcomment_query);
-
-                                while($subcomment_row = mysqli_fetch_assoc($subcomment_result)) {
-                                    $subcomment_id = $subcomment_row['id'];
-
-                                    $user_id = $subcomment_row['user_id'];
-                                    $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
-                                    $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
-
-                                    $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $subcomment_id";
-                                    $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
-
-                                    if (isset($_SESSION["userId"])) {
-                                    $user_like_query = "SELECT COUNT(user_id) FROM comment_upvote_link WHERE user_id = $session_id AND comment_id = $subcomment_id";
-                                    $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
-                                    }
-                            ?>
-                                    <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
-                                        <div class="user_info_container">
-                                            <img src="images/default.png">
-                                            <div class="username"><?php echo $user_result["userUid"]?></div>
-                                            <div class="user_tag">PhD.</div>
-                                            <i class="material-icons">query_builder</i>
-                                            <div class="date"><?php echo $subcomment_row["comment_datetime"]?></div>
-                                            <div class="button_container">
-                                                <?php if ($session_id == $user_id) {?>
-                                                    <i id="delete-comment-<?php echo $subcomment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
-                                                <?php }?>
-                                            </div>
-                                        </div>
-                                        <div class="comment_content">
-                                            <p><?php echo $subcomment_row["comment_content"]?></p>
-                                        </div>
-                                        <div class="interaction_container">
-                                            <i id="comment-like-<?php echo $subcomment_id ?>" class="material-icons tooltip like_button <?php if ($user_like["COUNT(user_id)"] > 0) { echo 'liked'; }?>">thumb_up<div class="tooltip_text">Like</div></i>
-                                            <div class="like_count"><?php echo $like_count["COUNT(comment_id)"]?></div>
-                                        </div>
-                                    </div>
-                <?php
-                                }
-                        }
-                    }
-                ?>
+                    <?php include "filtered_results_thread.php"?>
                 </div>
             </div>
         </main>
