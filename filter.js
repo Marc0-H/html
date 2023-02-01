@@ -77,6 +77,8 @@ $(".filter_form_thread").submit(function(event) {
         data: $(this).serialize(),
         success: function (data) {
             $(".thread_content_container").html(data);
+            let sidebarContainer = document.querySelector(".sidebar_container");
+            sidebarContainer.classList.toggle("sidebar_active");
             $.getScript("thread.js");
         }
     });
