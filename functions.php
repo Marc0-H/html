@@ -2,24 +2,18 @@
 
 function checkUid($name) {
     if (!preg_match("/^[a-zA-Z0-9 ]*$/", $name)) {
-        $result = FALSE;
-        echo "returning FALSE";
-        return $result;
+        return FALSE;
     }
     else {
-        $result = TRUE;
-        echo "returning TRUE";
-        return $result;
+        return TRUE;
     }
 }
 function checkEmail($email) {
     if (!preg_match("/^[a-zA-Z@0-9.]*$/", $email)) {
-        $result = FALSE;
-        return $result;
+        return FALSE;
     }
     else {
-        $result = TRUE;
-        return $result;
+        return TRUE;
     }
 }
 
@@ -67,8 +61,7 @@ function userExists($connection, $name, $email) {
         return $result;
     }
     else {
-        $result = false;
-        return $result;
+        return FALSE;
     }
     mysqli_stmt_close($stmt);
 }

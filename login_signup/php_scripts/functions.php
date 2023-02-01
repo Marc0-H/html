@@ -16,14 +16,13 @@ function checkEmail($email) {
         return FALSE;
     }
     else return TRUE;
-
 }
 
 function checkPW($password) {
     if (strlen($password) < 6) {
-        header("location: ../signup_page?error=pwshort");
-        exit();
+        return FALSE;
     }
+    else return TRUE;
 }
 function userExists($connection, $name, $email) {
     //using prepared statement as extra precaution to prevent sql injection
