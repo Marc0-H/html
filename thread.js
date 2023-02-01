@@ -51,9 +51,9 @@ function thread_buttons() {
             var id = like_button.id;
             var url = 'like.php' + window.location.search;
             if (id.slice(0,9) == "post-like") {
-                var form = $('<form class="idkkk" method="get" style="display: none;">' + '<input type="text" name="post_id" value="' + id + '" />' + '<input type="hidden" name="comment_id" value=""/></form>');
+                var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="post_id" value="' + id + '" />' + '<input type="hidden" name="comment_id" value=""/></form>');
             } else {
-                var form = $('<form class="idkkk" method="get" style="display: none;">' + '<input type="text" name="comment_id" value="' + id + '" />' + '<input type="text" name="post_id" value=""/></form>');
+                var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="comment_id" value="' + id + '" />' + '<input type="text" name="post_id" value=""/></form>');
             }
     
             $('body').append(form);
@@ -113,21 +113,22 @@ function thread_buttons() {
         });
     }
 
-    $(".idkkk").submit(function(event) {    
-        const url = window.location.href;
-        const params = new URLSearchParams(new URL(url).search);
-        const v = params.get("v");
+
+    // $(".idkkk").submit(function(event) {    
+    //     const url = window.location.href;
+    //     const params = new URLSearchParams(new URL(url).search);
+    //     const v = params.get("v");
         
-        event.preventDefault();  // prevent the form from submitting
-        $.ajax({
-            type: "GET",
-            url: url,
-            data: $(this).serialize(),
-            success: function (data) {
-                $(".thread_content_container").html(data);
-            }
-        });
-    });
+    //     event.preventDefault();  // prevent the form from submitting
+    //     $.ajax({
+    //         type: "GET",
+    //         url: url,
+    //         data: $(this).serialize(),
+    //         success: function (data) {
+    //             $(".thread_content_container").html(data);
+    //         }
+    //     });
+    // });
 }
 
 thread_buttons();
