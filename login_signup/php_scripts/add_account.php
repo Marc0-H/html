@@ -41,6 +41,10 @@ if (userExists($connection, $name, $email) === FALSE) {
         echo $sql . "<br>" . $e->getMessage();
     }
 }
+// if there was an error in the function exit the script.
+else if (userExists($connection, $name, $email) === NULL) {
+    exit();
+}
 else {
     header("location: ../signup_page.php?error=userexists");
 }

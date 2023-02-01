@@ -1,56 +1,35 @@
 <?php
 
-function checkUid($name) {
-    if (!preg_match("/^[a-zA-Z0-9 ]*$/", $name)) {
-        $result = FALSE;
-        echo "returning FALSE";
-        return $result;
-    }
-    else {
-        $result = TRUE;
-        echo "returning TRUE";
-        return $result;
-    }
-}
-function checkEmail($email) {
-    if (!preg_match("/^[a-zA-Z@0-9.]*$/", $email)) {
-        $result = FALSE;
-        return $result;
-    }
-    else {
-        $result = TRUE;
-        return $result;
-    }
-}
-
-//added redirect variable to redirect properly when called in different files
-//(this function also gets used to reset the user's password).
-function findUid($connection, $email, $redirect = "../signup_page.php") {
+//find the id associated with the email in the database.
+function findUid($connection, $email) {
     $current_url = $_SERVER['REQUEST_URI'];
 
     $sql = "SELECT userId FROM users WHERE userEmail = ?;";
     $stmt = mysqli_stmt_init($connection);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location:" . $redirect . "?error=stmtfailed");
-        exit();
+        header("location: ../reset_page?error=stmtfailed");
+        return NULL;
     }
 
     mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
+
     if(!mysqli_stmt_bind_result($stmt, $userId)){
-        header("location:" . $redirect . "?error=bindfailed");
-        exit();
+        header("location: ../reset_page?error=bindfailed");
+        return NULL;
     }
     if(!mysqli_stmt_fetch($stmt)) {
-        // header("location: ' $current_url ' . '?error=fetchfailed' ");
-        header("location: ". $redirect ."?error=fetchfailed");
-        exit();
+        header("location: ../reset_page?error=fetchfailed");
+        return NULL;
     }
     mysqli_stmt_close($stmt);
-    return $userId;
-}
 
+    if ($userId === NULL) return NULL;
+    else return $userId;
+}
+//return true if there is a user with a given name or email. Either can be
+//checked.
 function userExists($connection, $name, $email) {
     //using prepared statement as extra precaution to prevent sql injection
     //used this site as reference to using prepared statement: https://www.w3schools.com/php/php_mysql_prepared_statements.asp#:~:text=A%20prepared%20statement%20is%20a,(labeled%20%22%3F%22).
@@ -58,8 +37,8 @@ function userExists($connection, $name, $email) {
     $sql = "SELECT * FROM users WHERE userUid = ? OR userEmail = ?;";
     $stmt = mysqli_stmt_init($connection);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location:  ../signup_page.php?error=stmtfailed");
-        exit();
+        header("location: ../reset_page.php?error=stmtfailed");
+        return NULL; 
     }
 
     mysqli_stmt_bind_param($stmt, "ss", $name, $email);
@@ -67,41 +46,12 @@ function userExists($connection, $name, $email) {
 
     $returnData = mysqli_stmt_get_result($stmt);
 
-    //check if the fetch returns any data. If so return it otherwise return false.
     if ($result = mysqli_fetch_assoc($returnData)) {
         return $result;
     }
     else {
-        $result = false;
-        return $result;
+        return FALSE;
     }
-    mysqli_stmt_close($stmt);
-}
-
-function addUser($connection, $name, $email, $password) {
-
-    $sql = "SELECT * FROM users WHERE userUid = ? OR userEmail = ?;";
-    $stmt = mysqli_stmt_init($connection);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location:  ../signup_page.php?error=stmtfailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "ss", $name, $email);
-    mysqli_stmt_execute($stmt);
-
-    $returnData = mysqli_stmt_get_result($stmt);
-
-
-    if ($result === mysqli_fetch_assoc($returnData)) {
-        return $result;
-    }
-    else {
-        $result = false;
-        return $result;
-    }
-
-    mysqli_stmt_close($stmt);
 
 }
 

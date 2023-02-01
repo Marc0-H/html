@@ -31,12 +31,12 @@
 
 .signup_prompt {
 
-    height: 600px;
+    height: 750px;
     width: 400px;
     background-color: var(--secondary_background_color);
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 30%;
+    top: 20%;
     left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
