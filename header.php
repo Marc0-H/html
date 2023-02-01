@@ -1,3 +1,9 @@
+<script src="cookie.js"></script>
+    <script>
+            var test = "<?php echo $_SESSION['darkmode']; ?>";
+            csPreference(test);
+    </script>
+
 <header>
     <div class="header_container">
         <a href="./index.php"><img src="images/logo.png" alt="EDUZONE"></a>
@@ -27,7 +33,7 @@
                 <div class="dropdown_menu_profile">
                     <img src="./images/profile_img.png" alt="profile" class="profile_button">
                     <div class="dropdown_content">
-                        <a href="#" class="settings_button">Settings</a>
+                        <a href="settings.php" class="settings_button">Settings</a>
                         <a href="login_signup/php_scripts/log_out.php" class="log_out_button">Log out</a>
                     </div>
                 </div>

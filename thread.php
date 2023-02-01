@@ -123,7 +123,7 @@ session_start();
 
                                 $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $comment_id";
                                 $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
-                            
+
                                 if (isset($_SESSION["userId"])) {
                                     $user_like_query = "SELECT COUNT(user_id) FROM comment_upvote_link WHERE user_id = $session_id AND comment_id = $comment_id";
                                     $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
@@ -179,12 +179,12 @@ session_start();
 
                                     $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $subcomment_id";
                                     $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
-        
+
                                     if (isset($_SESSION["userId"])) {
                                     $user_like_query = "SELECT COUNT(user_id) FROM comment_upvote_link WHERE user_id = $session_id AND comment_id = $subcomment_id";
                                     $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
                                     }
-                            ?>   
+                            ?>
                                     <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                                         <div class="user_info_container">
                                             <img src="images/default.png">
@@ -215,7 +215,7 @@ session_start();
                     <?php
                         $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
                         $comment_result = mysqli_query($connection, $comment_query);
-                        
+
                         while($comment_row = mysqli_fetch_assoc($comment_result)) {
                             $user_id = $comment_row['user_id'];
                             $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
@@ -227,7 +227,7 @@ session_start();
 
                             $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $comment_id";
                             $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
-                            
+
                             if (isset($_SESSION["userId"])) {
                                 $user_like_query = "SELECT COUNT(user_id) FROM comment_upvote_link WHERE user_id = $session_id AND comment_id = $comment_id";
                                 $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
@@ -242,7 +242,7 @@ session_start();
                                     <i class="material-icons">query_builder</i>
                                     <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
                                     <div class="button_container">
-                                        <?php 
+                                        <?php
                                         if ($session_id == $user_id) {?>
                                             <i id="delete-comment-<?php echo $comment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                         <?php }
@@ -282,12 +282,12 @@ session_start();
 
                                     $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $subcomment_id";
                                     $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
-        
+
                                     if (isset($_SESSION["userId"])) {
                                     $user_like_query = "SELECT COUNT(user_id) FROM comment_upvote_link WHERE user_id = $session_id AND comment_id = $subcomment_id";
                                     $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
                                     }
-                            ?>   
+                            ?>
                                     <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                                         <div class="user_info_container">
                                             <img src="images/default.png">

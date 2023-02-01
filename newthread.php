@@ -29,11 +29,11 @@ include "post_confirmed.js";
     <div class="main_container">
     <?php include 'sidebar.php'; ?>
     <div class="main_content_container">
-      <?php 
+      <?php
           if (!isset($_SESSION['userId'])) {
         ?>
         <div><a href="login_signup/login_page.php">Log in</a> to create a post</div>
-        <?php 
+        <?php
         } else {?>
         <div class="new_post_main_content">
           <div class="post_container">

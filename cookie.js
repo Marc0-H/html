@@ -1,7 +1,49 @@
-function colorSchemePreference() {
+function colorSchemePreference(test) {
+    var button = document.getElementById("toggle-button");
+    var darkmode = test;
     var root = document.documentElement;
     var modeCookie = getCookie("dark_mode");
-    if (modeCookie == 'true' || sessionStorage.getItem("darkmode") == "true") {
+    if (modeCookie == 'true' || darkmode == "true") {
+        // darkmode colorscheme
+        button.checked = true;
+        root.style.setProperty('--primary_color', '#309eed');
+        root.style.setProperty('--primary_background_color', '#2D2D2D');
+        root.style.setProperty('--secondary_background_color', '#4A4A4A');
+        root.style.setProperty('--details_color', '#0000001a');
+        root.style.setProperty('--shadow_color', '#2d2b2b');
+        root.style.setProperty('--tooltip_background_color', '#4B4B4B');
+        root.style.setProperty('--title_font_color', '#ECECEC');
+        root.style.setProperty('--text_font_color', '#EEE');
+        root.style.setProperty('--details_font_color', '#B9B9B9');
+        root.style.setProperty('--post_interaction_color', '#f0f0f00d');
+        root.style.setProperty('--filter_hover_color', '#0000000d');
+        root.style.setProperty('--primary_complement_hover', '#2386cc');
+        root.style.setProperty('--tag_font_color', '#FFFFFF');
+        root.style.setProperty('--tag_color', '#d35400');
+    } else {
+        // lightmode colorscheme
+        root.style.setProperty('--primary_color', '#309eed');
+        root.style.setProperty('--primary_background_color', '#E5E5E5');
+        root.style.setProperty('--secondary_background_color', '#F8F8F8');
+        root.style.setProperty('--details_color', '#0000001a');
+        root.style.setProperty('--shadow_color', '#DEDEDE');
+        root.style.setProperty('--tooltip_background_color', '#4B4B4B');
+        root.style.setProperty('--title_font_color', '#7E7E7E');
+        root.style.setProperty('--text_font_color', '#4B4B4B');
+        root.style.setProperty('--details_font_color', '#B9B9B9');
+        root.style.setProperty('--post_interaction_color', '#0000000d');
+        root.style.setProperty('--filter_hover_color', '#0000000d');
+        root.style.setProperty('--primary_complement_hover', '#2386cc');
+        root.style.setProperty('--tag_font_color', '#FFFFFF');
+        root.style.setProperty('--tag_color', '#d35400');
+    }
+}
+
+function csPreference(test) {
+    var root = document.documentElement;
+    var darkmode = test;
+    var modeCookie = getCookie("dark_mode");
+    if (modeCookie == 'true' || darkmode == "true") {
         // darkmode colorscheme
         root.style.setProperty('--primary_color', '#309eed');
         root.style.setProperty('--primary_background_color', '#2D2D2D');
@@ -17,9 +59,6 @@ function colorSchemePreference() {
         root.style.setProperty('--primary_complement_hover', '#2386cc');
         root.style.setProperty('--tag_font_color', '#FFFFFF');
         root.style.setProperty('--tag_color', '#d35400');
-        if (sessionStorage.getItem("darkmode") != "true") {
-            sessionStorage.getItem("darkmode") = "true";
-        }
     } else {
         // lightmode colorscheme
         root.style.setProperty('--primary_color', '#309eed');

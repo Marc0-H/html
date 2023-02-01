@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-header('Cache-Control: max-age=900');
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +71,7 @@ header('Cache-Control: max-age=900');
                         // $post_sql = "SELECT post_id, post_title, post_content, post_tag, post_datetime, post_image from posts ORDER BY post_id DESC";
                         // $post_result = mysqli_query($connection, $post_sql);
 
-                        while($row = mysqli_fetch_assoc($post_result)) {                        
+                        while($row = mysqli_fetch_assoc($post_result)) {
                           $user_id = $row['user_id'];
                           $user_query = "SELECT userUid, profile_image from users where userId = $user_id";
                           $user_result = mysqli_query($connection, $user_query);
