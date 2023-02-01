@@ -61,7 +61,7 @@
                 </div>
 
                 <a href="newthread.php" class="mobile_button">Create post</a>
-                <a href="#" class="mobile_button">Settings</a>
+                <a href="settings.php" class="mobile_button">Settings</a>
                 <a href="login_signup/logout.php" class="mobile_button">Log out</a>
             <?php
             }
