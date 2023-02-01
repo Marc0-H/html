@@ -21,9 +21,6 @@ function checkEmail($email) {
         return $result;
     }
 }
-function checkPW($pw) {
-    if ()
-}
 
 function userExists($connection, $name, $email) {
     //using prepared statement as extra precaution to prevent sql injection
