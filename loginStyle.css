@@ -85,7 +85,7 @@
 .login_prompt {
     height: 400px;
     width: 500px;
-    margin-left: 150px;
+    margin-left: 300px;
     background-color: var(--secondary_background_color);
     position: absolute;
     border-radius: 10px;
