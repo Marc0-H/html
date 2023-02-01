@@ -9,8 +9,9 @@
     $userId = $_SESSION["userId"];
     $query = "SELECT * FROM posts WHERE user_id = $userId ORDER BY post_id DESC";
     $result = mysqli_query($connection, $query);
-    
-
+    if (mysqli_num_rows($result) == 0) {
+      ?> <p>You dont have any posts yet!</p><?php
+    }
     while ($row = mysqli_fetch_assoc($result)) {
         $user_id = $row['user_id'];
         $post_id = $row['post_id'];
