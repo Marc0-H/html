@@ -364,7 +364,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     padding: 30px;
 }
 
-.post_content {
+.post_container > .post_content_container > .post_content {
     max-height: 200px;
     overflow: hidden;
 }
@@ -431,8 +431,12 @@ input[type="checkbox"]:checked, input[type="radio"] {
   
 }
 
-.tag-General {
-    background-color: blue;
+.tag-Science {
+  background-color: rgb(55, 141, 55);
+}
+
+.tag-Physics {
+  background-color: rgb(67, 88, 207);
 }
 
 .user_info_container {
@@ -833,8 +837,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
   width: 100%;
   margin-top: 14px;
   display: flex;
-  bottom: 2%;
-  align-items: center;
+  align-items: end;
 }
 
 .new_post_button {
@@ -858,6 +861,10 @@ input[type="checkbox"]:checked, input[type="radio"] {
   
 }
 
+.tag_text {
+  margin-right: 5px;
+}
+
 .tag_container {
   border-radius: 5px;
   display: flex;
@@ -870,11 +877,15 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
 /*Mobile view style start*/
 @media only screen and (max-width: 1100px) {
+    main {
+        background-color: var(--secondary_background_color);
+    }
+
     .sidebar_container, .dropdown_menu_profile, .header_content_right > .register_button, .header_content_right > .login_button, .header_content_right > i {
         display: none;
     }
-
-    .thread_content_container {
+    
+    .thread_content_container, .new_post_main_content, .new_post_main_content_container {
         width: 100%;
         margin: 0px;
     }
@@ -885,13 +896,17 @@ input[type="checkbox"]:checked, input[type="radio"] {
         width: 70vw;
         background-color: var(--secondary_background_color);
         height: calc(100vh - 120px);
-        top: 120px;
+        top: 100px;
         right: 0;
         flex-direction: column;
         justify-content: start;
         align-items: flex-end;
         box-shadow: 0px 0px 20px var(--shadow_color);
+        
+        
     }
+
+
 
     .hamburger_active > #bar2{
         transform: translatex(100vw);
@@ -943,8 +958,9 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
     .main_container {
         padding: 0px;
-        padding-top: 130px;
+        padding-top: 90px;
         background-color: var(--secondary_background_color);
+        padding-top: 80px;
     }
 
     .hamburger_menu_btn {
@@ -1003,9 +1019,8 @@ input[type="checkbox"]:checked, input[type="radio"] {
     .sidebar_container {
         transform: translatex(-100vw);
         position: fixed;
-        z-index: 1;
-        width: 60%;
-        top: 120px;
+        width: 100%;
+        top: 100px;
 
         /* padding: 20px; */
         border-radius: 12px;
@@ -1020,5 +1035,88 @@ input[type="checkbox"]:checked, input[type="radio"] {
         transform: translateX(0vw);
         display: block;
     }
+    
+    .header_content_right > form {
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+
+    .search_form {
+        width: 80%;
+        position: relative;
+    }
+
+    .searchbar_submit {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    header {
+        height: 100px;
+    }
+
+    .header_container  > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header_container > a > img {
+        height: 80%;
+    }
+    
+    .post_content_container {
+        padding: 20px;
+    }
+
+    .thread_content_container {
+        padding: 20px;
+    }
+
+    .thread_content_container > .post_container {
+        padding: 20px;
+    }
+
+    .thread_content_container > .post_container > .post_content {
+        font-size: 18px;
+    }
+
+    .user_info_container .date, .user_info_container .username{
+        font-size: 16px;
+    }
+
+    .user_info_container .user_tag {
+        font-size: 13px;
+    }
+
+    .post_title {
+        font-size: 24px;
+    }
+
+    .post_tag {
+        font-size: 16px;
+    }
+
+    .post_tag {
+        margin-right: 5px;
+    }
+
+    .comment_container {
+        margin-top: 20px;
+        margin-left: 0px;
+        width: 100%;
+    }
+    .comment_container, .subcomment_container {
+        padding: 20px;
+    }
+    p {
+        font-size: 18px;
+    }
+
+    .subcomment_container {
+        width: calc(100% - 40px);
+    }
+
 }
 /*Mobile view style end*/

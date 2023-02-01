@@ -64,4 +64,5 @@ function handleResize() {
     }
 }
 
+grid.innerHTML = '';
 handleResize();

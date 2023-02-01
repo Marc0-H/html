@@ -41,13 +41,13 @@ session_start();
                             </button>
                             <div class="dropdown" id="dropdown-sortby">
                                 <label class="dropdown-label">
-                                    <input name="filter-sortby" value="latest" type="radio" checked>Latest
+                                    <input name="filter-thread-sortby" value="latest" type="radio" checked>Latest
                                 </label>
                                 <label class="dropdown-label">
-                                    <input name="filter-sortby" value="populairity" type="radio">Populairity
+                                    <input name="filter-thread-sortby" value="populairity" type="radio">Populairity
                                 </label>
                                 <label class="dropdown-label">
-                                    <input name="filter-sortby" value="controversial" type="radio">Controversial
+                                    <input name="filter-thread-sortby" value="controversial" type="radio">Controversial
                                 </label>
                             </div>
                             <button id="filter-option-user-role" class="dropdown-button" type="button">
@@ -56,13 +56,13 @@ session_start();
                             </button>
                             <div class="dropdown" id="dropdown-user-role">
                                 <label class="dropdown-label">
-                                    <input name="filter-role[]" value="phd" type="checkbox" checked>PhD.
+                                    <input name="filter-thread-role[]" value="student" type="checkbox" checked>Student
                                 </label>
                                 <label  class="dropdown-label">
-                                    <input name="filter-role[]" value="student" type="checkbox" checked>Student
+                                    <input name="filter-thread-role[]" value="teacher" type="checkbox" checked>Teacher
                                 </label>
                                 <label class="dropdown-label">
-                                    <input name="filter-role[]" value="teacher" type="checkbox" checked>Teacher
+                                    <input name="filter-thread-role[]" value="admin" type="checkbox" checked>Admin
                                 </label>
                             </div>
                             <input type="submit" value="Apply" class="filter-button">

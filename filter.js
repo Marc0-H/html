@@ -63,16 +63,19 @@ $(".search_form").submit(function(event) {
 });
 
 
-// $(".search_form").submit(function(event) {
+$(".filter_form_thread").submit(function(event) {
+    const url = window.location.href;
+    const params = new URLSearchParams(new URL(url).search);
+    const v = params.get("v");
 
-//     event.preventDefault();  // prevent the form from submitting
-//     $.ajax({
-//         type: "GET",
-//         url: "filtered_results_thread.php" + window.location.search,
-//         data: $(this).serialize(),
-//         success: function (data) {
-//             $(".thread_content_container").html(data);
- 
-//         }
-//     });
-// });
+    event.preventDefault();  // prevent the form from submitting
+    $.ajax({
+        type: "GET",
+        url: "filtered_results_thread.php?v=" + v,
+        data: $(this).serialize(),
+        success: function (data) {
+            $(".thread_content_container").html(data);
+            $.getScript("thread.js");
+        }
+    });
+});

@@ -3,6 +3,9 @@
 
 <?php
     /* Check if post has parameter */
+
+    include 'connection.php';
+
     if (!isset($_GET["v"])) {
         ?><p>Post could not be found</p><?php
     } else {
@@ -13,7 +16,7 @@
         $post_result = mysqli_fetch_assoc(mysqli_query($connection, $post_query));
 
         $op_id = $post_result["user_id"];
-        $op_query = "SELECT userUid, profile_image FROM users WHERE userId = $op_id";
+        $op_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $op_id";
         $op_result = mysqli_fetch_assoc(mysqli_query($connection, $op_query));
 
         $comment_count_query = "SELECT COUNT(post_id) FROM comments WHERE post_id = $post_id";
@@ -38,15 +41,19 @@
                     <?php echo $post_result["post_title"]?>
                 </div>
                 <div class="button_container">
-                    <?php if ($session_id == $op_id) {?>
+                    <?php if ($session_id == $op_id || $session_id == 1) {?>
                         <i id="delete-post-<?php echo $post_id?>" class="material-icons tooltip delete_button delete_post">delete<div class="tooltip_text">Delete post</div></i>
                     <?php }?>
                 </div>
             </div>
             <div class="user_info_container">
-                <img src="images/default.png">
+                <?php if (!empty($op_result["profile_image"])) { ?>
+                        <img src="data:image/png;base64,<?php echo $op_result["profile_image"]?>" alt="profile picture">
+                <?php } else { ?>
+                        <img src="images/default.png" alt="default picture">
+                <?php } ?>
                 <div class="username"><?php echo $op_result["userUid"]?></div>
-                <div class="user_tag">PhD.</div>
+                <div class="user_tag"><?php echo $op_result["tag"]?></div>
                 <i class="material-icons">query_builder</i>
                 <div class="date"><?php echo $post_result["post_datetime"]?></div>
             </div>
@@ -87,7 +94,7 @@
                 $comment_row = mysqli_fetch_assoc(mysqli_query($connection, $comment_query));
 
                 $user_id = $comment_row['user_id'];
-                $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+                $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
                 $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
 
                 $comment_id = $comment_row["id"];
@@ -110,13 +117,17 @@
                     </div>
                     <div class="comment_container <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                         <div class="user_info_container">
-                            <img src="images/default.png">
+                            <?php if (!empty($user_result["profile_image"])) { ?>
+                                    <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">
+                            <?php } else { ?>
+                                    <img src="images/default.png" alt="default picture">
+                            <?php } ?>
                             <div class="username"><?php echo $user_result["userUid"]?></div>
-                            <div class="user_tag">Leerling</div>
+                            <div class="user_tag"><?php echo $user_result["tag"]?></div>
                             <i class="material-icons">query_builder</i>
                             <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
                             <div class="button_container">
-                                <?php if ($session_id == $user_id) {?>
+                                <?php if ($session_id == $user_id || $session_id == 1) {?>
                                     <i id="delete-comment-<?php echo $comment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                 <?php }?>
                             </div>
@@ -147,7 +158,7 @@
                     $subcomment_id = $subcomment_row['id'];
 
                     $user_id = $subcomment_row['user_id'];
-                    $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+                    $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
                     $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
 
                     $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $subcomment_id";
@@ -160,13 +171,17 @@
             ?>   
                     <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                         <div class="user_info_container">
-                            <img src="images/default.png">
+                            <?php if (!empty($user_result["profile_image"])) { ?>
+                                    <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">
+                            <?php } else { ?>
+                                    <img src="images/default.png" alt="default picture">
+                            <?php } ?>
                             <div class="username"><?php echo $user_result["userUid"]?></div>
-                            <div class="user_tag">PhD.</div>
+                            <div class="user_tag"><?php echo $user_result["tag"]?></div>
                             <i class="material-icons">query_builder</i>
                             <div class="date"><?php echo $subcomment_row["comment_datetime"]?></div>
                             <div class="button_container">
-                                <?php if ($session_id == $user_id) {?>
+                                <?php if ($session_id == $user_id || $session_id == 1) {?>
                                     <i id="delete-comment-<?php echo $subcomment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                 <?php }?>
                             </div>
@@ -199,17 +214,61 @@
         // $comment_query = "SELECT comments.*, (SELECT COUNT(*) FROM comments as sub_comments WHERE sub_comments.parent_comment_id = comments.id) as sub_comment_count FROM comments JOIN posts ON comments.post_id = posts.post_id WHERE comments.parent_comment_id IS NULL AND posts.post_id = $post_id ORDER BY sub_comment_count DESC";
 
         
+        $roles_query = "";
+        $comment_query = "";
+
+        if (isset($_GET["filter-thread-role"])) {
+            $roles = array();
+            foreach($_GET["filter-thread-role"] as $filter) {
+
+                if (strpos($filter, "student") !== false) {
+                    $roles[] = "student";
+                }
+                if (strpos($filter, "teacher") !== false) {
+                    $roles[] = "teacher";
+                }
+                if (strpos($filter, "admin") !== false) {
+                    $roles[] = "admin";
+                }
+
+            }
+
+
+            $roles_query = "AND tag IN ('".implode("','", $roles)."')";
+            
+        } else {
+            $roles_query = "AND 2 = 1";
+        }
+
+
+        if (isset($_GET["filter-thread-sortby"])) {
+            $sortby = $_GET["filter-thread-sortby"];
+            if (!empty($sortby)) {
+                if ($sortby == "latest") {
+                    $comment_query = "SELECT * FROM comments JOIN users ON comments.user_id = users.userId WHERE post_id = $post_id " . $roles_query . " ORDER BY comment_datetime DESC";
+                } else if ($sortby == "populairity") {
+                    $comment_query = "SELECT comments.*, (SELECT COUNT(*) FROM comment_upvote_link JOIN users ON comments.user_id = users.userId WHERE comments.id = comment_upvote_link.comment_id) as upvotes, users.tag FROM comments JOIN posts ON comments.post_id = posts.post_id JOIN users ON comments.user_id = users.userId WHERE posts.post_id = $post_id AND NOT id = $solution_id " . $roles_query . " ORDER BY upvotes DESC";
+
+                } else if ($sortby == "controversial") {
+                    $comment_query = "SELECT comments.*, (SELECT COUNT(*) FROM comments as sub_comments WHERE sub_comments.parent_comment_id = comments.id) as sub_comment_count, users.tag FROM comments JOIN posts ON comments.post_id = posts.post_id JOIN users ON comments.user_id = users.userId WHERE comments.parent_comment_id IS NULL AND posts.post_id = $post_id AND NOT comments.id = $solution_id " . $roles_query . " ORDER BY sub_comment_count DESC";
+
+                }
+            } 
+        } else {
+            $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
+        }
+
 
 
         // FILTER END
 
 
-        $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
+        // $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
         $comment_result = mysqli_query($connection, $comment_query);
         
         while($comment_row = mysqli_fetch_assoc($comment_result)) {
             $user_id = $comment_row['user_id'];
-            $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+            $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
             $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
 
             $comment_id = $comment_row["id"];
@@ -227,14 +286,18 @@
 
             <div class="comment_container <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                 <div class="user_info_container">
-                    <img src="images/default.png">
+                    <?php if (!empty($user_result["profile_image"])) { ?>
+                            <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">
+                    <?php } else { ?>
+                            <img src="images/default.png" alt="default picture">
+                    <?php } ?>
                     <div class="username"><?php echo $user_result["userUid"]?></div>
-                    <div class="user_tag">Leerling</div>
+                    <div class="user_tag"><?php echo $user_result["tag"]?></div>
                     <i class="material-icons">query_builder</i>
                     <div class="date"><?php echo $comment_row["comment_datetime"]?></div>
                     <div class="button_container">
                         <?php 
-                        if ($session_id == $user_id) {?>
+                        if ($session_id == $user_id || $session_id == 1) {?>
                             <i id="delete-comment-<?php echo $comment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                         <?php }
                         if ($session_id == $op_id && $session_id != $user_id) {?>
@@ -268,7 +331,7 @@
                     $subcomment_id = $subcomment_row['id'];
 
                     $user_id = $subcomment_row['user_id'];
-                    $user_query = "SELECT userUid, profile_image FROM users WHERE userId = $user_id";
+                    $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
                     $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_query));
 
                     $like_count_query = "SELECT COUNT(comment_id) FROM comment_upvote_link WHERE comment_id = $subcomment_id";
@@ -281,13 +344,17 @@
             ?>   
                     <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                         <div class="user_info_container">
-                            <img src="images/default.png">
+                            <?php if (!empty($user_result["profile_image"])) { ?>
+                                    <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">
+                            <?php } else { ?>
+                                    <img src="images/default.png" alt="default picture">
+                            <?php } ?>
                             <div class="username"><?php echo $user_result["userUid"]?></div>
-                            <div class="user_tag">PhD.</div>
+                            <div class="user_tag"><?php echo $user_result["tag"]?></div>
                             <i class="material-icons">query_builder</i>
                             <div class="date"><?php echo $subcomment_row["comment_datetime"]?></div>
                             <div class="button_container">
-                                <?php if ($session_id == $user_id) {?>
+                                <?php if ($session_id == $user_id || $session_id == 1) {?>
                                     <i id="delete-comment-<?php echo $subcomment_id?>" class="material-icons tooltip delete_button delete_comment">delete<div class="tooltip_text">Delete comment</div></i>
                                 <?php }?>
                             </div>

@@ -8,9 +8,13 @@ hamburger.addEventListener("click", () => {
 
 let profile_button = document.querySelector('.profile_button');
 
-profile_button.addEventListener("click", () => {
-    profile_button.classList.toggle("profile_button_active");
-});
+if (profile_button != null) {
+    profile_button.addEventListener("click", () => {
+        profile_button.classList.toggle("profile_button_active");
+    });
+}
+
+
 
 let sidebarContainer = document.querySelector(".sidebar_container");
 let mobileFilterBtn = document.querySelector(".mobile_filter_btn");
