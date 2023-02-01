@@ -5,7 +5,6 @@ if ($_SERVER['HTTPS'] != 'on') {
   exit;
 }
 session_start();
-header('Cache-Control: max-age=900');
 include 'header.php';
 
 ?>
