@@ -5,7 +5,6 @@ if ($_SERVER['HTTPS'] != 'on') {
   exit;
 }
 session_start();
-header('Cache-Control: max-age=900');
 include 'header.php';
 
 ?>
@@ -49,7 +48,7 @@ include 'header.php';
                 </div>
                 <div class="tag_container">
                   <p class="tag_text">Tag:</p>
-                  <select name="post_tag" id="tag_selector" form="new_post_form">
+                  <select class="tag_selector" name="post_tag" id="tag_selector" form="new_post_form">
                     <option value="General"  >General</option>
                     <option value="Biology" >Biology</option>
                     <option value="English" >English</option>
