@@ -23,6 +23,7 @@ mobileFilterBtn.addEventListener("click", () => {
     sidebarContainer.classList.toggle("sidebar_active");
 });
 
+
 let new_post = document.getElementById("create_post");
 
 new_post.addEventListener("click", () => {

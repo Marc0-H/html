@@ -12,14 +12,14 @@ $URLtoken = $_POST["URLtoken"];
 $selector = $_POST["selector"];
 $password = $_POST["uPassword"];
 
-if (empty($URLtoken) || empty($selector)) {
-    header("location: ../../index.php?error=" . "$URLtoken" . "&" . "$selector");
+if (empty($URLtoken) || empty($selector) || empty($password)) {
+    header("location: ../../index.php?error=" . "$URLtoken" . "&" . "$selector" . "&" . "$password");
     exit();
 }
 else {
     if (ctype_xdigit($URLtoken) && ctype_xdigit($selector) === TRUE) {
-        $current_time = time();
-        $stmt = mysqli_prepare($connection, "SELECT pwdToken, userId FROM `reset` WHERE pwdselector = ? AND expirationDate <= $current_time");
+        $current_time = date("U");
+        $stmt = mysqli_prepare($connection, "SELECT pwdToken, userId FROM `reset` WHERE pwdSelector = ? AND expirationDate >= ?");
         if($stmt === FALSE) {
            header("location: ../update_page?error=stmtfailed");
         }
@@ -27,8 +27,10 @@ else {
             mysqli_stmt_bind_param($stmt, "si", $selector, $current_time);
             mysqli_stmt_execute($stmt);
 
-            $DBaccess = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
-            if (mysqli_num_rows($DBaccess) > 0 ) {
+            $result = mysqli_stmt_get_result($stmt);
+
+            if (mysqli_num_rows($result) > 0 ) {
+                $DBaccess = mysqli_fetch_assoc($result);
                 $DBtoken = $DBaccess['pwdToken'];
                 $userId = $DBaccess['userId'];
                 $compare_token = hex2bin($URLtoken);

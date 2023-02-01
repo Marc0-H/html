@@ -13,13 +13,10 @@ function checkUid($name) {
 }
 function checkEmail($email) {
     if (!preg_match("/^[a-zA-Z@0-9.]*$/", $email)) {
-        $result = FALSE;
-        return $result;
+        return FALSE;
     }
-    else {
-        $result = TRUE;
-        return $result;
-    }
+    else return TRUE;
+
 }
 
 function userExists($connection, $name, $email) {
@@ -43,8 +40,7 @@ function userExists($connection, $name, $email) {
         return $result;
     }
     else {
-        $result = false;
-        return $result;
+        return FALSE;
     }
     mysqli_stmt_close($stmt);
 }
@@ -65,7 +61,7 @@ function update_pw($connection, $new_pass, $userid) {
 
 //Robby's check_tag function used as base here
 function check_tag($user_tag) {
-  if (in_array($user_tag, array('student','teacher','phD','bachelor', 'pre-uni'))) {
+  if (in_array($user_tag, array('MBO','HAVO','VWO','teacher','HBO/WO'))) {
   return TRUE;
   }
   return FALSE;

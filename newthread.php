@@ -43,8 +43,8 @@ include 'header.php';
 
               <div class="new_post_bottom">
                 <div class="new_post_image_container">
-                  <label for="new_post_image">Add PNG image:</label>
-                  <input accept=".png" id="new_post_image" name="new_post_image" type="file" form="new_post_form">
+                  <label class="new_post_image_label"for="new_post_image">Add PNG or JPG image:</label>
+                  <input class="new_post_image" accept=".png, .jpg" id="new_post_image" name="new_post_image" type="file" form="new_post_form">
                 </div>
                 <div class="tag_container">
                   <p class="tag_text">Tag:</p>
