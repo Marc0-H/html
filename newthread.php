@@ -38,7 +38,7 @@ include 'header.php';
           <div class="new_post_content">
             <form id="new_post_form" action="post_upload.php" method="post" enctype="multipart/form-data">
               <div class="new_post-title-container">
-                  <input autocomplete="off" class="new_post_title" name="post_title" id="new_post_title" type="text" placeholder="Enter post title.." required>
+                  <input autocomplete="off" class="new_post_title" name="post_title" id="new_post_title" type="text" placeholder="Enter post title..." required>
               </div>
               <textarea class="new_post_textarea" name="post_content" id="new_post_textarea" form="new_post_form" maxlength="1000" placeholder="Enter text..." required></textarea>
               
