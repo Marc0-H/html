@@ -41,13 +41,13 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 
     <div class="userInfo">
-    <label for="tag">What describes you?</label>
+    <label for="tag">?</label>
     <select name="selectbox" class="selectbox">
-        <option value="pre-uni"> pre-uni </option>
-        <option value="student"> student </option>
-        <option value="teacher"> teacher </option>
-        <option value="master"> master </option>
-        <option value="phD"> phD </option>
+        <option value="pre-uni"> MAVO </option>
+        <option value="student"> HAVO </option>
+        <option value="teacher"> VWO </option>
+        <option value="master"> student </option>
+        <option value="phD"> teacher </option>
     </select>
     </div>
 
