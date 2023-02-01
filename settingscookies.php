@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'connection.php';
+require '../connection.php';
 
 $data = file_get_contents('php://input');
 
