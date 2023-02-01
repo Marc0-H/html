@@ -5,7 +5,7 @@ if ($_SERVER['HTTPS'] != 'on') {
     exit;
 }
 
-include '../../connection.php';
+include '../../../connection.php';
 include_once 'functions.php';
 
 $URLtoken = $_POST["URLtoken"];

@@ -17,6 +17,9 @@
     --tag_font_color: #FFFFFF;
 
     --tag_color: #06A028;
+    --select-border: #777;
+    --select-focus: blue;
+    --select-arrow: var(--select-border);
 }
 
 * {
@@ -31,7 +34,7 @@
 
 .signup_prompt {
 
-    height: 750px;
+    height: 650px;
     width: 400px;
     background-color: var(--secondary_background_color);
     position: absolute;
@@ -256,4 +259,55 @@ select {
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+select {
+  outline: none;
+}
+
+.select {
+  width: 100%;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+
+.select::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: var(--select-arrow);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+.select {
+  display: grid;
+}
+
+.select {
+  grid-template-areas: "select";
+}
+
+select,
+.select:after {
+  grid-area: select;
+}
+
+.select {
+  align-items: center;
+}
+
+.select:after {
+  justify-self: end;
 }

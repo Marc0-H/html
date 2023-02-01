@@ -1,6 +1,6 @@
 <?php
 
-include '../../connection.php';
+include '../../../connection.php';
 require_once 'functions.php';
 
 $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]));

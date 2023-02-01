@@ -4,9 +4,6 @@ if ($_SERVER['HTTPS'] != 'on') {
     header("location: $url");
     exit;
 }
-
-include '../connection.php';
-require_once 'php_scripts/functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +13,7 @@ require_once 'php_scripts/functions.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>update_password</title>
-    <link href="../loginStyle.css" type="html/css" rel="stylesheet">
+    <link href="../loginStyle.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <?php
