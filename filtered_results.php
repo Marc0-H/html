@@ -52,11 +52,20 @@
         $roles = array();
         foreach($_GET["filter-role"] as $filter) {
 
-            if (strpos($filter, "student") !== false) {
-                $roles[] = "student";
+            if (strpos($filter, "MAVO") !== false) {
+                $roles[] = "MAVO";
+            }
+            if (strpos($filter, "HAVO") !== false) {
+                $roles[] = "HAVO";
+            }
+            if (strpos($filter, "VWO") !== false) {
+                $roles[] = "VWO";
+            }
+            if (strpos($filter, "HBO/WO") !== false) {
+                $roles[] = "HBO/WO";
             }
             if (strpos($filter, "teacher") !== false) {
-                $roles[] = "teacher";
+                $roles[] = "Teacher";
             }
         }
 
