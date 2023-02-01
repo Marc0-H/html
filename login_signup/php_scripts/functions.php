@@ -60,10 +60,10 @@ function update_pw($connection, $new_pass, $userid) {
 }
 
 //Robby's check_tag function used as base here
-function check_tag($user_tag) {
-  if (in_array($user_tag, array('MBO','HAVO','VWO','teacher','HBO/WO'))) {
-  return TRUE;
-  }
-  return FALSE;
-}
+// function check_tag($user_tag) {
+//   if (in_array($user_tag, array('MBO','HAVO','VWO','teacher','HBO/WO'))) {
+//   return TRUE;
+//   }
+//   return FALSE;
+// }
 ?>
