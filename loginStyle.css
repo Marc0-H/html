@@ -85,12 +85,9 @@
 .login_prompt {
     height: 400px;
     width: 500px;
+    margin-left: 350px;
     background-color: var(--secondary_background_color);
     position: absolute;
-
-    transform: translate(-50%, -50%);
-    top: 30%;
-    left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid var(--details_color);
@@ -99,7 +96,6 @@
     margin-top: 90px;
     z-index: -1;
 }
-
 
 
 .login_prompt h1 {
