@@ -1,4 +1,21 @@
-/*General style start*/
+@media only screen and (max-width: 590px) {
+    .signup_prompt {
+        height: 400px;
+        width: 150px;
+    }
+    .login_prompt {
+        height: 200px;
+        width: 300px;
+    }
+    .reset_prompt {
+        height: 100px;
+        width: 300px;
+    }
+    .update_prompt {
+        height: 150px;
+        width: 200px;
+    }
+}
 :root {
     --primary_color: #309eed;
     --primary_background_color: #E5E5E5;
