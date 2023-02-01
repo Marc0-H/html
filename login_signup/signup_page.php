@@ -42,7 +42,7 @@ if ($_SERVER['HTTPS'] != 'on') {
 
     <div class="userInfo">
     <label for="tag"></label>
-    <select name="select" class="select">
+        <select name="select" class="select" style="margin-left: 37px; margin-top: 20px;">
         <option value="MAVO"> MAVO student</option>
         <option value="HAVO"> HAVO student</option>
         <option value="VWO"> VWO student</option>

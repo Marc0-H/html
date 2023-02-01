@@ -14,7 +14,11 @@ $post_datetime = date('Y-d-m H:i', time());
 
 $filename = $_FILES["new_post_image"]["name"];
 $temp_file = $_FILES["new_post_image"]["tmp_name"];
-$image_file_type = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
+// echo $filename . " and " . $image_file_type;
+
+// if (isset($filename) && !empty($filename)) {
+//   $image_file_type = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+// } else 
 
 /* Prevents cross site scripting and sql injecting by
    Testing if input is valid data and removing any special characters */
@@ -29,6 +33,8 @@ function test_input($data) {
 // returns 1 if the file is of correct size and is a png
 // return 0 otherwise
 function check_file($filename) {
+  GLOBAL $error_msg;
+  $image_file_type = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
   $file_ok = 0;
   if($filename != NULL) {
     $check = getimagesize($_FILES["new_post_image"]["tmp_name"]);
@@ -65,18 +71,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $post_tag = check_tag($post_tag);
 
   if(check_file($filename) == 1) {
-    $source = \Tinify\fromFile($temp_file);   //send to tinipng API
-    $source->toFile($temp_file);
-    $img = file_get_contents($temp_file);
-    $post_image = base64_encode($img);
+    if (\Tinify\compressionCount() <= 500) { //check if API has enough space
+      $source = \Tinify\fromFile($temp_file);   //send to tinipng API
+      $source->toFile($temp_file);
+      $img = file_get_contents($temp_file);
+      $post_image = base64_encode($img);
+    } else {
+      $img = file_get_contents($temp_file);
+      $post_image = base64_encode($img);
+    }
   }
-
+  
+  if (check_file($filename)== 0|| !$post_title || !$post_content || !$post_tag || $post_tag == -1) {
+    echo $error_msg . "<br><a href='newthread.php'>try again.</a><br>";
+    die("Post upload failed.");
+  }
 }
 
-if ((check_file($filename)== 1 && $image_file_type != "png" )|| !$post_title || !$post_content || !$post_tag || $post_tag == -1) {
-  echo $error_msg . "<br><a href='newthread.php'>try again.</a><br>";
-  die("Post upload failed.");
-}
+
 
 
 
@@ -89,9 +101,9 @@ try {
   mysqli_query($connection, $insert_post_query);
 
   $post_id = mysqli_insert_id($connection);
-  echo "<script>window.alert('Post upload succes!');";
-  echo "window.location.href='thread.php?v=" . $post_id ."';";
-  echo "</script>";
+  // echo "<script>window.alert('Post upload succes!');";
+  // echo "window.location.href='thread.php?v=" . $post_id ."';";
+  // echo "</script>";
 
 } catch (PDOException $e) {
   echo "ERROR!!!<br>";

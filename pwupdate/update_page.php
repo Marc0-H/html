@@ -42,12 +42,12 @@ if ($_SERVER['HTTPS'] != 'on') {
 
      <button class="submit_button" name="reset_submit">submit</button>
 
-    <?php if (isset($token) && isset($validator)): ?>
+    <?php if (isset($token) && isset($selector)): ?>
         <input type="hidden" name="URLtoken" value="<?php echo $token; ?>"></input>
-        <input type="hidden" name="selector" value="<?php echo $validator; ?>"></input>
+        <input type="hidden" name="selector" value="<?php echo $selector; ?>"></input>
     <?php endif; ?>
-    </form>
 
+    </form>
 <?php
 //error checking by checking url for error codes made by program.
 if (isset($_GET["error"])) {
