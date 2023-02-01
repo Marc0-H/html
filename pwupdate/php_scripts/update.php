@@ -13,7 +13,7 @@ $selector = $_POST["selector"];
 $password = $_POST["uPassword"];
 
 if (empty($URLtoken) || empty($selector)) {
-    header("location: ../../index.php");
+    header("location: ../../index.php?error=" . "$URLtoken" . "&" . "$selector");
     exit();
 }
 else {
