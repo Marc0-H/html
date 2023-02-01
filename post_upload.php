@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
   
-  if (check_file($filename)== -1 || !$post_title || !$post_content || !$post_tag || $post_tag == -1) {
+  if (check_file($filename) == 0 || !$post_title || !$post_content || !$post_tag || $post_tag == -1) {
     echo $error_msg . "<br><a href='newthread.php'>try again.</a><br>";
     die("Post upload failed.");
   }
