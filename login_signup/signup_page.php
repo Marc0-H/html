@@ -56,7 +56,6 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 <?php
 //error checking by checking url for error codes made by program.
-
     if (isset($_GET["error"])) {
         if ($_GET["error"] === "userexists") {
             echo "<div class='error_message'>
@@ -88,6 +87,12 @@ if ($_SERVER['HTTPS'] != 'on') {
             <p> Invalid tag entered. Try again. </p>
             </div>";
         }
+        else if ($_GET["error"] === "pwshort") {
+            echo "<div class='error_message'>
+            <p> Your password is too short.</p>
+            </div>";
+        }
+
 }
 ?>
     </div>
