@@ -1,8 +1,11 @@
 <?php
     require 'connection.php';
     require 'update_data_functions.php';
+    require_once("vendor/autoload.php");
+    include "config.php";
 
-    // session_start();
+    session_start();
+    \Tinify\setKey(API_KEY);
 
     init_data_update();
     $columns = sanitize_input($connection);
@@ -34,11 +37,13 @@
           }
 
         if($upload_ok == 1) {
+        $source = \Tinify\fromFile($file_temp);
+        $source->toFile($file_temp);
         $img = file_get_contents($file_temp);
         $post_image = base64_encode($img);
         }
 
-        $userid = 4;
+        $userid = $_SESSION["userId"];
 
         update_data($connection, 'profile_image', $post_image, $userid);
         mysqli_close($connection);
@@ -47,7 +52,7 @@
 
     $updated_value = optimize_data_before_update($column_to_be_updated, $connection, $updated_value);
 
-    $userid = 4;
+    $userid = $_SESSION["userId"];
 
     update_data($connection, $column_to_be_updated, $updated_value, $userid);
 

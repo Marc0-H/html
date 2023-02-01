@@ -3,10 +3,16 @@
 
     if (isset($_SESSION["userId"])) {
         $session_id = $_SESSION["userId"];
-        $user_result_query = "SELECT profile_image FROM users WHERE userId = $session_id"; 
+        $user_result_query = "SELECT profile_image FROM users WHERE userId = $session_id";
         $user_result = mysqli_fetch_assoc(mysqli_query($connection, $user_result_query));
     }
 ?>
+
+<script src="cookie.js"></script>
+    <script>
+            var test = "<?php echo $_SESSION['darkmode']; ?>";
+            csPreference(test);
+    </script>
 
 <header>
     <div class="header_container">
@@ -51,8 +57,8 @@
                             <img src="images/default.png" alt="default picture" class="profile_button">
                     <?php } ?>
                     <div class="dropdown_content">
-                        <a href="#" class="settings_button">Settings</a>
-                        <a href="login_signup/logout.php" class="log_out_button">Log out</a>
+                        <a href="settings.php" class="settings_button">Settings</a>
+                        <a href="login_signup/php_scripts/log_out.php" class="log_out_button">Log out</a>
                     </div>
                 </div>
 

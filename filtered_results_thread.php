@@ -1,11 +1,7 @@
-
-
-
 <?php
-    /* Check if post has parameter */
-
     include 'connection.php';
 
+    /* Check if post has parameter */
     if (!isset($_GET["v"])) {
         ?><p>Post could not be found</p><?php
     } else {
@@ -87,8 +83,6 @@
             $solution_id = 0; // Zero is not used as a possible id
             if (!is_null($post_result["solution_id"])) {
                 $solution_id = $post_result["solution_id"];
-
-
 
                 $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND id = $solution_id";
                 $comment_row = mysqli_fetch_assoc(mysqli_query($connection, $comment_query));
@@ -226,9 +220,6 @@
                 }
                 if (strpos($filter, "teacher") !== false) {
                     $roles[] = "teacher";
-                }
-                if (strpos($filter, "admin") !== false) {
-                    $roles[] = "admin";
                 }
 
             }
