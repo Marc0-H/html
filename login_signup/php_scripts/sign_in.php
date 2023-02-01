@@ -21,6 +21,7 @@ function loginUser($connection, $name, $password) {
         $_SESSION["userId"] = $user["userId"];
         $_SESSION["userUid"] = $user["userUid"];
         $_SESSION["userPfp"] = $user["profile_image"];
+        $_SESSION["darkmode"] = "lightmodeSession";
 
         header("location: ../../index.php");
         exit();
