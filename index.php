@@ -93,9 +93,6 @@ header('Cache-Control: max-age=900');
                                 <label  class="dropdown-label">
                                     <input name="filter-role[]" value="teacher" type="checkbox" checked>Teacher
                                 </label>
-                                <label class="dropdown-label">
-                                    <input name="filter-role[]" value="Admin" type="checkbox" checked>Admin
-                                </label>
                             </div>
                             <input type="submit" value="Apply" class="filter-button">
                         </form>
