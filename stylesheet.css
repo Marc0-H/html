@@ -101,6 +101,7 @@ header {
     width: 70px;
     height: 70px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .header_content_right > i:hover, .header_content_right img:hover {
@@ -451,6 +452,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     width: 35px;
     border-radius: 100%;
     box-shadow: 0px 0px 20px var(--shadow_color);
+    object-fit: cover;
 }
 
 .user_info_container > *{
