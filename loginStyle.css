@@ -36,7 +36,7 @@
     background-color: var(--secondary_background_color);
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 27%;
+    top: 30%;
     left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
