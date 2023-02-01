@@ -50,7 +50,7 @@
     try {
         $post_id = $_GET['v'];
         mysqli_query($connection, $like_query);
-        header("Location: thread.php?v=$post_id");
+
     } catch (PDOExeption $e) {
         echo "ERROR!!!<br>";
         echo $like_query . "<br>" . $e->getMessage();
