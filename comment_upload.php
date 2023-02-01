@@ -1,12 +1,12 @@
 <?php
-    include 'connection.php';
+    include '../connection.php';
     session_start();
     date_default_timezone_set('Europe/Amsterdam');
-    
+
     $comment_datetime = date('Y-d-m H:i', time());
     $comment_content = $post_id = $parent_comment_id = "";
 
-    /* Prevents cross site scripting and sql injecting by 
+    /* Prevents cross site scripting and sql injecting by
     Testing if input is valid data and removing any special characters */
     function test_input($data) {
         $data = trim($data);

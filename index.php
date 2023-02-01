@@ -22,7 +22,7 @@ header('Cache-Control: max-age=900');
     </head>
     <body>
         <?php
-            include 'connection.php';
+            include '../connection.php';
             if (!$connection) {
                 die("Connection to server failed. !");
             }
@@ -62,7 +62,7 @@ header('Cache-Control: max-age=900');
                                 <label class="dropdown-label">
                                     <input name="filter-subject[]" value="science" type="checkbox" checked>Science
                                 </label>
-                                
+
                                 <label class="dropdown-label">
                                     <input name="filter-subject[]" value="general" type="checkbox" checked>General
                                 </label>

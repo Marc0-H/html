@@ -1,14 +1,14 @@
 <?php
-    include 'connection.php';
+    include '../connection.php';
     if (!$connection) {
         die("Connection to server failed. !");
     }
 
     session_start();
-    
+
     $comment_id = $post_id = "";
 
-    /* Prevents cross site scripting and sql injecting by 
+    /* Prevents cross site scripting and sql injecting by
     Testing if input is valid data and removing any special characters */
     function test_input($data) {
         $data = preg_replace('/\D/', '', $data);
