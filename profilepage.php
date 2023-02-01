@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="stylesheet.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
-        <script src="filter.js" defer></script>
         <script src="masonry.js" defer></script>
         <script src="header.js" defer></script>
         <script src="cards.js" defer></script>
