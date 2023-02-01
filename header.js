@@ -22,10 +22,3 @@ let mobileFilterBtn = document.querySelector(".mobile_filter_btn");
 mobileFilterBtn.addEventListener("click", () => {
     sidebarContainer.classList.toggle("sidebar_active");
 });
-
-
-let new_post = document.getElementById("create_post");
-
-new_post.addEventListener("click", () => {
-  window.location.href="newthread.php";
-});
