@@ -24,8 +24,3 @@ mobileFilterBtn.addEventListener("click", () => {
 });
 
 
-let new_post = document.getElementById("create_post");
-
-new_post.addEventListener("click", () => {
-  window.location.href="newthread.php";
-});
