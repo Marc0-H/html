@@ -25,13 +25,14 @@ function test_input($data) {
 
 
 // returns 1 if the file is of correct size and is a png
+// returns -1 if there is no file selected
 // return 0 otherwise
 function check_file($filename) {
   GLOBAL $error_msg;
   $image_file_type = strtolower(pathinfo($filename,PATHINFO_EXTENSION));
   $file_ok = 0;
   if($filename == NULL) {
-    $file_ok = 1;
+    return -1;
   } else {
     $check = getimagesize($_FILES["new_post_image"]["tmp_name"]);
     if($check !== false) {
@@ -81,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
   
-  if (check_file($filename)== 0 || !$post_title || !$post_content || !$post_tag || $post_tag == -1) {
+  if (check_file($filename)== -1 || !$post_title || !$post_content || !$post_tag || $post_tag == -1) {
     echo $error_msg . "<br><a href='newthread.php'>try again.</a><br>";
     die("Post upload failed.");
   }
