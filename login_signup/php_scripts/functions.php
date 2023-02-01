@@ -2,25 +2,21 @@
 
 function checkUid($name) {
     if (!preg_match("/^[a-zA-Z0-9 ]*$/", $name)) {
-        $result = FALSE;
-        echo "returning FALSE";
-        return $result;
+        return FALSE;
+    }
+    else if (strlen($name) <= 2) {
+        return FALSE;
     }
     else {
-        $result = TRUE;
-        echo "returning TRUE";
-        return $result;
+        return TRUE;
     }
 }
 function checkEmail($email) {
     if (!preg_match("/^[a-zA-Z@0-9.]*$/", $email)) {
-        $result = FALSE;
-        return $result;
+        return FALSE;
     }
-    else {
-        $result = TRUE;
-        return $result;
-    }
+    else return TRUE;
+
 }
 
 function userExists($connection, $name, $email) {
@@ -30,8 +26,8 @@ function userExists($connection, $name, $email) {
     $sql = "SELECT * FROM users WHERE userUid = ? OR userEmail = ?;";
     $stmt = mysqli_stmt_init($connection);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location:  https://webtech-in07.webtech-uva.nl/~georgia/signup.html?error=stmtfailed");
-        exit();
+        header("location:  ../signup_page.php?error=stmtfailed");
+        return NULL;
     }
 
     mysqli_stmt_bind_param($stmt, "ss", $name, $email);
@@ -44,36 +40,30 @@ function userExists($connection, $name, $email) {
         return $result;
     }
     else {
-        $result = false;
-        return $result;
+        return FALSE;
     }
     mysqli_stmt_close($stmt);
 }
 
-function addUser($connection, $name, $email, $password) {
+//Remco's 'update_data' function used as base here
+function update_pw($connection, $new_pass, $userid) {
+    $hashed_pass = password_hash($new_pass, PASSWORD_DEFAULT);
 
-    $sql = "SELECT * FROM users WHERE userUid = ? OR userEmail = ?;";
-    $stmt = mysqli_stmt_init($connection);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location:  https://webtech-in07.webtech-uva.nl/~georgia/signup.html?error=stmtfailed");
-        exit();
+    $prepare_update = mysqli_prepare($connection, "UPDATE users SET userPwd = ? WHERE userId = ?");
+    mysqli_stmt_bind_param($prepare_update, "si", $hashed_pass, $userid);
+
+    if (!mysqli_stmt_execute($prepare_update)) {
+        die("Error: " . mysqli_stmt_error($prepare_update));
     }
 
-    mysqli_stmt_bind_param($stmt, "ss", $name, $email);
-    mysqli_stmt_execute($stmt);
-
-    $returnData = mysqli_stmt_get_result($stmt);
-
-
-    if ($result = mysqli_fetch_assoc($returnData)) {
-        return $result;
-    }
-    else {
-        $result = false;
-        return $result;
-    }
-
-    mysqli_stmt_close($stmt);
-
+    mysqli_stmt_close($prepare_update);
 }
+
+//Robby's check_tag function used as base here
+// function check_tag($user_tag) {
+//   if (in_array($user_tag, array('MBO','HAVO','VWO','teacher','HBO/WO'))) {
+//   return TRUE;
+//   }
+//   return FALSE;
+// }
 ?>

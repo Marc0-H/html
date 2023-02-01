@@ -1,3 +1,10 @@
+<?php
+if ($_SERVER['HTTPS'] != 'on') {
+    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    header("location: $url");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <link href="test.css" rel="stylesheet">
-
+    <link href="../loginStyle.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +31,7 @@
             <button class="submit_button" name="submit">submit</button>
 
             <div class="external">
-                <div class="pass-reset"> Forgot your password? <a href="reset_prompt_page.php">Reset here</a></div>
+                <div class="pass-reset"> Forgot your password? <a href="../pwupdate/reset_page.php">Reset here</a></div>
                 <div class="signup"> Need an account? <a href="signup_page.php">Sign-up here</a></div>
             </div>
             <?php
@@ -41,13 +47,12 @@
                     </div>";
                 }
             }
-?>
-    </div>
+            ?>
+            </div>
     </div>
 
     </form>
 
 </body>
-
 
 </html>
