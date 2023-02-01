@@ -20,10 +20,6 @@
     --tag_color: #d35400;
 }
 
-body {
-    background-color: var(--primary_background_color);
-}
-
 p {
     font-family: Arial, Helvetica, sans-serif;
     color: var(--text_font_color);
@@ -32,10 +28,10 @@ p {
 }
 
 .instellingen-container {
+    background-color: var(--primary_background_color);
     margin-top: 70px;
     display: flex;
     flex-direction: row;
-    transition: 0;
 }
 
 .rand {
@@ -47,7 +43,9 @@ p {
     background-color: var(--secondary_background_color);
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    padding: 20px;
+    padding-top: 20px;;
+    border-radius: 60px;
     margin-top: 50px;
 }
 
@@ -119,6 +117,16 @@ margin-top: 16px;
     flex-direction: column;
 }
 
+.pfp-wijzig-container {
+    display: flex;
+    margin-left: 30px;
+    background-color: var(--primary_background_color);
+    height: 285px;
+    width: 400px;
+    border-radius: 50px;
+    flex-direction: column;
+}
+
 .wachtwoord-wijzig-container {
     display: flex;
     margin-left: 30px;
@@ -139,7 +147,7 @@ label {
     margin-bottom: 10px;
 }
 
-input[type="email"], input[type="text"], input[type="password"] {
+input[type="email"], .text-input, input[type="password"] {
     color: black;
     width: 100%;
     padding: 12px 20px;

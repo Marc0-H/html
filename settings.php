@@ -16,6 +16,7 @@ if (!isset($_SESSION['userId'])) {
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="settings.js"></script>
+        <script src="header.js" defer></script>
         <script src="cookie.js"></script>
     </head>
     <body>
@@ -44,7 +45,7 @@ if (!isset($_SESSION['userId'])) {
                                 <div style="margin-top: 20px;"><p style="margin-left: 87px;">New Username:</p></div>
                                 <div style="margin-top: 20px;">
                                     <form action="update_data.php" method="post" id="username-form">
-                                        <input type="text" id="new-username" name="new-username">
+                                        <input class="text-input" type="text" id="new-username" name="new-username">
                                         <input type="submit" value="Submit" id="submit-btn" onclick="sendData('username-form', 'new-username', event)">
                                       </form>
                                 </div>
@@ -54,10 +55,10 @@ if (!isset($_SESSION['userId'])) {
                 </div>
                 <div class="standard-container">
                     <div class="collapsible">
-                        <button class="collapsible-button"><p>Change profilepicture <strong>+</strong></p></button>
+                        <button class="collapsible-button"><p>Change profile picture <strong>+</strong></p></button>
                         <div class="collapsible-content">
-                            <div class="E-mail-wijzig-container">
-                                <div style="margin-left: 41px; margin-top: 20px;"><p>New profilepicture:</p></div>
+                            <div class="pfp-wijzig-container">
+                                <div style="margin-left: 41px; margin-top: 20px;"><p>New profile picture:</p><p style="font-size: 19px; margin-top:10px;">We only accept .png images!</p></div>
                                 <div style="margin-top: 20px;">
                                     <form action="update_data.php" method="post" id="file-form">
                                         <input type="file" id="myFile" name="myFile" accept=".png" style="margin-left: 25px; margin-bottom: 12px; margin-top: 20px;">
@@ -127,6 +128,10 @@ if (!isset($_SESSION['userId'])) {
             event.preventDefault();
             var formData = new FormData();
             formData.append('file', $('#' + fileId)[0].files[0]);
+            var file = $('#' + fileId)[0].files[0];
+            if (file.length === 0) {
+                return;
+            }
             $.ajax({
                 type: 'POST',
                 url: 'update_data.php',
