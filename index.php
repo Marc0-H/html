@@ -86,7 +86,16 @@
                             </button>
                             <div class="dropdown" id="dropdown-user-role">
                                 <label class="dropdown-label">
-                                    <input name="filter-role[]" value="student" type="checkbox" checked>Student
+                                    <input name="filter-role[]" value="MAVO" type="checkbox" checked>MAVO
+                                </label>
+                                <label  class="dropdown-label">
+                                    <input name="filter-role[]" value="HAVO" type="checkbox" checked>HAVO
+                                </label>
+                                <label  class="dropdown-label">
+                                    <input name="filter-role[]" value="VWO" type="checkbox" checked>VWO
+                                </label>
+                                <label  class="dropdown-label">
+                                    <input name="filter-role[]" value="HBO/WO" type="checkbox" checked>HBO/WO
                                 </label>
                                 <label  class="dropdown-label">
                                     <input name="filter-role[]" value="teacher" type="checkbox" checked>Teacher
