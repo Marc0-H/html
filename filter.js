@@ -42,6 +42,8 @@ $(".filter_form").submit(function(event) {
         data: $(this).serialize(),
         success: function (data) {
             $(".main_content_posts").html(data);
+            let sidebarContainer = document.querySelector(".sidebar_container");
+            sidebarContainer.classList.toggle("sidebar_active");
             $.getScript("masonry.js");
             $.getScript("cards.js");
         }

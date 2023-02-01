@@ -943,6 +943,10 @@ input[type="checkbox"]:checked, input[type="radio"] {
         background-color: var(--secondary_background_color);
     }
 
+    header {
+        z-index: 2;
+    }
+
     .sidebar_container, .dropdown_menu_profile, .header_content_right > .register_button, .header_content_right > .login_button, .header_content_right > i {
         display: none;
     }
@@ -1085,6 +1089,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
         /* padding: 20px; */
         border-radius: 12px;
         box-shadow: 0px 0px 20px var(--shadow_color);
+        z-index: 1;
     }
     
     .sidebar_description {
