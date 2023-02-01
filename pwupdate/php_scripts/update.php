@@ -29,9 +29,8 @@ else {
 
             $result = mysqli_stmt_get_result($stmt);
 
-            $DBaccess = mysqli_fetch_assoc($result);
-
-            if (mysqli_num_rows($DBaccess) > 0 ) {
+            if (mysqli_num_rows($result) > 0 ) {
+                $DBaccess = mysqli_fetch_assoc($result);
                 $DBtoken = $DBaccess['pwdToken'];
                 $userId = $DBaccess['userId'];
                 $compare_token = hex2bin($URLtoken);
