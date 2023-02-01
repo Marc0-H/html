@@ -1,5 +1,5 @@
 <?php
-    include 'connection.php';
+    include '../connection.php';
     // $search = $_GET["search"];
 
     $query;
@@ -36,7 +36,7 @@
 
 
         $subjects_query = "WHERE post_tag IN ('".implode("','", $subjects)."')";
-        
+
     } else {
         $subjects_query = "WHERE 2 = 1";
     }
@@ -62,7 +62,7 @@
 
 
         $role_query = "AND tag IN ('".implode("','", $roles)."')";
-        
+
     } else {
         $role_query = "AND 2 = 1";
     }
@@ -80,7 +80,7 @@
             } else if ($sortby == "controversial") {
                 $query = "SELECT posts.*, COUNT(comments.post_id) AS comments_count FROM posts LEFT JOIN comments ON posts.post_id = comments.post_id JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " GROUP BY posts.post_id ORDER BY comments_count DESC";
             }
-        } 
+        }
     } else {
         $query = "SELECT * FROM posts ORDER BY post_id DESC";
     }
@@ -89,11 +89,11 @@
 
 
     $stmt;
-    
+
     if (!empty($_GET["search"])) {
         $search = "%" . $_GET["search"] . "%";
         $stmt = $connection->prepare("SELECT * FROM posts WHERE post_title LIKE ? OR post_content LIKE ?");
-        
+
         $stmt->bind_param("ss", $search, $search);
     } else {
         $stmt = $connection->prepare($query);

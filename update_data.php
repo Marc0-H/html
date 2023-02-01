@@ -1,5 +1,5 @@
 <?php
-    require 'connection.php';
+    require '../connection.php';
     require 'update_data_functions.php';
     require_once("vendor/autoload.php");
     include "config.php";

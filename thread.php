@@ -19,7 +19,7 @@ session_start();
     </head>
     <body>
         <?php
-            include 'connection.php';
+            include '../connection.php';
             if (!$connection) {
                 die("Connection to server failed. !");
             }

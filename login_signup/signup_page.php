@@ -12,7 +12,7 @@ if ($_SERVER['HTTPS'] != 'on') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
-    <link href="../test2.css" rel="stylesheet">
+    <link href="../loginStyle.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 
@@ -41,13 +41,13 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 
     <div class="userInfo">
-    <label for="tag">What describes you?</label>
-    <select name="selectbox" class="selectbox">
-        <option value="pre-uni"> pre-uni </option>
-        <option value="student"> student </option>
+    <label for="tag"></label>
+    <select name="select" class="select">
+        <option value="MAVO"> MAVO student</option>
+        <option value="HAVO"> HAVO student</option>
+        <option value="VWO"> VWO student</option>
+        <option value="HBO/WO"> HBO/WO student </option>
         <option value="teacher"> teacher </option>
-        <option value="master"> master </option>
-        <option value="phD"> phD </option>
     </select>
     </div>
 
@@ -83,7 +83,7 @@ if ($_SERVER['HTTPS'] != 'on') {
             <p> No account to reset. Make one here. </p>
             </div>";
         }
-        else if ($_GET["error"] === "invalidtag") {
+        else if ($_GET["error"] === "invalidusertag") {
             echo "<div class='error_message'>
             <p> Invalid tag entered. Try again. </p>
             </div>";
