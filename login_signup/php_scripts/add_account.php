@@ -18,8 +18,7 @@ function check_tag($user_tag) {
 
 
 if (!in_array($tag, array('MAVO','HAVO','VWO','teacher','HBO/WO'))) {
-    echo check_tag($tag) . "true of false and tag = " . $tag;
-    // header("location: ../signup_page.php?error=invalidusertag");
+    header("location: ../signup_page.php?error=invalidusertag");
     exit();
 }
 if (checkUid($name) === FALSE) {
