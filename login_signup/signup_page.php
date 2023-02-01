@@ -83,7 +83,7 @@ if ($_SERVER['HTTPS'] != 'on') {
             <p> No account to reset. Make one here. </p>
             </div>";
         }
-        else if ($_GET["error"] === "invalidtag") {
+        else if ($_GET["error"] === "invalidusertag") {
             echo "<div class='error_message'>
             <p> Invalid tag entered. Try again. </p>
             </div>";
