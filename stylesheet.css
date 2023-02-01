@@ -568,7 +568,8 @@ input[type="checkbox"]:checked, input[type="radio"] {
     font-size: 38px;
     font-weight: bold;
     margin-bottom: 30px;
-    color: var(--text_font_color)
+    color: var(--text_font_color);
+    display: flex;
 }
 
 .main_content_posts > .post_container {
@@ -611,6 +612,20 @@ input[type="checkbox"]:checked, input[type="radio"] {
     width: 100%;
     border-radius: 20px;
     margin-top: -3px;
+}
+
+#create_post {
+    margin-left: auto;
+    font-size: 38px;
+    color: var(--primary_color);
+    border: solid var(--primary_color);
+    border-radius: 100%;
+    border-width: 3px;
+}
+
+#create_post:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }
 /*Main-page style end*/
 
