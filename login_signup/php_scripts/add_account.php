@@ -21,6 +21,10 @@ if (checkEmail($email) === FALSE) {
     header("location: ../signup_page.php?error=invalidemail");
     exit();
 }
+if (checkPW($password) === FALSE) {
+    header("location: ../signup_page?error=pwshort");
+    exit();
+}
 
 if (userExists($connection, $name, $email) === FALSE) {
     try {
