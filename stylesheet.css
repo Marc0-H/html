@@ -376,13 +376,13 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
 .comment_container {
     margin-left: auto;
-    width: calc(100% - 50px);
+    width: calc(100% - 35px);
     margin-top: 40px;
 }
 
 .subcomment_container {
     margin-left: auto;
-    width: calc(100% - 100px);
+    width: calc(100% - 60px);
     margin-top: 20px;
     display: none;
 }
@@ -671,6 +671,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     flex-direction: row;
     margin-top: 30px;
     width: 100%;
+    justify-content: center;
 }
 
 .solution_container > * {
@@ -682,13 +683,13 @@ input[type="checkbox"]:checked, input[type="radio"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50px;
+    width: 35px;
 }
 
 .solution_sign > div {
     background-color: var(--primary_color);
     width: 3px;
-    height: 35%;
+    height: calc(50% - 40px);
     border-radius: 10px;
 }
 
@@ -730,6 +731,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     padding-bottom: 5px;
     background-color: var(--secondary_background_color);
     transition: 0s;
+    resize: none;
 }
 
 .thread_content_container form > .comment_box:focus {
@@ -1120,11 +1122,15 @@ input[type="checkbox"]:checked, input[type="radio"] {
         margin-right: 5px;
     }
 
-    .comment_container {
+    .comment_container .solution_container {
         margin-top: 20px;
-        margin-left: 0px;
-        width: 100%;
+        margin-left: auto;
     }
+
+    .solution_container > * {
+        margin-top: 0px;
+    }
+
     .comment_container, .subcomment_container {
         padding: 20px;
     }
@@ -1133,7 +1139,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     }
 
     .subcomment_container {
-        width: calc(100% - 40px);
+        width: calc(100% - 45px);
     }
 }
 /*Mobile view style end*/
