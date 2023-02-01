@@ -18,7 +18,6 @@ include 'header.php';
   <title>New thread</title>
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="main.js" defer></script>
   <script src="header.js" defer></script>
 
 </head>
