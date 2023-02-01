@@ -9,6 +9,10 @@ $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST["uPas
 $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]));
 $tag = mysqli_real_escape_string($connection, htmlspecialchars($_POST["selectbox"]));
 
+if (check_tag($tag) === FALSE) {
+    header("location: ../signup_page.php?error=invalidusertag");
+    exit();
+}
 if (checkUid($name) === FALSE) {
     header("location: ../signup_page.php?error=invalidusername");
     exit();
@@ -17,6 +21,7 @@ if (checkEmail($email) === FALSE) {
     header("location: ../signup_page.php?error=invalidemail");
     exit();
 }
+
 if (userExists($connection, $name, $email) === FALSE) {
     try {
         $sql = "INSERT INTO users (userEmail, userUid, userPwd, tag) VALUES (?, ?, ?, ?)";
@@ -35,6 +40,10 @@ if (userExists($connection, $name, $email) === FALSE) {
     }catch(PDOexception $e) {
         echo $sql . "<br>" . $e->getMessage();
     }
+}
+// if there was an error in the function exit the script.
+else if (userExists($connection, $name, $email) === NULL) {
+    exit();
 }
 else {
     header("location: ../signup_page.php?error=userexists");

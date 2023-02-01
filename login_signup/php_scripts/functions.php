@@ -2,14 +2,13 @@
 
 function checkUid($name) {
     if (!preg_match("/^[a-zA-Z0-9 ]*$/", $name)) {
-        $result = FALSE;
-        echo "returning FALSE";
-        return $result;
+        return FALSE;
+    }
+    else if (strlen($name) <= 2) {
+        return FALSE;
     }
     else {
-        $result = TRUE;
-        echo "returning TRUE";
-        return $result;
+        return TRUE;
     }
 }
 function checkEmail($email) {
@@ -23,29 +22,6 @@ function checkEmail($email) {
     }
 }
 
-function findUid($connection, $email) {
-    $sql = "SELECT userId FROM users WHERE userEmail = ?;";
-    $stmt = mysqli_stmt_init($connection);
-
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location:  ../signup_page.php?error=stmtfailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "s", $email);
-    mysqli_stmt_execute($stmt);
-    if(!mysqli_stmt_bind_result($stmt, $userId)){
-        header("location:  ../signup_page.php?error=bindfailed");
-        exit();
-    }
-    if(!mysqli_stmt_fetch($stmt)){
-        header("location:  ../signup_page.php?error=fetchfailed");
-        exit();
-    }
-    mysqli_stmt_close($stmt);
-    return $userId;
-}
-
 function userExists($connection, $name, $email) {
     //using prepared statement as extra precaution to prevent sql injection
     //used this site as reference to using prepared statement: https://www.w3schools.com/php/php_mysql_prepared_statements.asp#:~:text=A%20prepared%20statement%20is%20a,(labeled%20%22%3F%22).
@@ -54,7 +30,7 @@ function userExists($connection, $name, $email) {
     $stmt = mysqli_stmt_init($connection);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location:  ../signup_page.php?error=stmtfailed");
-        exit();
+        return NULL;
     }
 
     mysqli_stmt_bind_param($stmt, "ss", $name, $email);
@@ -73,33 +49,6 @@ function userExists($connection, $name, $email) {
     mysqli_stmt_close($stmt);
 }
 
-function addUser($connection, $name, $email, $password) {
-
-    $sql = "SELECT * FROM users WHERE userUid = ? OR userEmail = ?;";
-    $stmt = mysqli_stmt_init($connection);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location:  ../signup_page.php?error=stmtfailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "ss", $name, $email);
-    mysqli_stmt_execute($stmt);
-
-    $returnData = mysqli_stmt_get_result($stmt);
-
-
-    if ($result === mysqli_fetch_assoc($returnData)) {
-        return $result;
-    }
-    else {
-        $result = false;
-        return $result;
-    }
-
-    mysqli_stmt_close($stmt);
-
-}
-
 //Remco's 'update_data' function used as base here
 function update_pw($connection, $new_pass, $userid) {
     $hashed_pass = password_hash($new_pass, PASSWORD_DEFAULT);
@@ -112,5 +61,13 @@ function update_pw($connection, $new_pass, $userid) {
     }
 
     mysqli_stmt_close($prepare_update);
+}
+
+//Robby's check_tag function used as base here
+function check_tag($user_tag) {
+  if (in_array($user_tag, array('student','teacher','phD','bachelor', 'pre-uni'))) {
+  return TRUE;
+  }
+  return FALSE;
 }
 ?>

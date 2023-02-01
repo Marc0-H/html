@@ -12,7 +12,7 @@ if ($_SERVER['HTTPS'] != 'on') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
-    <link href="test.css" rel="stylesheet">
+    <link href="../test2.css" rel="stylesheet">
 </head>
 <body>
 
@@ -41,11 +41,13 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 
     <div class="userInfo">
-    <label for="tag">Select</label>
+    <label for="tag">What describes you?</label>
     <select name="selectbox" class="selectbox">
-        <option value="MBO"> MBO student</option>
-        <option value="HBO"> HBO student </option>
-        <option value="WO"> WO student</option>
+        <option value="pre-uni"> pre-uni </option>
+        <option value="student"> student </option>
+        <option value="teacher"> teacher </option>
+        <option value="master"> master </option>
+        <option value="phD"> phD </option>
     </select>
     </div>
 
@@ -56,32 +58,36 @@ if ($_SERVER['HTTPS'] != 'on') {
 //error checking by checking url for error codes made by program.
 
     if (isset($_GET["error"])) {
-    if ($_GET["error"] === "userexists") {
-        echo "<div class='error_message'>
-        <p> Username/email taken. Try again. </p>
-        </div>";
-    }
-    else if ($_GET["error"] === "invalidusername") {
-        echo "<div class='error_message'>
-        <p> Invalid username. Try again. </p>
-        </div>";
-    }
-    else if ($_GET["error"] === "invalidemail") {
-        echo "<div class='error_message'>
-        <p> Invalid email. Try again. </p>
-        </div>";
-    }
-    else if ($_GET["error"] === "stmtfailed") {
-        echo "<div class='error_message'>
-        <p> Something went wrong. Try again. </p>
-        </div>";
-    }
-    else if ($_GET["error"] === "fetchfailed") {
-        echo "<div class='error_message'>
-        <p> No account to reset. Make one here. </p>
-        </div>";
-    }
-
+        if ($_GET["error"] === "userexists") {
+            echo "<div class='error_message'>
+            <p> Username/email taken. Try again. </p>
+            </div>";
+        }
+        else if ($_GET["error"] === "invalidusername") {
+            echo "<div class='error_message'>
+            <p> Invalid username. Try again. </p>
+            </div>";
+        }
+        else if ($_GET["error"] === "invalidemail") {
+            echo "<div class='error_message'>
+            <p> Invalid email. Try again. </p>
+            </div>";
+        }
+        else if ($_GET["error"] === "stmtfailed") {
+            echo "<div class='error_message'>
+            <p> Something went wrong. Try again. </p>
+            </div>";
+        }
+        else if ($_GET["error"] === "fetchfailed") {
+            echo "<div class='error_message'>
+            <p> No account to reset. Make one here. </p>
+            </div>";
+        }
+        else if ($_GET["error"] === "invalidtag") {
+            echo "<div class='error_message'>
+            <p> Invalid tag entered. Try again. </p>
+            </div>";
+        }
 }
 ?>
     </div>
