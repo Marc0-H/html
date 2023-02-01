@@ -26,7 +26,7 @@ if (isset($_POST["reset_submit"])) {
         //Done to authenticate user identity through email.
         $url = "https://webtech-in07.webtech-uva.nl/pwupdate/update_page.php?selector=" . $selector ."&token=" . bin2hex($token);
 
-        $expiration = time() + 900;
+        $expiration = date("U") + 900;
 
         //remove any tokens still saved, to avoid errors
         $sql = "DELETE FROM reset WHERE resetEmail = ?";

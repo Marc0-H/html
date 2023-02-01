@@ -18,8 +18,8 @@ if (empty($URLtoken) || empty($selector) || empty($password)) {
 }
 else {
     if (ctype_xdigit($URLtoken) && ctype_xdigit($selector) === TRUE) {
-        $current_time = time();
-        $stmt = mysqli_prepare($connection, "SELECT pwdToken, userId FROM `reset` WHERE pwdselector = ? AND expirationDate <= $current_time");
+        $current_time = date("U");
+        $stmt = mysqli_prepare($connection, "SELECT pwdToken, userId FROM `reset` WHERE pwdSelector = ? AND expirationDate <= $current_time");
         if($stmt === FALSE) {
            header("location: ../update_page?error=stmtfailed");
         }
