@@ -101,6 +101,7 @@ header {
     width: 70px;
     height: 70px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .header_content_right > i:hover, .header_content_right img:hover {
@@ -328,7 +329,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     border: none;
     background-color: var(--primary_color);
 
-    color: var(--secondary_background_color);
+    color: #F8F8F8;;
 
     font-size: 24px;
     font-weight: bold;
@@ -375,13 +376,13 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
 .comment_container {
     margin-left: auto;
-    width: calc(100% - 50px);
+    width: calc(100% - 35px);
     margin-top: 40px;
 }
 
 .subcomment_container {
     margin-left: auto;
-    width: calc(100% - 100px);
+    width: calc(100% - 60px);
     margin-top: 20px;
     display: none;
 }
@@ -418,17 +419,17 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
 .tag-Biology {
   background-color: #14a10f;
-  
+
 }
 
 .tag-English {
   background-color: rgb(165, 14, 14);
-  
+
 }
 
 .tag-History {
   background-color: darkorange;
-  
+
 }
 
 .tag-Science {
@@ -451,6 +452,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     width: 35px;
     border-radius: 100%;
     box-shadow: 0px 0px 20px var(--shadow_color);
+    object-fit: cover;
 }
 
 .user_info_container > *{
@@ -568,7 +570,8 @@ input[type="checkbox"]:checked, input[type="radio"] {
     font-size: 38px;
     font-weight: bold;
     margin-bottom: 30px;
-    color: var(--text_font_color)
+    color: var(--text_font_color);
+    display: flex;
 }
 
 .main_content_posts > .post_container {
@@ -612,6 +615,20 @@ input[type="checkbox"]:checked, input[type="radio"] {
     border-radius: 20px;
     margin-top: -3px;
 }
+
+#create_post {
+    margin-left: auto;
+    font-size: 38px;
+    color: var(--primary_color);
+    border: solid var(--primary_color);
+    border-radius: 100%;
+    border-width: 3px;
+}
+
+#create_post:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
 /*Main-page style end*/
 
 /*Thread-page style start*/
@@ -654,6 +671,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     flex-direction: row;
     margin-top: 30px;
     width: 100%;
+    justify-content: center;
 }
 
 .solution_container > * {
@@ -665,13 +683,13 @@ input[type="checkbox"]:checked, input[type="radio"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50px;
+    width: 35px;
 }
 
 .solution_sign > div {
     background-color: var(--primary_color);
     width: 3px;
-    height: 35%;
+    height: calc(50% - 40px);
     border-radius: 10px;
 }
 
@@ -713,6 +731,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     padding-bottom: 5px;
     background-color: var(--secondary_background_color);
     transition: 0s;
+    resize: none;
 }
 
 .thread_content_container form > .comment_box:focus {
@@ -806,31 +825,31 @@ input[type="checkbox"]:checked, input[type="radio"] {
 }
 
 .new_post_title {
-  font-size: xx-large;
-  font-weight: bold;
-  margin-bottom: 10px;
-  width: 100%;
-  color: var(--title_font_color);
+    font-size: xx-large;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 100%;
+    color: var(--title_font_color);
+    border: none;
 
-  padding: 10px;
-  border-radius: 15px;
-  border: 2px solid var(--title_font_color);
-  height: 40px;
-  box-shadow: 0px 0px 20px rgba(100, 100, 100, 0.2);
-  outline: none;
+    padding: 10px;
+    border-radius: 8px;
+    height: 40px;
+    box-shadow: 0px 0px 20px rgba(100, 100, 100, 0.2);
+    background-color: var(--secondary_background_color);
 }
 
-
 .new_post_textarea {
-  box-shadow: 0px 0px 20px rgba(100, 100, 100, 0.2);
-  border-radius: 15px;
-  border: 2px solid var(--title_font_color);
-  padding: 10px;
-  resize: none;
-  margin-bottom: 10px;
-  width: 100%;
-  height: 300px;
-  color: var(--text_font_color);
+    border: none;
+    box-shadow: 0px 0px 20px rgba(100, 100, 100, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    resize: none;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 300px;
+    color: var(--text_font_color);
+    background-color: var(--secondary_background_color);
 }
 
 .new_post_bottom {
@@ -865,11 +884,14 @@ input[type="checkbox"]:checked, input[type="radio"] {
   margin-right: 5px;
 }
 
+.tag_selector {
+  color: black;
+}
+
 .tag_container {
   border-radius: 5px;
   display: flex;
 }
-
 /*New-thread page style end*/
 
 /*Profile page style start*/
@@ -877,6 +899,46 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
 /*Mobile view style start*/
 @media only screen and (max-width: 1100px) {
+  
+  
+  /*new_thread page style mobiel start*/
+  .new_post_main_content, .new_post_main_content_container {
+    width: 100%;
+    margin: 0px;
+  }
+  
+  .new_post_bottom {
+    flex-direction: column;
+  }
+  .tag_container {
+    width: 100%;
+    margin-top: 12px;
+  }
+  
+  .new_post_image_container {
+    display: block;
+    width: 100%;
+  }
+  
+  .new_post_image {
+    width: 100%;
+  }
+  
+  .new_post_image_label {
+    font-size:small;
+  }
+  
+  .tag_text {
+    margin-top: 3px;
+  }
+  
+  .new_post_button {
+    width: 100%;
+    height: 60px;
+  }
+
+  /*new_thread page style mobiel end*/
+
     main {
         background-color: var(--secondary_background_color);
     }
@@ -889,7 +951,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
         display: none;
     }
     
-    .thread_content_container, .new_post_main_content, .new_post_main_content_container {
+    .thread_content_container{
         width: 100%;
         margin: 0px;
     }
@@ -909,8 +971,6 @@ input[type="checkbox"]:checked, input[type="radio"] {
         
         
     }
-
-
 
     .hamburger_active > #bar2{
         transform: translatex(100vw);
@@ -1107,11 +1167,15 @@ input[type="checkbox"]:checked, input[type="radio"] {
         margin-right: 5px;
     }
 
-    .comment_container {
+    .comment_container .solution_container {
         margin-top: 20px;
-        margin-left: 20px;
-        width: calc(100% - 20px);
+        margin-left: auto;
     }
+
+    .solution_container > * {
+        margin-top: 0px;
+    }
+
     .comment_container, .subcomment_container {
         padding: 20px;
     }
@@ -1120,8 +1184,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     }
 
     .subcomment_container {
-        width: calc(100% - 40px);
+        width: calc(100% - 45px);
     }
-
 }
 /*Mobile view style end*/

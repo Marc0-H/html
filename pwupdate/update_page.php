@@ -4,9 +4,6 @@ if ($_SERVER['HTTPS'] != 'on') {
     header("location: $url");
     exit;
 }
-
-include 'php_scripts/connection.php';
-require_once 'php_scripts/functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +13,7 @@ require_once 'php_scripts/functions.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>update_password</title>
-    <link href="../test2.css" type="html/css" rel="stylesheet">
+    <link href="../loginStyle.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <?php
@@ -45,12 +42,12 @@ require_once 'php_scripts/functions.php';
 
      <button class="submit_button" name="reset_submit">submit</button>
 
-    <?php if (isset($token) && isset($validator)): ?>
+    <?php if (isset($token) && isset($selector)): ?>
         <input type="hidden" name="URLtoken" value="<?php echo $token; ?>"></input>
-        <input type="hidden" name="selector" value="<?php echo $validator; ?>"></input>
+        <input type="hidden" name="selector" value="<?php echo $selector; ?>"></input>
     <?php endif; ?>
-    </form>
 
+    </form>
 <?php
 //error checking by checking url for error codes made by program.
 if (isset($_GET["error"])) {

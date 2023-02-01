@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-header('Cache-Control: max-age=900');
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +20,7 @@ header('Cache-Control: max-age=900');
     </head>
     <body>
         <?php
-            include 'connection.php';
+            include '../connection.php';
             if (!$connection) {
                 die("Connection to server failed. !");
             }
@@ -62,7 +60,7 @@ header('Cache-Control: max-age=900');
                                 <label class="dropdown-label">
                                     <input name="filter-subject[]" value="science" type="checkbox" checked>Science
                                 </label>
-                                
+
                                 <label class="dropdown-label">
                                     <input name="filter-subject[]" value="general" type="checkbox" checked>General
                                 </label>
@@ -100,7 +98,11 @@ header('Cache-Control: max-age=900');
                 </div>
 
                 <div class="main_content_container">
-                    <div class="main_content_title">The latest posts...</div>
+                    <div class="main_content_title">Discover
+                        <?php if (isset($_SESSION["userId"])) { ?>
+                            <i id="create_post" class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
+                        <?php } ?>
+                    </div>
                     <div class="main_content_posts">
                         <?php include 'filtered_results.php'  ?>
                     </div>

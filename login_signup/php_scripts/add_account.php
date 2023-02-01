@@ -1,6 +1,6 @@
 <?php
 
-include '../../connection.php';
+include '../../../connection.php';
 require_once 'functions.php';
 
 echo var_dump($_POST);
