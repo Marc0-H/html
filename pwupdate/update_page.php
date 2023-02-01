@@ -75,6 +75,8 @@ if (isset($_GET["error"])) {
         echo "<div class='error_message'>
         <p style='color: green; margin-left:40px;'>Update succesful. </p>
         </div>";
+        sleep(3);
+        header("location: ../index.php");
     }
     else if ($_GET["error"] === "novalidtoken") {
         echo "<div class='error_message'>
