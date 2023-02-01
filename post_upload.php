@@ -47,8 +47,8 @@ function check_file($filename) {
       $error_msg = "file size incorrect, please select a smaller file";
       $file_ok = 0;
     }
-    if($image_file_type != "png") {
-      $error_msg = "file type incorrect, please use png";
+    if($image_file_type != "png" && $image_file_type != "jpg") {
+      $error_msg = "file type incorrect, please use png or jpg";
       $file_ok = 0;
     }
   }
@@ -71,9 +71,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $post_tag = check_tag($post_tag);
 
   if(check_file($filename) == 1) {
+    
     if (\Tinify\compressionCount() <= 500) { //check if API has enough space
       $source = \Tinify\fromFile($temp_file);   //send to tinipng API
-      $source->toFile($temp_file);
+      $converted = $source->convert(array("type" => ["image/png"]));
+      $extension = $converted->result()->extension();
+
+      // $source->toFile($temp_file);
       $img = file_get_contents($temp_file);
       $post_image = base64_encode($img);
     } else {
@@ -101,9 +105,9 @@ try {
   mysqli_query($connection, $insert_post_query);
 
   $post_id = mysqli_insert_id($connection);
-  // echo "<script>window.alert('Post upload succes!');";
-  // echo "window.location.href='thread.php?v=" . $post_id ."';";
-  // echo "</script>";
+  echo "<script>window.alert('Post upload succes!');";
+  echo "window.location.href='thread.php?v=" . $post_id ."';";
+  echo "</script>";
 
 } catch (PDOException $e) {
   echo "ERROR!!!<br>";
