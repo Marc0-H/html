@@ -98,7 +98,11 @@
                 </div>
 
                 <div class="main_content_container">
-                    <div class="main_content_title">The latest posts...</div>
+                    <div class="main_content_title">Discover
+                        <?php if (isset($_SESSION["userId"])) { ?>
+                            <i id="create_post" class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
+                        <?php } ?>
+                    </div>
                     <div class="main_content_posts">
                         <?php include 'filtered_results.php'  ?>
                     </div>

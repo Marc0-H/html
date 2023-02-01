@@ -48,8 +48,6 @@
             } else {
             // Show if logged in.
             ?>
-                <i id="create_post" class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
-
                 <div class="dropdown_menu_profile">
                     <?php if (!empty($user_result["profile_image"])) { ?>
                             <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture" class="profile_button">
@@ -58,7 +56,7 @@
                     <?php } ?>
                     <div class="dropdown_content">
                         <a href="settings.php" class="settings_button">Settings</a>
-                        <a href="login_signup/php_scripts/log_out.php" class="log_out_button">Log out</a>
+                        <a href="login_signup/logout.php" class="log_out_button">Log out</a>
                     </div>
                 </div>
 
