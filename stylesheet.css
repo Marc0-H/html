@@ -506,7 +506,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     text-decoration: none;
 }
 
-.interaction_container > i:hover , .interaction_container > a:hover{
+.thread_content_container .interaction_container > i:hover , .interaction_container > a:hover{
     background-color: var(--post_interaction_color);
     cursor: pointer;
 }
