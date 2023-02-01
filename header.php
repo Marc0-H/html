@@ -55,6 +55,7 @@
                             <img src="images/default.png" alt="default picture" class="profile_button">
                     <?php } ?>
                     <div class="dropdown_content">
+                        <a href="profilepage.php" class="profile_button">Your posts</a>
                         <a href="settings.php" class="settings_button">Settings</a>
                         <a href="login_signup/logout.php" class="log_out_button">Log out</a>
                     </div>

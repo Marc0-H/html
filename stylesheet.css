@@ -894,8 +894,22 @@ input[type="checkbox"]:checked, input[type="radio"] {
 }
 /*New-thread page style end*/
 
-/*Profile page style start*/
-/**/
+/* Profile page style start*/
+  .profile_page_div {
+    margin-left: 50px;
+  }
+  
+  .profile_page_title {
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    width: 100%;
+    color: var(--text_font_color);
+    display: flex;
+}
+
+/* profi page style end */
+
 
 /*Mobile view style start*/
 @media only screen and (max-width: 1100px) {

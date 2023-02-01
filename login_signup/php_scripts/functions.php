@@ -19,6 +19,12 @@ function checkEmail($email) {
 
 }
 
+function checkPW($password) {
+    if (strlen($password) < 6) {
+        header("location: ../signup_page?error=pwshort");
+        exit();
+    }
+}
 function userExists($connection, $name, $email) {
     //using prepared statement as extra precaution to prevent sql injection
     //used this site as reference to using prepared statement: https://www.w3schools.com/php/php_mysql_prepared_statements.asp#:~:text=A%20prepared%20statement%20is%20a,(labeled%20%22%3F%22).
@@ -59,11 +65,4 @@ function update_pw($connection, $new_pass, $userid) {
     mysqli_stmt_close($prepare_update);
 }
 
-//Robby's check_tag function used as base here
-// function check_tag($user_tag) {
-//   if (in_array($user_tag, array('MBO','HAVO','VWO','teacher','HBO/WO'))) {
-//   return TRUE;
-//   }
-//   return FALSE;
-// }
 ?>
