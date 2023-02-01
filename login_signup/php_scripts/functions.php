@@ -113,4 +113,12 @@ function update_pw($connection, $new_pass, $userid) {
 
     mysqli_stmt_close($prepare_update);
 }
+
+//Robby's check_tag function used as base here
+function check_tag($user_tag) {
+  if (in_array($user_tag, array('student','teacher','phD','bachelor', 'pre-uni'))) {
+  return TRUE;
+  }
+  return FALSE;
+}
 ?>

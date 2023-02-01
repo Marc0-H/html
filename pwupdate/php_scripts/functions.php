@@ -23,23 +23,28 @@ function checkEmail($email) {
     }
 }
 
-function findUid($connection, $email) {
+//added redirect variable to redirect properly when called in different files
+//(this function also gets used to reset the user's password).
+function findUid($connection, $email, $redirect = "../signup_page.php") {
+    $current_url = $_SERVER['REQUEST_URI'];
+
     $sql = "SELECT userId FROM users WHERE userEmail = ?;";
     $stmt = mysqli_stmt_init($connection);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location:  ../signup_page.php?error=stmtfailed");
+        header("location:" . $redirect . "?error=stmtfailed");
         exit();
     }
 
     mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
     if(!mysqli_stmt_bind_result($stmt, $userId)){
-        header("location:  ../signup_page.php?error=bindfailed");
+        header("location:" . $redirect . "?error=bindfailed");
         exit();
     }
-    if(!mysqli_stmt_fetch($stmt)){
-        header("location:  ../signup_page.php?error=fetchfailed");
+    if(!mysqli_stmt_fetch($stmt)) {
+        // header("location: ' $current_url ' . '?error=fetchfailed' ");
+        header("location: ". $redirect ."?error=fetchfailed");
         exit();
     }
     mysqli_stmt_close($stmt);

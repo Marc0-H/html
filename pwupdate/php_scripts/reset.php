@@ -32,7 +32,9 @@ if (isset($_POST["reset_submit"])) {
             mysqli_stmt_bind_param($stmt, "s", $email);
             mysqli_stmt_execute($stmt);
         }
-        $userUid = findUid($connection, $email);
+        $path = "../reset_page.php";
+        
+        $userUid = findUid($connection, $email, $path);
 
         $sql = "INSERT INTO reset(resetEmail, userId, pwdSelector, pwdToken, expirationDate) VALUES (?, ?, ?, ?, ?)";
         $stmt = mysqli_stmt_init($connection);
@@ -49,8 +51,6 @@ if (isset($_POST["reset_submit"])) {
 
             mysqli_stmt_close($stmt);
         }
-
-        //stuck :(
     }
     $to = "$email";
     $title = "Password reset";
