@@ -1,28 +1,3 @@
-@media only screen and (max-width: 1100px) {
-    .signup_prompt {
-        height: 400px;
-        width: 150px;
-        background-color: #06A028;
-
-    }
-    .login_prompt {
-        height: 200px;
-        width: 300px;
-        background-color: #06A028;
-
-    }
-    .reset_prompt {
-        height: 100px;
-        width: 300px;
-        background-color: #06A028;
-
-    }
-    .update_prompt {
-        height: 150px;
-        width: 200px;
-        background-color: #06A028;
-    }
-}
 :root {
     --primary_color: #309eed;
     --primary_background_color: #E5E5E5;
@@ -85,9 +60,12 @@
 .login_prompt {
     height: 400px;
     width: 500px;
-    margin-left: 300px;
     background-color: var(--secondary_background_color);
     position: absolute;
+
+    transform: translate(-50%, -50%);
+    top: 30%;
+    left: 50%;
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid var(--details_color);
@@ -96,6 +74,7 @@
     margin-top: 90px;
     z-index: -1;
 }
+
 
 
 .login_prompt h1 {
@@ -333,4 +312,30 @@ select,
 
 .select:after {
     justify-self: end;
+}
+
+@media only screen and (max-width: 1100px) {
+    .signup_prompt {
+        height: 400px;
+        width: 150px;
+        background-color: #06A028;
+
+    }
+    .login_prompt {
+        height: 200px;
+        width: 300px;
+        background-color: #06A028;
+
+    }
+    .reset_prompt {
+        height: 100px;
+        width: 300px;
+        background-color: #06A028;
+
+    }
+    .update_prompt {
+        height: 150px;
+        width: 200px;
+        background-color: #06A028;
+    }
 }
