@@ -10,7 +10,8 @@ $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]
 $tag = mysqli_real_escape_string($connection, htmlspecialchars($_POST["select"]));
 
 if (check_tag($tag) === FALSE) {
-    header("location: ../signup_page.php?error=invalidusertag");
+    echo check_tag($tag) . "true of false and tag = " . $tag;
+    // header("location: ../signup_page.php?error=invalidusertag");
     exit();
 }
 if (checkUid($name) === FALSE) {
