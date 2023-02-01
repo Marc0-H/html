@@ -12,8 +12,8 @@ $URLtoken = $_POST["URLtoken"];
 $selector = $_POST["selector"];
 $password = $_POST["uPassword"];
 
-if (empty($URLtoken) || empty($selector)) {
-    header("location: ../../index.php?error=" . "$URLtoken" . "&" . "$selector");
+if (empty($URLtoken) || empty($selector) || empty($password)) {
+    header("location: ../../index.php?error=" . "$URLtoken" . "&" . "$selector" . "&" . "$password");
     exit();
 }
 else {
@@ -24,7 +24,7 @@ else {
            header("location: ../update_page?error=stmtfailed");
         }
         else {
-            mysqli_stmt_bind_param($stmt, "si", $selector, $current_time);
+            mysqli_stmt_bind_param($stmt, "s", $selector);
             mysqli_stmt_execute($stmt);
 
             $DBaccess = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
