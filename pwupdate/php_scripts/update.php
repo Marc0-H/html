@@ -12,7 +12,7 @@ $URLtoken = $_POST["URLtoken"];
 $selector = $_POST["selector"];
 $password = $_POST["uPassword"];
 
-if (empty($URLtoken) || empty($selector) || empty($password)) {
+if (empty($URLtoken) || empty($selector)) {
     header("location: ../../index.php");
     exit();
 }
