@@ -52,33 +52,33 @@ if ($_SERVER['HTTPS'] != 'on') {
 //error checking by checking url for error codes made by program.
 if (isset($_GET["error"])) {
     if ($_GET["error"] === "token_validatorEmpty") {
-        echo "<div class='error_message'>
+        echo "<div class='update_error_message'>
         <p>No account associated with this email. </p>
         </div>";
     }
     else if ($_GET["error"] === "stmtfailed") {
-        echo "<div class='error_message'>
+        echo "<div class='update_error_message'>
         <p style='margin-left: 10px>Something went wrong. Try again. </p>
         </div>";
     }
     else if ($_GET["error"] === "updatefailed") {
-        echo "<div class='error_message'>
+        echo "<div class='update_error_message'>
         <p style='margin-left: 20px;'>Server issue. Try again. </p>
         </div>";
     }
     else if ($_GET["error"] === "token_missmatch") {
-        echo "<div class='error_message'>
+        echo "<div class='update_error_message'>
         <p>Something went wrong. Try again. </p>
         </div>";
     }
     else if ($_GET["error"] === "noerror") {
-        echo "<div class='error_message'>
+        echo "<div class='update_error_message'>
         <p style='color: green; margin-left:40px;'>Update succesful. </p>
         </div>";
         header("location: ../index.php");
     }
     else if ($_GET["error"] === "novalidtoken") {
-        echo "<div class='error_message'>
+        echo "<div class='update_error_message'>
         <p>Too late, please retry. </p>
         </div>";
     }

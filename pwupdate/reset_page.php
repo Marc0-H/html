@@ -32,22 +32,22 @@ if ($_SERVER['HTTPS'] != 'on') {
 //error checking by checking url for error codes made by program.
 if (isset($_GET["error"])) {
     if ($_GET["error"] === "nouser") {
-        echo "<div class='error_message'>
+        echo "<div class='reset_error_message'>
         <p>No account associated with this email. </p>
         </div>";
     }
     else if ($_GET["error"] === "stmtfailed") {
-        echo "<div class='error_message'>
+        echo "<div class='reset_error_message'>
         <p>Something went wrong. Try again. </p>
         </div>";
     }
     else if ($_GET["error"] === "mailfail") {
-        echo "<div class='error_message'>
+        echo "<div class='reset_error_message'>
         <p style='margin-right: 20px;'>Something went wrong. Try again. </p>
         </div>";
     }
     else if ($_GET["error"] === "noerror") {
-        echo "<div class='error_message'>
+        echo "<div class='reset_error_message'>
         <p style='color: green; margin-left: 22px;'>Verification email sent. </p>
         </div>";
     }

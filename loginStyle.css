@@ -295,6 +295,8 @@ select {
 
 .select {
     display: grid;
+    margin-left: 37px;
+    margin-top: 20px;
 }
 
 .select {
@@ -425,7 +427,12 @@ select,
         font-size: bolder;
         padding-left: 50px;
         margin-top: -92px;
-                font-size: 11px;
+        font-size: 11px;
+
+    }
+
+    .update_error_message p {
+        margin-top: 15px;
 
     }
 
@@ -532,5 +539,24 @@ select,
 
     .signup a{
         font-size: 15px;
+    }
+
+    .select {
+        display: grid;
+        margin-left: 2px;
+    }
+
+    .select {
+        width: 10%;
+        min-width: 15ch;
+        max-width: 30ch;
+        border: 1px solid var(--select-border);
+        border-radius: 0.25em;
+        padding: 0.25em 0.5em;
+        font-size: 1rem;
+        cursor: pointer;
+        line-height: 1.1;
+        background-color: #fff;
+        background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
     }
 }
