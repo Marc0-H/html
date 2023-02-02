@@ -52,23 +52,24 @@ function check_file($filename) {
   return $file_ok;
 }
 
-function canPost($id) {
-    $query = "SELECT lastPosted FROM users WHERE id = $id";
-    $latestPost = mysqli_query($connection, $query);
+function canPost($id, $connection) {
+    $query = "SELECT latestPost FROM users WHERE userId = $id";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+      die("failed to fetch");
+    }
+    $row = mysqli_fetch_assoc($result);
+
+    $latestPost = $row['latestPost'];
+
     $current_time = time();
+    echo 'latestPost: ' . $latestPost;
 
     if ($current_time - $latestPost < 180) {
         return FALSE;
     }
     else return TRUE;
 }
-
-// function check_tag($post_tag) {
-//   if (in_array($post_tag, array('Biology','English','General','History', 'Math', 'Physics', 'Science'))) {
-//   return $post_tag;
-//   }
-//   return -1;
-// }
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -101,15 +102,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 try {
   //userID from users
   $user_id = $_SESSION["userId"];
-  if (!canPost($user_id)) {
+  if (!canPost($user_id, $connection)) {
     header("location: ../newthread.php?error=toomanyrequests");
     exit();
   }
   else {
-    $current_time = time();
-    $insert_user_query = "INSERT INTO users (latestPost) WHERE userId = $user_id VALUES ('$current_time')";
-    mysqli_query($connection, $insert_user_query);
-
+  $current_time = time();
+  $update_user_query = "UPDATE users SET latestPost='$current_time' WHERE userId = $user_id";
+  mysqli_query($connection, $update_user_query);
 
     $insert_post_query = "INSERT INTO posts (post_title, post_content, post_tag, post_datetime, post_image, user_id)
       VALUES ('$post_title', '$post_content', '$post_tag', '$post_datetime', '$post_image', '$user_id')";

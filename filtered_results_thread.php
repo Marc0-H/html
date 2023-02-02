@@ -11,19 +11,29 @@
     } else {
         $session_id = "";
 
+        // Vraag post info van database.
         $post_id = $_GET["v"];
         $post_query = "SELECT * FROM posts WHERE post_id = $post_id";
         $post_result = mysqli_fetch_assoc(mysqli_query($connection, $post_query));
+        $post_tag = $post_result['post_tag'];
 
+        // Vraag post maker info van database.
         $op_id = $post_result["user_id"];
         $op_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $op_id";
         $op_result = mysqli_fetch_assoc(mysqli_query($connection, $op_query));
 
+        // Vraag comment info van database.
         $comment_count_query = "SELECT COUNT(post_id) FROM comments WHERE post_id = $post_id";
         $comment_count = mysqli_fetch_assoc(mysqli_query($connection, $comment_count_query));
 
+        // Vraag like info van database.
         $like_count_query = "SELECT COUNT(post_id) FROM post_upvote_link WHERE post_id = $post_id";
         $like_count = mysqli_fetch_assoc(mysqli_query($connection, $like_count_query));
+
+        // Vraag post tag info van database.
+        $post_tags_query = "SELECT * FROM post_tags WHERE post_tag = '$post_tag'";
+        $post_tags_result = mysqli_query($connection, $post_tags_query);
+        $post_tag_row = mysqli_fetch_assoc($post_tags_result);
 
         if (isset($_SESSION["userId"])) {
             $session_id = $_SESSION["userId"];
@@ -35,9 +45,7 @@
         <div class="post_container original_poster">
             <div class="post_title_container">
                 <div class="post_title">
-                    <span class="post_tag tag-<?php echo $post_result["post_tag"]?>">
-                        <?php echo $post_result["post_tag"]?>
-                    </span>
+                    <span style="background-color: <?php echo $post_tag_row["tag_color"]?>;" class="post_tag tag-<?php echo $post_result["post_tag"]?>"><?php echo $post_result["post_tag"]?></span> 
                     <?php echo $post_result["post_title"]?>
                 </div>
                 <div class="button_container">
@@ -84,6 +92,8 @@
         </div>
 
         <?php
+            // Vraag alle comments onder post info op van database.
+            
             $solution_id = 0; // Zero is not used as a possible id
             if (!is_null($post_result["solution_id"])) {
                 $solution_id = $post_result["solution_id"];
@@ -149,6 +159,8 @@
                     </div>
                 </div>
             <?php
+                // Vraag subcomments van post van database.
+
                 $subcomment_query = "SELECT * FROM comments WHERE parent_comment_id = $comment_id ORDER BY comment_datetime ASC";
                 $subcomment_result = mysqli_query($connection, $subcomment_query);
 
@@ -199,51 +211,21 @@
 
 
     <?php
-
-
-
-        // FILTER START
-
-        // order by latest.
-        // $comment_query = "SELECT * FROM comments WHERE post_id = $post_id ORDER BY comment_datetime DESC";
-        // order by likes
-        // $comment_query = "SELECT comments.*, (SELECT COUNT(*) FROM comment_upvote_link WHERE comments.id = comment_upvote_link.comment_id) as upvotes FROM comments JOIN posts ON comments.post_id = posts.post_id WHERE posts.post_id = $post_id ORDER BY upvotes DESC";
-        // order by controversial
-        // $comment_query = "SELECT comments.*, (SELECT COUNT(*) FROM comments as sub_comments WHERE sub_comments.parent_comment_id = comments.id) as sub_comment_count FROM comments JOIN posts ON comments.post_id = posts.post_id WHERE comments.parent_comment_id IS NULL AND posts.post_id = $post_id ORDER BY sub_comment_count DESC";
-
-
+        // Handel filteren van de comments gebaseerd op input van de filter sidebar.
         $roles_query = "";
         $comment_query = "";
 
-        if (isset($_GET["filter-thread-role"])) {
+        if (isset($_GET["filter-role"])) {
             $roles = array();
-            foreach($_GET["filter-thread-role"] as $filter) {
 
-                if (strpos($filter, "MAVO") !== false) {
-                    $roles[] = "MAVO";
-                }
-                if (strpos($filter, "HAVO") !== false) {
-                    $roles[] = "HAVO";
-                }
-                if (strpos($filter, "VWO") !== false) {
-                    $roles[] = "VWO";
-                }
-                if (strpos($filter, "HBO/WO") !== false) {
-                    $roles[] = "HBO/WO";
-                }
-                if (strpos($filter, "teacher") !== false) {
-                    $roles[] = "Teacher";
-                }
-
+            foreach($_GET["filter-role"] as $filter) {
+                $roles[] = $filter;
             }
-
-
+    
             $roles_query = "AND tag IN ('".implode("','", $roles)."')";
-
         } else {
             $roles_query = "AND 2 = 1";
         }
-
 
         if (isset($_GET["filter-thread-sortby"])) {
             $sortby = $_GET["filter-thread-sortby"];
@@ -262,14 +244,10 @@
             $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
         }
 
-
-
-        // FILTER END
-
-
-        // $comment_query = "SELECT * FROM comments WHERE post_id = $post_id AND NOT id = $solution_id ORDER BY comment_datetime DESC";
+        // Alle comment resultaten.
         $comment_result = mysqli_query($connection, $comment_query);
 
+        // Laat de nodige comments zien.
         while($comment_row = mysqli_fetch_assoc($comment_result)) {
             $user_id = $comment_row['user_id'];
             $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
@@ -328,6 +306,7 @@
             </div>
 
             <?php
+                // Laat de nodige subcomments zien.
                 $subcomment_query = "SELECT * FROM comments WHERE parent_comment_id = $comment_id ORDER BY comment_datetime ASC";
                 $subcomment_result = mysqli_query($connection, $subcomment_query);
 
