@@ -153,17 +153,6 @@
     margin-top: -88px;
 }
 
-/* .error_message {text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-}
-
-.error_message p {
-   height: 40px;
-} */
-
 input {
     display: block;
     height: 50px;
@@ -318,6 +307,15 @@ select,
 
 @media only screen and (max-width: 590px) {
 
+    * {
+        margin: 0px;
+        padding: 0px;
+        transition: 0.2s;
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: var(--text_font_color);
+    }
     .signup_prompt {
 
         height: 450px;
