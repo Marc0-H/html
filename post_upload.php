@@ -52,20 +52,30 @@ function check_file($filename) {
   return $file_ok;
 }
 
+function canPost($id) {
+    $query = "SELECT lastPosted FROM users WHERE id = $id";
+    $latestPost = mysqli_query($connection, $query);
+    $current_time = time();
 
-function check_tag($post_tag) {
-  if (in_array($post_tag, array('Biology','English','General','History', 'Math', 'Physics', 'Science'))) {
-  return $post_tag;
-  }
-  return -1;
+    if ($current_time - $latestPost < 180) {
+        return FALSE;
+    }
+    else return TRUE;
 }
+
+// function check_tag($post_tag) {
+//   if (in_array($post_tag, array('Biology','English','General','History', 'Math', 'Physics', 'Science'))) {
+//   return $post_tag;
+//   }
+//   return -1;
+// }
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $post_title = test_input($_POST["post_title"]);
   $post_content = test_input($_POST["post_content"]);
   $post_tag = test_input($_POST["post_tag"]);
-  $post_tag = check_tag($post_tag);
+  // $post_tag = check_tag($post_tag);
 
   if(check_file($filename) == 1) {
     if (\Tinify\compressionCount() <= 500) { //check if API has enough space
@@ -81,29 +91,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $post_image = base64_encode($img);
     }
   }
-  
+
   if (check_file($filename) == 0 || !$post_title || !$post_content || !$post_tag || $post_tag == -1) {
     echo $error_msg . "<br><a href='newthread.php'>try again.</a><br>";
     die("Post upload failed.");
   }
 }
 
-
-
-
-
-
 try {
   //userID from users
   $user_id = $_SESSION["userId"];
-  $insert_post_query = "INSERT INTO posts (post_title, post_content, post_tag, post_datetime, post_image, user_id)
-          VALUES ('$post_title', '$post_content', '$post_tag', '$post_datetime', '$post_image', '$user_id')";
-  mysqli_query($connection, $insert_post_query);
+  if (!canPost($user_id)) {
+    header("location: ../newthread.php?error=toomanyrequests");
+    exit();
+  }
+  else {
+    $current_time = time();
+    $insert_user_query = "INSERT INTO users (latestPost) WHERE userId = $user_id VALUES ('$current_time')";
+    mysqli_query($connection, $insert_user_query);
 
-  $post_id = mysqli_insert_id($connection);
-  echo "<script>window.alert('Post upload succes!');";
-  echo "window.location.href='thread.php?v=" . $post_id ."';";
-  echo "</script>";
+
+    $insert_post_query = "INSERT INTO posts (post_title, post_content, post_tag, post_datetime, post_image, user_id)
+      VALUES ('$post_title', '$post_content', '$post_tag', '$post_datetime', '$post_image', '$user_id')";
+    mysqli_query($connection, $insert_post_query);
+
+    $post_id = mysqli_insert_id($connection);
+    echo "<script>window.alert('Post upload succes!');";
+    echo "window.location.href='thread.php?v=" . $post_id ."';";
+    echo "</script>";
+  }
 
 } catch (PDOException $e) {
   echo "ERROR!!!<br>";

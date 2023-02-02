@@ -5,6 +5,8 @@
         session_start();
     }
 
+    session_start();
+
     /* Check if post has parameter */
     if (!isset($_GET["v"])) {
         ?><p>Post could not be found</p><?php

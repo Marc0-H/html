@@ -3,11 +3,27 @@
 include '../../../connection.php';
 require_once 'functions.php';
 
-echo var_dump($_POST);
-$name = mysqli_real_escape_string($connection, htmlspecialchars($_POST["username"]));
-$password = mysqli_real_escape_string($connection, htmlspecialchars($_POST["uPassword"]));
-$email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]));
-$tag = mysqli_real_escape_string($connection, htmlspecialchars($_POST["select"]));
+if (isset($_POST['submit'])) {
+
+    $secretKey = "6LdHu0ckAAAAAOaOQUXDPIJV2_jaNc7BnMyrTpSV";
+    $responseKey = $_POST['g-recaptcha-response'];
+    $remoteAddr = $_SERVER['REMOTE_ADDR'];
+
+    $URL = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$remoteAddr";
+
+    $response = file_get_contents($URL);
+    $parsedRes = json_decode($response);
+
+    if ($parsedRes->success) {
+        $name = mysqli_real_escape_string($connection, htmlspecialchars($_POST["username"]));
+        $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST["uPassword"]));
+        $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]));
+        $tag = mysqli_real_escape_string($connection, htmlspecialchars($_POST["select"]));
+    }
+    else {
+        header("location: ../signup_page.php?error=recaptchafailed");
+        exit();
+    }
 
 if (!in_array($tag, array('MAVO','HAVO','VWO','teacher','HBO/WO'))) {
     header("location: ../signup_page.php?error=invalidusertag");
@@ -52,5 +68,5 @@ else if (userExists($connection, $name, $email) === NULL) {
 else {
     header("location: ../signup_page.php?error=userexists");
 }
-
+}
 ?>
