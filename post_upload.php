@@ -63,19 +63,19 @@ function canPost($id) {
     else return TRUE;
 }
 
-function check_tag($post_tag) {
-  if (in_array($post_tag, array('Biology','English','General','History', 'Math', 'Physics', 'Science'))) {
-  return $post_tag;
-  }
-  return -1;
-}
+// function check_tag($post_tag) {
+//   if (in_array($post_tag, array('Biology','English','General','History', 'Math', 'Physics', 'Science'))) {
+//   return $post_tag;
+//   }
+//   return -1;
+// }
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $post_title = test_input($_POST["post_title"]);
   $post_content = test_input($_POST["post_content"]);
   $post_tag = test_input($_POST["post_tag"]);
-  $post_tag = check_tag($post_tag);
+  // $post_tag = check_tag($post_tag);
 
   if(check_file($filename) == 1) {
     if (\Tinify\compressionCount() <= 500) { //check if API has enough space

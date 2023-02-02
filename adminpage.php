@@ -3,7 +3,8 @@
   include '../connection.php';
   $tag_query = "SELECT post_tag FROM post_tags";
   $tag_result = mysqli_query($connection, $tag_query);
-
+  $user_query = "SELECT userUid, userId FROM users";
+  $usr_result = mysqli_query($connection, $user_query);
 ?>
 
 <!DOCTYPE html>
@@ -54,27 +55,52 @@
                       <div class= "admin_add_tag_div">
                         <h1> Add tag: </h1>
                         <p>Capitilize the first letter!</p>
-                        <form id="add_tag_form" action="admin_add_tag.php" method="post">
-                          <input name="new_tag_name" class="new_tag_name" type="text" placeholder="New tag name">
-                          <label for="tag_color_picker">Tag color:</label>
-                          <input type="color" name="tag_color_picker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" >
-                          <input type="submit" id="add_tag_submit" name="add_tag_submit" value="Add tag!">
+                        <form class="add_tag_form" id="add_tag_form" action="admin_add_tag.php" method="post">
+                          <div class="admin_add_tag_subdiv">
+                            <input name="new_tag_name" class="new_tag_name" type="text" placeholder="New tag name">
+                            <input type="color" name="tag_color_picker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" >
+                          </div>
+                          <input type="submit" id="add_tag_submit" form="add_tag_form" class="add_tag_submit" name="add_tag_submit" value="Add tag!">
+                        </form>
+                      </div>
+                      <div class= "admin_add_user_tag_div">
+                        <h1> Add user-tag: </h1>
+                        <form class="add_user_tag_form" id="add_user_tag_form" action="admin_add_user_tag.php" method="post">
+                          <div class="admin_add_tag_subdiv">
+                            <input name="new_user_tag_name" class="new_user_tag_name" type="text" placeholder="New user-tag name">
+                          </div>
+                          <input type="submit" id="add_user_tag_submit" class="add_user_tag_submit" name="add_user_tag_submit" value="Add tag!">
                         </form>
                       </div>
                       <div class="admin_remove_tag_div">
-                        <h1> Remove tag: </h1>
-                        <form id="remove_tag_form" action="admin_remove_tag.php" method="post">
-                          <p class="tag_text">Tag:</p>
-                          <select class="tag_selector" name="remove_tag"  form="remove_tag_form">
-                            <?php
-                            while ($row = mysqli_fetch_array($tag_result)) {
-                              echo "<option class='tag_option' value=" . $row['post_tag'] . ">" . $row['post_tag'] . "</option>";
-                            } 
-                            ?>
-                            <input type="submit" name="remove_tag_submit" value="Remove tag!">
+                          <h1> Remove tag: </h1>
+                          <form id="remove_tag_form" action="admin_remove_tag.php" method="post">
+                            <p class="tag_text">Tag:</p>
+                            <select class="admin_tag_selector" name="remove_tag"  form="remove_tag_form">
+                              <?php
+                              while ($row = mysqli_fetch_array($tag_result)) {
+                                echo "<option class='tag_option' value=" . $row['post_tag'] . ">" . $row['post_tag'] . "</option>";
+                              } 
+                              ?>
+                            <input type="submit" id="remove_tag_submit" class="remove_tag_submit" name="remove_tag_submit" value="Remove tag!">
                         </form>
                       </div>
                       <div class="admin_delete_user_div">
+                        <h1> Remove user: </h1>
+                        <form id="remove_user_form" action="admin_remove_user.php" method="post">
+                          <p>User:</p>   
+                          <select class="admin_user_selector" name="remove_user" form="remove_user_form">
+                            <?php
+                            if ($usr_result) {
+                              while($user_row = mysqli_fetch_assoc($usr_result)) {
+                                echo "<option class='select_user' value=" . $user_row['userUid'] . ">" . $user_row['userUid'] . "</option>";
+                              }
+                            } else {
+                              echo "Query failed: " . mysqli_error($conn);
+                            }
+                            ?>
+                            <input type="submit" class="remove_user_submit" id="remove_user_submit" name="remove_user_submit" value="Remove user!">
+                        </form>
                       </div>
                     <?php } ?>
                     <div class="main_content_posts">
