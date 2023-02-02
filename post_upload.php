@@ -107,10 +107,9 @@ try {
     exit();
   }
   else {
-    $current_time = time();
-    $insert_user_query = "INSERT INTO users (latestPost) WHERE userId = $user_id VALUES ('$current_time')";
-    mysqli_query($connection, $insert_user_query);
-
+  $current_time = time();
+  $update_user_query = "UPDATE users SET latestPost='$current_time' WHERE userId = $user_id";
+  mysqli_query($connection, $update_user_query);
 
     $insert_post_query = "INSERT INTO posts (post_title, post_content, post_tag, post_datetime, post_image, user_id)
       VALUES ('$post_title', '$post_content', '$post_tag', '$post_datetime', '$post_image', '$user_id')";
