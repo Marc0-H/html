@@ -54,22 +54,22 @@ function check_file($filename) {
 
 function canPost($id, $connection) {
     $query = "SELECT latestPost FROM users WHERE userId = $id";
-    $latestPost = mysqli_query($connection, $query);
-    echo "latest post : " . $latestPost;
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+      die("failed to fetch");
+    }
+    $row = mysqli_fetch_assoc($result);
+
+    $latestPost = $row['latestPost'];
+
     $current_time = time();
+    echo 'latestPost: ' . $latestPost;
 
     if ($current_time - $latestPost < 180) {
         return FALSE;
     }
     else return TRUE;
 }
-
-// function check_tag($post_tag) {
-//   if (in_array($post_tag, array('Biology','English','General','History', 'Math', 'Physics', 'Science'))) {
-//   return $post_tag;
-//   }
-//   return -1;
-// }
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
