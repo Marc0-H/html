@@ -52,7 +52,7 @@ function check_file($filename) {
   return $file_ok;
 }
 
-function canPost($id) {
+function canPost($id, $connection) {
     $query = "SELECT lastPosted FROM users WHERE id = $id";
     $latestPost = mysqli_query($connection, $query);
     $current_time = time();
@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 try {
   //userID from users
   $user_id = $_SESSION["userId"];
-  if (!canPost($user_id)) {
+  if (!canPost($user_id, $connection)) {
     header("location: ../newthread.php?error=toomanyrequests");
     exit();
   }
