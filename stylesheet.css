@@ -889,11 +889,11 @@ input[type="checkbox"]:checked, input[type="radio"] {
   flex-grow: 1;
 }
 
-.admin_remove_tag_div, .admin_delete_user_div {
+.admin_add_user_tag_div, .admin_remove_tag_div, .admin_remove_user_tag_div, .admin_delete_user_div {
   margin-top: 24px;
 }
 
-.admin_user_selector, .admin_tag_selector{
+.admin_user_selector, .admin_tag_selector, .admin_user_tag_selector{
   width: 75%;
   margin-right: 5%;
 }
@@ -910,7 +910,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
   align-items: center;
 }
 
-.remove_tag_submit, .add_tag_submit, .remove_user_submit, .add_user_tag_submit {
+.remove_tag_submit, .add_tag_submit, .remove_user_submit, .add_user_tag_submit, .remove_user_tag_submit {
   width: 20%;
 }
 

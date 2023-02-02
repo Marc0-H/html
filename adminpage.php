@@ -57,7 +57,7 @@
                   <div class="main_content_title">Admin page</div>
                   <br>  
                       <div class= "admin_add_tag_div">
-                        <h1> Add tag: </h1>
+                        <h1> Add tag </h1>
                         <p>Capitilize the first letter!</p>
                         <form class="add_tag_form" id="add_tag_form" action="admin_add_tag.php" method="post">
                           <div class="admin_add_tag_subdiv">
@@ -68,16 +68,16 @@
                         </form>
                       </div>
                       <div class= "admin_add_user_tag_div">
-                        <h1> Add user-tag: </h1>
+                        <h1> Add user-tag </h1>
                         <form class="add_user_tag_form" id="add_user_tag_form" action="admin_add_user_tag.php" method="post">
                           <div class="admin_add_tag_subdiv">
                             <input name="new_user_tag_name" class="new_user_tag_name" type="text" placeholder="New user-tag name">
                           </div>
-                          <input type="submit" id="add_user_tag_submit" class="add_user_tag_submit" name="add_user_tag_submit" value="Add tag!">
+                          <input type="submit" id="add_user_tag_submit" class="add_user_tag_submit" name="add_user_tag_submit" value="Add usertag!">
                         </form>
                       </div>
                       <div class="admin_remove_tag_div">
-                          <h1> Remove tag: </h1>
+                          <h1> Remove tag </h1>
                           <form id="remove_tag_form" action="admin_remove_tag.php" method="post">
                             <p class="tag_text">Tag:</p>
                             <select class="admin_tag_selector" name="remove_tag"  form="remove_tag_form">
@@ -90,20 +90,20 @@
                         </form>
                       </div>
                       <div class="admin_remove_user_tag_div">
-                          <h1> Remove user-tag: </h1>
+                          <h1> Remove usertag </h1>
                           <form id="remove_user_tag_form" action="admin_remove_user_tag.php" method="post">
-                            <p class="tag_text">User tag:</p>
+                            <p class="tag_text">Usertag:</p>
                             <select class="admin_user_tag_selector" name="remove_user_tag"  form="remove_user_tag_form">
                               <?php
                               while ($usrtag_row = mysqli_fetch_array($usr_tag_result)) {
                                 echo "<option class='tag_option' value=" . $usrtag_row['tag_name'] . ">" . $usrtag_row['tag_name'] . "</option>";
                               } 
                               ?>
-                            <input type="submit" id="remove_user_tag_submit" class="remove_user_tag_submit" name="remove_user_tag_submit" value="Remove user-tag!">
+                            <input type="submit" id="remove_user_tag_submit" class="remove_user_tag_submit" name="remove_user_tag_submit" value="Remove usertag">
                         </form>
                       </div>
                       <div class="admin_delete_user_div">
-                        <h1> Remove user: </h1>
+                        <h1> Remove user </h1>
                         <form id="remove_user_form" action="admin_remove_user.php" method="post">
                           <p>User:</p>   
                           <select class="admin_user_selector" name="remove_user" form="remove_user_form">
