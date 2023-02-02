@@ -62,7 +62,7 @@
                         <form class="add_tag_form" id="add_tag_form" action="admin_add_tag.php" method="post">
                           <div class="admin_add_tag_subdiv">
                             <input name="new_tag_name" class="new_tag_name" type="text" placeholder="New tag name">
-                            <input type="color" name="tag_color_picker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" >
+                            <input type="color" class="tag_color_picker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" >
                           </div>
                           <input type="submit" id="add_tag_submit" form="add_tag_form" class="add_tag_submit" name="add_tag_submit" value="Add tag!">
                         </form>
