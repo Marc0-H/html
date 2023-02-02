@@ -6,43 +6,20 @@
     $subjects_query = "";
     $role_query = "";
 
-
-    if (isset($_GET["filter-subject"])) {
+    if (isset($_GET['filter-subject']) && !empty($_GET['filter-subject'])) {
         $subjects = array();
+
+
         foreach($_GET["filter-subject"] as $filter) {
-
-            if (strpos($filter, "math") !== false) {
-                $subjects[] = "math";
-            }
-            if (strpos($filter, "english") !== false) {
-                $subjects[] = "english";
-            }
-            if (strpos($filter, "biology") !== false) {
-                $subjects[] = "biology";
-            }
-            if (strpos($filter, "general") !== false) {
-                $subjects[] = "general";
-            }
-            if (strpos($filter, "history") !== false) {
-                $subjects[] = "history";
-            }
-            if (strpos($filter, "physics") !== false) {
-                $subjects[] = "physics";
-            }
-            if (strpos($filter, "science") !== false) {
-                $subjects[] = "science";
-            }
+            $subjects[] = $filter;
         }
-
+    
 
         $subjects_query = "WHERE post_tag IN ('".implode("','", $subjects)."')";
 
     } else {
         $subjects_query = "WHERE 2 = 1";
     }
-
-
-//start
 
     if (isset($_GET["filter-role"])) {
         ?>
@@ -75,8 +52,6 @@
     } else {
         $role_query = "AND 2 = 1";
     }
-
-// eint
 
 
     if (isset($_GET["filter-sortby"])) {
@@ -114,6 +89,7 @@
     foreach($results as $row) {
         $user_id = $row['user_id'];
         $post_id = $row['post_id'];
+        $post_tag = $row['post_tag'];
         $user_query = "SELECT userUid, profile_image, tag from users where userId = $user_id";
         $user_result = mysqli_query($connection, $user_query);
         $user_row = mysqli_fetch_assoc($user_result);
@@ -125,6 +101,11 @@
         $post_comments_query = "SELECT COUNT(comments.post_id) AS comments_count FROM comments WHERE post_id = $post_id";
         $post_comments_result = mysqli_query($connection, $post_comments_query);
         $post_comment_row = mysqli_fetch_assoc($post_comments_result);
+
+        $post_tags_query = "SELECT * FROM post_tags WHERE post_tag = '$post_tag'";
+        $post_tags_result = mysqli_query($connection, $post_tags_query);
+        $post_tag_row = mysqli_fetch_assoc($post_tags_result);
+
         ?>
         <div id="<?php echo $row["post_id"]?>" class="post_container">
             <div class="post_image_container">
@@ -139,7 +120,7 @@
             </div>
             <div class="post_content_container">
                 <div class="post_title">
-                    <span class="post_tag tag-<?php echo $row["post_tag"]?>">
+                    <span style="background-color: <?php echo $post_tag_row["tag_color"]?>;" class="post_tag tag-<?php echo $row["post_tag"]?>">
                     <?php echo $row["post_tag"]?></span> <?php echo $row["post_title"]?></div>
                 <div class="user_info_container">
                     <?php if (!empty($user_row["profile_image"])) { ?>

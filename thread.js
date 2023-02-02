@@ -1,6 +1,5 @@
-/*Verberg of toon de comment invoer*/
-
 function thread_buttons() {
+    /*Verberg of toon de comment invoer*/
     let replyButtons = document.querySelectorAll('.reply_button');
 
     replyButtons.forEach(reply_button => {
@@ -28,10 +27,10 @@ function thread_buttons() {
         hide_button.addEventListener("click", () => {
             let subcomments = document.querySelectorAll('.' + hide_button.id);
             subcomments.forEach(subcomment => {
-                if (subcomment.style.display != "flex") {
-                    subcomment.style.display = "flex";
-                } else {
+                if (subcomment.style.display != "none") {
                     subcomment.style.display = "none";
+                } else {
+                    subcomment.style.display = "flex";
                 }
             })
 
@@ -44,6 +43,15 @@ function thread_buttons() {
         });
     });
 
+    function hideSubComments(subComments) {
+        console.log(subComments);
+
+        for (i = 0; i < subComments.length; i++) {
+            var subComment = document.getElementById(subComments[i]);
+            subComment.style.display = "none";
+        }
+    }
+
     /*Voer php script bij klik op like button*/
     let likeButtons = document.querySelectorAll('.like_button');
     likeButtons.forEach(like_button => {
@@ -55,13 +63,28 @@ function thread_buttons() {
             } else {
                 var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="comment_id" value="' + id + '" />' + '<input type="text" name="post_id" value=""/></form>');
             }
-    
-            $('body').append(form);
-            form.submit();
 
+            var subCommentArray = $('.subcomment_container[style="display: none;"]').map(function() {
+                return this.id;
+            }).get();
+
+            $.ajax({
+                type: "POST",
+                url: 'like.php' + window.location.search,
+                data: form.serialize(),
+                success: function (data) {
+                    $(".thread_content_container").html(data);
+                    $.getScript("thread.js");
+                    $.getScript("textarea_resize.js");
+                },
+                complete: function(jqXHR){
+                    if(jqXHR.status == 409) {
+                        window.location.href = "login_signup/login_page.php";
+                    }
+                    hideSubComments(subCommentArray);
+                }
+            });
         });
-
-
     });
 
     /*Delete post knop*/
@@ -112,23 +135,6 @@ function thread_buttons() {
             });
         });
     }
-
-
-    // $(".idkkk").submit(function(event) {    
-    //     const url = window.location.href;
-    //     const params = new URLSearchParams(new URL(url).search);
-    //     const v = params.get("v");
-        
-    //     event.preventDefault();  // prevent the form from submitting
-    //     $.ajax({
-    //         type: "GET",
-    //         url: url,
-    //         data: $(this).serialize(),
-    //         success: function (data) {
-    //             $(".thread_content_container").html(data);
-    //         }
-    //     });
-    // });
 }
 
 thread_buttons();

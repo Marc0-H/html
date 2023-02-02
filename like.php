@@ -16,7 +16,7 @@
     }
 
     if (!isset($_SESSION["userId"])) {
-        header("Location: login_signup/login_page.php");
+        http_response_code(409);
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -50,7 +50,7 @@
     try {
         $post_id = $_GET['v'];
         mysqli_query($connection, $like_query);
-        header("Location: thread.php?v=$post_id");
+        header("Location: filtered_results_thread.php?v=$post_id");
 
     } catch (PDOExeption $e) {
         echo "ERROR!!!<br>";
