@@ -299,6 +299,9 @@ select,
     justify-self: end;
 }
 
+.g-recaptcha {
+    margin-left:50px;
+}
 @media only screen and (max-width: 590px) {
     .signup_prompt {
 
@@ -545,5 +548,12 @@ select,
         line-height: 1.1;
         background-color: #fff;
         background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+    }
+
+    .g-recaptcha {
+        transform: scale(0.6);
+        position: absolute;
+        top: 540px;
+        margin-left: -50px;
     }
 }

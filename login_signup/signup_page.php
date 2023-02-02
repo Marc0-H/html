@@ -52,8 +52,13 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 
     <div>
-        <button class="submit_button" style="transform: translateY(10px); transform:translateX(5px)" type="submit" name="submit">submit</a>
+        <button class="submit_button" style="transform: translateY(10px);
+        transform:translateX(5px)" type="submit" name="submit">submit</a>
     </div>
+
+    <div class="g-recaptcha" data-sitekey="6LdHu0ckAAAAAFHmqSLGQWVmhjV40wFi-BNnp190">
+    </div>
+
 <?php
 //error checking by checking url for error codes made by program.
     if (isset($_GET["error"])) {
@@ -92,11 +97,15 @@ if ($_SERVER['HTTPS'] != 'on') {
             <p> Your password is too short.</p>
             </div>";
         }
-
+        else if ($_GET["error"] === "recaptchafailed") {
+           echo "<div class='error_message'>
+            <p> Verification failed. Stop being a bot.</p>
+            </div>";
+        }
 }
 ?>
-    </div>
-    </form>
+</div>
+</form>
 
 <script>
     let pw = document.getElementById("uPassword");
@@ -117,6 +126,8 @@ if ($_SERVER['HTTPS'] != 'on') {
     }
     pw.addEventListener("change", checkMatch);
     re_pw.addEventListener("keyup", checkMatch);
+
 </script>
+ <script src="https://www.google.com/recaptcha/api.js"></script>
 </body>
 </html>
