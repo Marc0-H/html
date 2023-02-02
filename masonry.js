@@ -120,9 +120,10 @@ function fetchData(){
                 grid.innerHTML = '';
                 generateMasonryGrid(3, posts);
 
-
                 // Check if the page has enough content or not. If not then fetch records
                 checkWindowSize();
+
+                loading_data = false;
 
                 $.getScript("cards.js");
             }
@@ -131,16 +132,20 @@ function fetchData(){
 }
 
 $(document).on('touchmove', onScroll); // for mobile
-       
-function onScroll(){
-     var position = $(window).scrollTop();
-     var bottom = $(document).height() - $(window).height() - 1;
 
-     if(position >= bottom) {
-          fetchData();
-     }
+let loading_data = false;
+
+function onScroll(){
+    var position = $(window).scrollTop();
+    var bottom = $(document).height() - $(window).height() - 1;
+
+    if(position >= bottom && loading_data == false) {
+        loading_data = true;
+        fetchData();
+    }
 }
 
 $(window).scroll(function(){
      onScroll();
 });
+
