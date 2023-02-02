@@ -3,6 +3,9 @@
   include '../connection.php';
   $tag_query = "SELECT post_tag FROM post_tags";
   $tag_result = mysqli_query($connection, $tag_query);
+  $usr_tag_query = "SELECT tag_name FROM user_tags";
+  $usr_tag_result = mysqli_query($connection, $tag_query);
+  
   $user_query = "SELECT userUid, userId FROM users";
   $usr_result = mysqli_query($connection, $user_query);
 ?>
@@ -77,6 +80,19 @@
                           <form id="remove_tag_form" action="admin_remove_tag.php" method="post">
                             <p class="tag_text">Tag:</p>
                             <select class="admin_tag_selector" name="remove_tag"  form="remove_tag_form">
+                              <?php
+                              while ($row = mysqli_fetch_array($tag_result)) {
+                                echo "<option class='tag_option' value=" . $row['post_tag'] . ">" . $row['post_tag'] . "</option>";
+                              } 
+                              ?>
+                            <input type="submit" id="remove_tag_submit" class="remove_tag_submit" name="remove_tag_submit" value="Remove tag!">
+                        </form>
+                      </div>
+                      <div class="admin_remove_tag_div">
+                          <h1> Remove tag: </h1>
+                          <form id="remove_user_tag_form" action="admin_remove_user_tag.php" method="post">
+                            <p class="tag_text">Tag:</p>
+                            <select class="admin_user_tag_selector" name="remove_user_tag"  form="remove_user_tag_form">
                               <?php
                               while ($row = mysqli_fetch_array($tag_result)) {
                                 echo "<option class='tag_option' value=" . $row['post_tag'] . ">" . $row['post_tag'] . "</option>";
