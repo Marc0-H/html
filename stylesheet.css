@@ -616,7 +616,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     margin-top: -3px;
 }
 
-#create_post {
+.main_content_title > .create_post {
     margin-left: auto;
     font-size: 38px;
     color: var(--primary_color);
@@ -625,7 +625,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     border-width: 3px;
 }
 
-#create_post:hover {
+.main_content_title > .create_post:hover {
     cursor: pointer;
     transform: scale(1.1);
 }

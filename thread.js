@@ -77,7 +77,10 @@ function thread_buttons() {
                     $.getScript("thread.js");
                     $.getScript("textarea_resize.js");
                 },
-                complete: function(){
+                complete: function(jqXHR){
+                    if(jqXHR.status == 409) {
+                        window.location.href = "login_signup/login_page.php";
+                    }
                     hideSubComments(subCommentArray);
                 }
             });
