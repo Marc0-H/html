@@ -108,9 +108,7 @@
 
                 <div class="main_content_container">
                     <div class="main_content_title">Discover
-                        <?php if (isset($_SESSION["userId"])) { ?>
-                            <i id="create_post" class="material-icons tooltip">add<div class="tooltip_text">Create post</div></i>
-                        <?php } ?>
+                            <i id="create_post<?php if (isset($_SESSION["userId"])) {?>_logged_in<?php }?>" class="material-icons tooltip create_post">add<div class="tooltip_text">Create post</div></i>
                     </div>
                     <div class="main_content_posts">
                         <?php include 'filtered_results.php'  ?>

@@ -616,7 +616,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     margin-top: -3px;
 }
 
-#create_post {
+.main_content_title > .create_post {
     margin-left: auto;
     font-size: 38px;
     color: var(--primary_color);
@@ -625,7 +625,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     border-width: 3px;
 }
 
-#create_post:hover {
+.main_content_title > .create_post:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
@@ -892,6 +892,10 @@ input[type="checkbox"]:checked, input[type="radio"] {
   border-radius: 5px;
   display: flex;
 }
+
+.tag_option {
+  text-transform: capitalize;
+}
 /*New-thread page style end*/
 
 /* Profile page style start*/
@@ -909,6 +913,17 @@ input[type="checkbox"]:checked, input[type="radio"] {
 }
 
 /* profi page style end */
+
+/*admin page style start*/
+.tag_name {
+  text-transform: capitalize;
+}
+
+.admin_remove_tag_div {
+  margin-top: 24px;
+}
+
+/*admin page style end*/
 
 
 /*Mobile view style start*/

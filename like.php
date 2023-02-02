@@ -16,7 +16,7 @@
     }
 
     if (!isset($_SESSION["userId"])) {
-        header("Location: login_signup/login_page.php");
+        http_response_code(409);
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
