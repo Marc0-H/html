@@ -1,5 +1,9 @@
 <?php
   session_start();
+  include '../connection.php';
+  $tag_query = "SELECT post_tag FROM post_tags";
+  $tag_result = mysqli_query($connection, $tag_query);
+
 ?>
 
 <!DOCTYPE html>
@@ -47,14 +51,30 @@
                } else { ?>
                   <div class="main_content_title">Admin page</div>
                   <br>  
-                      <div class= "profile_page_div">
-                        <h1> Add tag </h1><br>
-                        <form id="add_tag_form" action="add_tag.php" method="post">
+                      <div class= "admin_add_tag_div">
+                        <h1> Add tag: </h1>
+                        <p>Capitilize the first letter!</p>
+                        <form id="add_tag_form" action="admin_add_tag.php" method="post">
                           <input name="new_tag_name" class="new_tag_name" type="text" placeholder="New tag name">
                           <label for="tag_color_picker">Tag color:</label>
                           <input type="color" name="tag_color_picker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" >
                           <input type="submit" id="add_tag_submit" name="add_tag_submit" value="Add tag!">
                         </form>
+                      </div>
+                      <div class="admin_remove_tag_div">
+                        <h1> Remove tag: </h1>
+                        <form id="remove_tag_form" action="admin_remove_tag.php" method="post">
+                          <p class="tag_text">Tag:</p>
+                          <select class="tag_selector" name="remove_tag"  form="remove_tag_form">
+                            <?php
+                            while ($row = mysqli_fetch_array($tag_result)) {
+                              echo "<option class='tag_option' value=" . $row['post_tag'] . ">" . $row['post_tag'] . "</option>";
+                            } 
+                            ?>
+                            <input type="submit" name="remove_tag_submit" value="Remove tag!">
+                        </form>
+                      </div>
+                      <div class="admin_delete_user_div">
                       </div>
                     <?php } ?>
                     <div class="main_content_posts">

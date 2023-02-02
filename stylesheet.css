@@ -892,6 +892,10 @@ input[type="checkbox"]:checked, input[type="radio"] {
   border-radius: 5px;
   display: flex;
 }
+
+.tag_option {
+  text-transform: capitalize;
+}
 /*New-thread page style end*/
 
 /* Profile page style start*/
@@ -913,6 +917,10 @@ input[type="checkbox"]:checked, input[type="radio"] {
 /*admin page style start*/
 .tag_name {
   text-transform: capitalize;
+}
+
+.admin_remove_tag_div {
+  margin-top: 24px;
 }
 
 /*admin page style end*/
