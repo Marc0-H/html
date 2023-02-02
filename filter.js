@@ -35,6 +35,7 @@ function toggleDropdown(buttonEl, dropdownEl) {
 
 
 $(".filter_form").submit(function(event) {
+    $('#start').val(0);
     event.preventDefault();  // prevent the form from submitting
     $.ajax({
         type: "GET",
@@ -51,6 +52,7 @@ $(".filter_form").submit(function(event) {
 });
 
 $(".search_form").submit(function(event) {
+    $('#start').val(0);
     event.preventDefault();  // prevent the form from submitting
     $.ajax({
         type: "GET",

@@ -2,16 +2,15 @@ const grid = document.querySelector('.main_content_posts');
 
 posts = [];
 
-let cards = document.querySelectorAll('.main_content_posts > .post_container');
+let cards = document.querySelectorAll('.main_content_posts .post_container');
 
 for (let i = 0; i < cards.length; i++) {
-
     posts.push(cards[i]);
 }
 
 
 function generateMasonryGrid(columns, posts) {
-
+    posts.forEach(post => { post.style.display = "none"});
 
     //store all column arrays which contains the relevant posts.
     let columnWrappers = {};
@@ -38,6 +37,8 @@ function generateMasonryGrid(columns, posts) {
 
         grid.appendChild(column);
     }
+
+    posts.forEach(post => { post.style.display = "flex"});
 }
 
 window.addEventListener('resize', () => {
@@ -81,3 +82,65 @@ if (create_post_logged_in != null) {
         window.location.href = "newthread.php";
     });
 }
+
+
+
+checkWindowSize();
+
+// Check if the page has enough content or not. If not then fetch records
+function checkWindowSize(){
+   if($(window).height() >= $(document).height()){
+      // Fetch records
+      fetchData();
+   }
+}
+
+// Fetch records
+function fetchData(){
+   var start = Number($('#start').val());
+   var allcount = Number($('#totalrecords').val());
+   var rowperpage = Number($('#rowperpage').val());
+   start = start + rowperpage;
+
+    if(start <= allcount){
+        $('#start').val(start);
+
+        $.ajax({
+            url:"filtered_results.php",
+            type: 'post',
+            data: {start:start,rowperpage: rowperpage},
+            success: function(response){
+
+                cards = $($.parseHTML(response)).filter(".post_container");
+                
+                for (let i = 0; i < cards.length; i++) {
+                    posts.push(cards[i]);
+                }
+
+                grid.innerHTML = '';
+                generateMasonryGrid(3, posts);
+
+
+                // Check if the page has enough content or not. If not then fetch records
+                checkWindowSize();
+
+                $.getScript("cards.js");
+            }
+        });
+    }
+}
+
+$(document).on('touchmove', onScroll); // for mobile
+       
+function onScroll(){
+     var position = $(window).scrollTop();
+     var bottom = $(document).height() - $(window).height() - 1;
+
+     if(position >= bottom) {
+          fetchData();
+     }
+}
+
+$(window).scroll(function(){
+     onScroll();
+});

@@ -110,8 +110,22 @@
                     <div class="main_content_title">Discover
                             <i id="create_post<?php if (isset($_SESSION["userId"])) {?>_logged_in<?php }?>" class="material-icons tooltip create_post">add<div class="tooltip_text">Create post</div></i>
                     </div>
+                        <?php
+                             $rowperpage = 9;
+
+                             // counting total number of posts
+                             $postcount_query = "SELECT count(*) AS postcount FROM posts";
+                             $postcount_result = mysqli_query($connection,$postcount_query);
+                             $postcount_fetch = mysqli_fetch_array($postcount_result);
+                             $postcount = $postcount_fetch['postcount'];
+                        ?>
+
+                        <input type="hidden" id="start" value="0">
+                        <input type="hidden" id="rowperpage" value="<?php echo $rowperpage ?>">
+                        <input type="hidden" id="totalrecords" value="<?php echo $postcount ?>">
+
                     <div class="main_content_posts">
-                        <?php include 'filtered_results.php'  ?>
+                        <?php include 'filtered_results.php'?>
                     </div>
                 </div>
             </div>

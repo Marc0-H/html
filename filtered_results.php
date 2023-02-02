@@ -78,12 +78,20 @@
 
 // eint
 
+    $start = 0;
+    $rowperpage = 9;
+    if(isset($_POST['start'])){
+        $start = mysqli_real_escape_string($connection,$_POST['start']); 
+    }
+    if(isset($_POST['rowperpage'])){
+        $rowperpage = mysqli_real_escape_string($connection,$_POST['rowperpage']); 
+    }
 
     if (isset($_GET["filter-sortby"])) {
         $sortby = $_GET["filter-sortby"];
         if (!empty($sortby)) {
             if ($sortby == "latest") {
-                $query = "SELECT * FROM posts JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " ORDER BY post_id DESC";
+                $query = "SELECT * FROM posts JOIN users ON posts.user_id = users.userId ' . $subjects_query . ' ' . $role_query . ' ORDER BY post_id DESC LIMIT $start, $rowperpage";
             } else if ($sortby == "populairity") {
                 $query = "SELECT posts.*,COUNT(post_upvote_link.post_id) AS likes FROM posts LEFT JOIN post_upvote_link ON posts.post_id = post_upvote_link.post_id JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " GROUP BY posts.post_id ORDER BY likes DESC";
             } else if ($sortby == "controversial") {
@@ -91,7 +99,7 @@
             }
         }
     } else {
-        $query = "SELECT * FROM posts ORDER BY post_id DESC";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT $start, $rowperpage";
     }
 
 
