@@ -32,7 +32,7 @@ if ($_SERVER['HTTPS'] != 'on') {
 
     <div class="userInfo">
         <label for="uMatch">Re-enter</label>
-        <input required type="password" id="uMatch" name="uMatch" placeholder="Re-enter your password" style="font-size:20px" autocomplete="off">
+        <input required type="password" id="uMatch" name="uMatch" placeholder="Re-enter your password" style="font-size:20px; margin-right: 320px;" autocomplete="off">
     </div>
 
     <div class="userInfo">
