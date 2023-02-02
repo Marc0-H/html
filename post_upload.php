@@ -53,7 +53,7 @@ function check_file($filename) {
 }
 
 function canPost($id, $connection) {
-    $query = "SELECT latestPost FROM users WHERE id = $id";
+    $query = "SELECT latestPost FROM users WHERE userId = $id";
     $latestPost = mysqli_query($connection, $query);
     $current_time = time();
 
