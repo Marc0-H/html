@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
         $name = mysqli_real_escape_string($connection, htmlspecialchars($_POST["username"]));
         $password = mysqli_real_escape_string($connection, htmlspecialchars($_POST["uPassword"]));
         $email = mysqli_real_escape_string($connection, htmlspecialchars($_POST["email"]));
-        $tag = mysqli_real_escape_string($connection, htmlspecialchars($_POST["selectbox"]));
+        $tag = mysqli_real_escape_string($connection, htmlspecialchars($_POST["select"]));
     }
     else {
         header("location: ../signup_page.php?error=recaptchafailed");
