@@ -910,6 +910,13 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
 /* profi page style end */
 
+/*admin page style start*/
+.tag_name {
+  text-transform: capitalize;
+}
+
+/*admin page style end*/
+
 
 /*Mobile view style start*/
 @media only screen and (max-width: 1100px) {
