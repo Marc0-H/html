@@ -409,37 +409,6 @@ input[type="checkbox"]:checked, input[type="radio"] {
     color: var(--tag_font_color);
 }
 
-.tag-General {
-  background-color: rgb(207, 93, 17);
-}
-
-.tag-Math {
-  background-color: #2b0f6e;
-}
-
-.tag-Biology {
-  background-color: #14a10f;
-
-}
-
-.tag-English {
-  background-color: rgb(165, 14, 14);
-
-}
-
-.tag-History {
-  background-color: darkorange;
-
-}
-
-.tag-Science {
-  background-color: rgb(55, 141, 55);
-}
-
-.tag-Physics {
-  background-color: rgb(67, 88, 207);
-}
-
 .user_info_container {
     display: flex;
     align-items: center;
