@@ -31,12 +31,12 @@ if ($_SERVER['HTTPS'] != 'on') {
     <form method="post" action="php_scripts/update.php">
 
     <div class="userInfo">
-    <label for="uPassword">Password</label>
+    <label for="uPassword" style='margin-left: 27px;'>Password</label>
     <input required type="Password" id="uPassword" name="uPassword" placeholder="Enter a password" style="font-size:20px">
     </div>
 
     <div class="userInfo">
-        <label for="uMatch">Re-enter</label>
+        <label for="uMatch" style='margin-left: 27px;'>Re-enter</label>
         <input required type="password" id="uMatch" name="uMatch" placeholder="Re-enter your password" style="font-size:20px" autocomplete="off">
     </div>
 
