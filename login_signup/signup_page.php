@@ -26,13 +26,13 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 
     <div class="userInfo">
-    <label for="uPassword">Password</label>
-    <input required type="Password" id="uPassword" name="uPassword" placeholder="Enter a password" style="font-size:20px">
+    <label for="uPassword" style="margin-right: 279px;">Password</label>
+    <input required type="Password" id="uPassword" name="uPassword" placeholder="Enter a password">
     </div>
 
     <div class="userInfo">
-        <label for="uMatch">Re-enter</label>
-        <input required type="password" id="uMatch" name="uMatch" placeholder="Re-enter your password" style="font-size:20px" autocomplete="off">
+        <label for="uMatch" style="margin-right: 283px;" >Re-enter</label>
+        <input required type="password" id="uMatch" name="uMatch" placeholder="Re-enter your password" autocomplete="off">
     </div>
 
     <div class="userInfo">
@@ -42,7 +42,7 @@ if ($_SERVER['HTTPS'] != 'on') {
 
     <div class="userInfo">
     <label for="tag"></label>
-        <select name="select" class="select" style="margin-left: 37px; margin-top: 20px;">
+        <select name="select" class="select">
         <option value="MAVO"> MAVO student</option>
         <option value="HAVO"> HAVO student</option>
         <option value="VWO"> VWO student</option>

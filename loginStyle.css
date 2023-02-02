@@ -109,6 +109,10 @@
     border-bottom: 1px solid gray;
 }
 
+.reset_error_message {
+    margin-left: 94px;
+    margin-top: -90px;
+}
 .update_prompt {
     height: 300px;
     width: 400px;
@@ -152,17 +156,6 @@
     padding-left: 80px;
     margin-top: -88px;
 }
-
-/* .error_message {text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-}
-
-.error_message p {
-   height: 40px;
-} */
 
 input {
     display: block;
@@ -216,7 +209,6 @@ form .userinfo {
     font-size: 23px;
     padding: 8px;
     text-align: center;
-
 }
 
 .submit_button {
@@ -238,15 +230,6 @@ form .userinfo {
 .submit_button:hover {
     color: #2572d6;
     background-color: rgba(0, 132, 255, 0.05);
-}
-
-.selectbox {
-    -webkit-appearance: none;
-    /* Removes default webkit styles */
-    -moz-appearance: none;
-    /* Removes default mozilla styles */
-    appearance: none;
-    /* Removes default styles */
 }
 
 select {
@@ -295,6 +278,8 @@ select {
 
 .select {
     display: grid;
+    margin-left: 37px;
+    margin-top: 20px;
 }
 
 .select {
@@ -315,10 +300,9 @@ select,
 }
 
 @media only screen and (max-width: 590px) {
-
     .signup_prompt {
 
-        height: 450px;
+        height: 500px;
         width: 200px;
         background-color: var(--secondary_background_color);
         position: absolute;
@@ -393,6 +377,11 @@ select,
         border-bottom: 1px solid gray;
     }
 
+    .reset_error_message {
+        margin-left: 94px;
+        margin-top: 9px;
+    }
+
     .update_prompt {
         height: 300px;
         width: 400px;
@@ -425,7 +414,12 @@ select,
         font-size: bolder;
         padding-left: 50px;
         margin-top: -92px;
-                font-size: 11px;
+        font-size: 11px;
+
+    }
+
+    .update_error_message p {
+        margin-top: 15px;
 
     }
 
@@ -532,5 +526,24 @@ select,
 
     .signup a{
         font-size: 15px;
+    }
+
+    .select {
+        display: grid;
+        margin-left: 20px;
+    }
+
+    .select {
+        width: 10%;
+        min-width: 15ch;
+        max-width: 30ch;
+        border: 1px solid var(--select-border);
+        border-radius: 0.25em;
+        padding: 0.25em 0.5em;
+        font-size: 1rem;
+        cursor: pointer;
+        line-height: 1.1;
+        background-color: #fff;
+        background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
     }
 }

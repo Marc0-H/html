@@ -21,11 +21,11 @@ if ($_SERVER['HTTPS'] != 'on') {
         <h1>Login</h1>
         <form method="post" action="php_scripts/sign_in.php">
             <div class="userInfo">
-                <label for="username" style="margin-left: -80px;">Username</label>
+                <label for="username" style="margin-left: -5px;">Username</label>
                 <input required type="text" id="username" name="username">
             </div>
             <div class="userInfo">
-                <label for="password" style="margin-left: -80px;">Password</label>
+                <label for="password" style="margin-left: -10px;">Password</label>
                 <input required type="password" id="password" name="password">
             </div>
             <button class="submit_button" name="submit">submit</button>
