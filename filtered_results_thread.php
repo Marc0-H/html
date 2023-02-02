@@ -1,5 +1,9 @@
 <?php
     include '../connection.php';
+    
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
     session_start();
 
@@ -165,7 +169,7 @@
                     $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
                     }
             ?>
-                    <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
+                    <div id="subcomment-container-<?php echo $subcomment_id ?>" class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                         <div class="user_info_container">
                             <?php if (!empty($user_result["profile_image"])) { ?>
                                     <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">
@@ -344,7 +348,7 @@
                     $user_like = mysqli_fetch_assoc(mysqli_query($connection, $user_like_query));
                     }
             ?>
-                    <div class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
+                    <div id="subcomment-container-<?php echo $subcomment_id ?>" class="subcomment_container subcomment-<?php echo $comment_id ?> <?php if ($user_id == $op_id) { echo 'original_poster'; }?>">
                         <div class="user_info_container">
                             <?php if (!empty($user_result["profile_image"])) { ?>
                                     <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture">

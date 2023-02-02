@@ -5,6 +5,10 @@ if ($_SERVER['HTTPS'] != 'on') {
   exit;
 }
 session_start();
+include '../connection.php';
+$tag_query = "SELECT post_tag FROM post_tags";
+$tag_result = mysqli_query($connection, $tag_query);
+
 include 'header.php';
 
 ?>
@@ -18,14 +22,12 @@ include 'header.php';
   <title>New thread</title>
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="main.js" defer></script>
   <script src="header.js" defer></script>
 
 </head>
 <body>
   <main>
     <div class="main_container">
-    <!-- <?php include 'sidebar.php'; ?> -->
     <div class="new_post_main_content_container">
       <?php
           if (!isset($_SESSION['userId'])) {
@@ -48,14 +50,22 @@ include 'header.php';
                 </div>
                 <div class="tag_container">
                   <p class="tag_text">Tag:</p>
+                  
+                  
                   <select class="tag_selector" name="post_tag" id="tag_selector" form="new_post_form">
-                    <option value="General"  >General</option>
-                    <option value="Biology" >Biology</option>
+
+                    <!-- <option value="General"  >General</option> -->
+                    <?php
+                    while ($row = mysqli_fetch_array($tag_result)) {
+                      echo "<option class='tag_option' value=" . $row['post_tag'] . ">" . $row['post_tag'] . "</option>";
+                    } 
+                    ?>
+                    <!-- <option value="Biology" >Biology</option>
                     <option value="English" >English</option>
                     <option value="History" >History</option>
                     <option value="Math" >Math</option>
                     <option value="Physics" >Physics</option>
-                    <option value="Science" >Science</option>
+                    <option value="Science" >Science</option> -->
                   </select>
                 </div>
                 <input type="submit" onclick="return VerifyUploadSizeIsOK()" class="new_post_button" value="Submit">

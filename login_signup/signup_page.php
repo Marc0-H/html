@@ -26,13 +26,13 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 
     <div class="userInfo">
-    <label for="uPassword">Password</label>
-    <input required type="Password" id="uPassword" name="uPassword" placeholder="Enter a password" style="font-size:20px">
+    <label for="uPassword" style="margin-right: 279px;">Password</label>
+    <input required type="Password" id="uPassword" name="uPassword" placeholder="Enter a password">
     </div>
 
     <div class="userInfo">
-        <label for="uMatch">Re-enter</label>
-        <input required type="password" id="uMatch" name="uMatch" placeholder="Re-enter your password" style="font-size:20px" autocomplete="off">
+        <label for="uMatch" style="margin-right: 283px;" >Re-enter</label>
+        <input required type="password" id="uMatch" name="uMatch" placeholder="Re-enter your password" autocomplete="off">
     </div>
 
     <div class="userInfo">
@@ -42,7 +42,7 @@ if ($_SERVER['HTTPS'] != 'on') {
 
     <div class="userInfo">
     <label for="tag"></label>
-        <select name="select" class="select" style="margin-left: 37px; margin-top: 20px;">
+        <select name="select" class="select">
         <option value="MAVO"> MAVO student</option>
         <option value="HAVO"> HAVO student</option>
         <option value="VWO"> VWO student</option>
@@ -52,11 +52,15 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 
     <div>
-        <button class="submit_button" style="transform: translateY(10px); transform:translateX(5px)" type="submit" name="submit">submit</a>
+        <button class="submit_button" style="transform: translateY(10px);
+        transform:translateX(5px)" type="submit" name="submit">submit</a>
     </div>
+
+    <div class="g-recaptcha" data-sitekey="6LdHu0ckAAAAAFHmqSLGQWVmhjV40wFi-BNnp190">
+    </div>
+
 <?php
 //error checking by checking url for error codes made by program.
-
     if (isset($_GET["error"])) {
         if ($_GET["error"] === "userexists") {
             echo "<div class='error_message'>
@@ -88,10 +92,20 @@ if ($_SERVER['HTTPS'] != 'on') {
             <p> Invalid tag entered. Try again. </p>
             </div>";
         }
+        else if ($_GET["error"] === "pwshort") {
+            echo "<div class='error_message'>
+            <p> Your password is too short.</p>
+            </div>";
+        }
+        else if ($_GET["error"] === "recaptchafailed") {
+           echo "<div class='error_message'>
+            <p> Verification failed. Stop being a bot.</p>
+            </div>";
+        }
 }
 ?>
-    </div>
-    </form>
+</div>
+</form>
 
 <script>
     let pw = document.getElementById("uPassword");
@@ -112,6 +126,8 @@ if ($_SERVER['HTTPS'] != 'on') {
     }
     pw.addEventListener("change", checkMatch);
     re_pw.addEventListener("keyup", checkMatch);
+
 </script>
+ <script src="https://www.google.com/recaptcha/api.js"></script>
 </body>
 </html>

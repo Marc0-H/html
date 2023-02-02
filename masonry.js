@@ -38,8 +38,6 @@ function generateMasonryGrid(columns, posts) {
 
         grid.appendChild(column);
     }
-
-    
 }
 
 window.addEventListener('resize', () => {
@@ -66,3 +64,20 @@ function handleResize() {
 
 grid.innerHTML = '';
 handleResize();
+
+/*Create post button*/
+let create_post = document.getElementById("create_post");
+
+if (create_post != null) {
+    create_post.addEventListener("click", () => {
+        window.location.href = "login_signup/login_page.php";
+    });
+}
+
+let create_post_logged_in = document.getElementById("create_post_logged_in");
+
+if (create_post_logged_in != null) {
+    create_post_logged_in.addEventListener("click", () => {
+        window.location.href = "newthread.php";
+    });
+}

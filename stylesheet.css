@@ -384,7 +384,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     margin-left: auto;
     width: calc(100% - 60px);
     margin-top: 20px;
-    display: none;
+    display: flex;
 }
 
 .post_title {
@@ -585,7 +585,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     margin-top: -3px;
 }
 
-#create_post {
+.main_content_title > .create_post {
     margin-left: auto;
     font-size: 38px;
     color: var(--primary_color);
@@ -594,7 +594,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     border-width: 3px;
 }
 
-#create_post:hover {
+.main_content_title > .create_post:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
@@ -861,10 +861,39 @@ input[type="checkbox"]:checked, input[type="radio"] {
   border-radius: 5px;
   display: flex;
 }
+
+.tag_option {
+  text-transform: capitalize;
+}
 /*New-thread page style end*/
 
-/*Profile page style start*/
-/**/
+/* Profile page style start*/
+  .profile_page_div {
+    margin-left: 50px;
+  }
+  
+  .profile_page_title {
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    width: 100%;
+    color: var(--text_font_color);
+    display: flex;
+}
+
+/* profi page style end */
+
+/*admin page style start*/
+.tag_name {
+  text-transform: capitalize;
+}
+
+.admin_remove_tag_div {
+  margin-top: 24px;
+}
+
+/*admin page style end*/
+
 
 /*Mobile view style start*/
 @media only screen and (max-width: 1100px) {
