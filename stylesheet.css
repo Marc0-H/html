@@ -884,12 +884,41 @@ input[type="checkbox"]:checked, input[type="radio"] {
 /* profi page style end */
 
 /*admin page style start*/
-.tag_name {
+.new_tag_name , .new_user_tag_name{
   text-transform: capitalize;
+  flex-grow: 1;
+  background-color: var(--secondary_background_color);
 }
 
-.admin_remove_tag_div {
+.admin_add_user_tag_div, .admin_remove_tag_div, .admin_remove_user_tag_div, .admin_delete_user_div {
   margin-top: 24px;
+}
+
+.admin_user_selector, .admin_tag_selector, .admin_user_tag_selector{
+  width: 75%;
+  margin-right: 5%;
+  background-color: var(--secondary_background_color);
+
+}
+.admin_add_tag_subdiv, .admin_add_user_tag_subdiv {
+  display:flex;
+  width: 75%;
+}
+
+.add_tag_form, .add_user_tag_form {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remove_tag_submit, .add_tag_submit, .remove_user_submit, .add_user_tag_submit, .remove_user_tag_submit {
+  width: 20%;
+  background-color: var(--secondary_background_color);
+}
+
+.tag_color_picker {
+  background-color: var(--secondary_background_color);
 }
 
 /*admin page style end*/
