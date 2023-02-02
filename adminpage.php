@@ -3,7 +3,8 @@
   include '../connection.php';
   $tag_query = "SELECT post_tag FROM post_tags";
   $tag_result = mysqli_query($connection, $tag_query);
-
+  $user_query = "SELECT userUid, userId FROM users";
+  $usr_result = mysqli_query($connection, $user_query);
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +76,21 @@
                         </form>
                       </div>
                       <div class="admin_delete_user_div">
+                        <h1> Remove user: </h1>
+                        <form id="remove_user_form" action="admin_remove_user.php" method="post">
+                          <p>User:</p>   
+                          <select class="user_selector" name="remove_user" form="remove_user_form">
+                            <?php
+                            if ($usr_result) {
+                              while($user_row = mysqli_fetch_assoc($usr_result)) {
+                                echo "<option class='select_user' value=" . $user_row['userUid'] . ">" . $user_row['userUid'] . "</option>";
+                              }
+                            } else {
+                              echo "Query failed: " . mysqli_error($conn);
+                            }
+                            ?>
+                            <input type="submit" name="remove_user_submit" value="Remove user!">
+                        </form>
                       </div>
                     <?php } ?>
                     <div class="main_content_posts">
