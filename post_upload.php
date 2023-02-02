@@ -55,6 +55,7 @@ function check_file($filename) {
 function canPost($id, $connection) {
     $query = "SELECT latestPost FROM users WHERE userId = $id";
     $latestPost = mysqli_query($connection, $query);
+    echo "latest post : " . $latestPost;
     $current_time = time();
 
     if ($current_time - $latestPost < 180) {
