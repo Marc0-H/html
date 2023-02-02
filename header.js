@@ -22,5 +22,3 @@ let mobileFilterBtn = document.querySelector(".mobile_filter_btn");
 mobileFilterBtn.addEventListener("click", () => {
     sidebarContainer.classList.toggle("sidebar_active");
 });
-
-
