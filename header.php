@@ -44,6 +44,22 @@
 
                 <a href="login_signup/signup_page.php" class="mobile_button">Register</a>
                 <a href="login_signup/login_page.php" class="mobile_button" >Login</a>
+            <?php } elseif ($_SESSION["userId"] == 1){?>
+                <div class="dropdown_menu_profile">
+                    <?php if (!empty($user_result["profile_image"])) { ?>
+                            <img src="data:image/png;base64,<?php echo $user_result["profile_image"]?>" alt="profile picture" class="profile_button">
+                    <?php } else { ?>
+                            <img src="images/default.png" alt="default picture" class="profile_button">
+                    <?php } ?>
+                    <div class="dropdown_content">
+                        <a href="settings.php" class="settings_button">Settings</a>
+                        <a href="login_signup/logout.php" class="log_out_button">Log out</a>
+                    </div>
+                </div>
+                <a href="adminpage.php" class="mobile_button">Admin page</a>
+                <a href="newthread.php" class="mobile_button">Create post</a>
+                <a href="settings.php" class="mobile_button">Settings</a>
+                <a href="login_signup/logout.php" class="mobile_button">Log out</a>
             <?php
             } else {
             // Show if logged in.
