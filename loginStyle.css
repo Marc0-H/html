@@ -242,17 +242,18 @@ form .userinfo {
 }
 
 select {
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    padding: 0 1.25em 0 0;
-    padding-left: 10px;
-    margin: 0;
-    width: 100%;
-    font-family: inherit;
-    font-size: inherit;
-    cursor: inherit;
-    line-height: inherit;
+    display: block;
+    height: 55px;
+    width: 86%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 20px;
+
+    font-weight: 300;
+    transition: background-color 1s ease;
+    margin-left: 25px;
 }
 
 select::-ms-expand {
@@ -261,20 +262,6 @@ select::-ms-expand {
 
 select {
     outline: none;
-}
-
-.select {
-    width: 100%;
-    min-width: 15ch;
-    max-width: 30ch;
-    border: 1px solid var(--select-border);
-    border-radius: 0.25em;
-    padding: 0.25em 0.5em;
-    font-size: 1rem;
-    cursor: pointer;
-    line-height: 1.1;
-    background-color: #fff;
-    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
 }
 
 .select::after {
@@ -362,7 +349,6 @@ select,
 
     .login_prompt h1 {
         text-align: center;
-        /* padding: 0 0 20px 0; */
         border-bottom: 1px solid var(--details_color);
         font-size: 20px;
     }
@@ -371,6 +357,7 @@ select,
         height: 200px;
         width: 400px;
         background-color: rgba(255, 255, 255, 0.13);
+
         position: absolute;
         transform: translate(-50%, -50%);
         top: 30%;
@@ -378,6 +365,7 @@ select,
         border-radius: 10px;
         backdrop-filter: blur(10px);
         border: 2px solid rgba(255, 255, 255, 0.1);
+        
         box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
         padding: 50px 35px;
         margin-top: 90px;
@@ -410,20 +398,22 @@ select,
     }
 
     .update_prompt {
+        position: absolute;
         height: 300px;
         width: 400px;
         background-color: rgba(255, 255, 255, 0.13);
-        position: absolute;
+
         transform: translate(-50%, -50%);
+        margin-top: 90px;
+        z-index: -1;
         top: 30%;
         left: 50%;
+
         border-radius: 10px;
         backdrop-filter: blur(10px);
         border: 2px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
         padding: 50px 35px;
-        margin-top: 90px;
-        z-index: -1;
     }
 
     .update_prompt h1 {
@@ -564,14 +554,14 @@ select,
         width: 10%;
         min-width: 15ch;
         max-width: 30ch;
+        line-height: 1.1;
+        background-color: #fff;
+        background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
         border: 1px solid var(--select-border);
         border-radius: 0.25em;
         padding: 0.25em 0.5em;
         font-size: 1rem;
         cursor: pointer;
-        line-height: 1.1;
-        background-color: #fff;
-        background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
     }
 
     .g-recaptcha {

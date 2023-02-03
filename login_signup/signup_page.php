@@ -50,15 +50,13 @@ if ($_SERVER['HTTPS'] != 'on') {
         <option value="teacher"> teacher </option>
     </select>
     </div>
-
-    <div class="g-recaptcha" data-sitekey="6LdHu0ckAAAAAFHmqSLGQWVmhjV40wFi-BNnp190">
-    </div>
-
-    <div>
+  <div>
         <button class="submit_button" style="transform: translateY(10px);
         transform:translateX(5px)" type="submit" name="submit">submit</a>
     </div>
 
+    <div class="g-recaptcha" data-sitekey="6LdHu0ckAAAAAFHmqSLGQWVmhjV40wFi-BNnp190">
+    </div>
 
 <?php
 //error checking by checking url for error codes made by program.
