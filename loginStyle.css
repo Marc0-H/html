@@ -33,7 +33,7 @@
 
 .signup_prompt {
 
-    height: 650px;
+    height: 669px;
     width: 400px;
     background-color: var(--secondary_background_color);
     position: absolute;
@@ -213,9 +213,23 @@ form .userinfo {
 
 .submit_button {
     color: red;
-    margin-top: 30px;
+    margin-top: 25px;
     margin-bottom: 10px;
 
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.login_submit_button {
+    margin-top: 39px;
+    margin-bottom: 10px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
@@ -238,7 +252,7 @@ form .userinfo {
     color: rgb(255, 0, 0);
     font-size: bolder;
     padding-left: 80px;
-    margin-top: -166px;
+    margin-top: -89px;
 }
 
 select {
@@ -297,9 +311,8 @@ select,
 
 .g-recaptcha {
     margin-left:50px;
-    transform: scale(0.9);
-
 }
+
 @media only screen and (max-width: 590px) {
     .signup_prompt {
 
@@ -365,7 +378,7 @@ select,
         border-radius: 10px;
         backdrop-filter: blur(10px);
         border: 2px solid rgba(255, 255, 255, 0.1);
-        
+
         box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
         padding: 50px 35px;
         margin-top: 90px;
@@ -550,19 +563,6 @@ select,
         margin-left: 20px;
     }
 
-    .select {
-        width: 10%;
-        min-width: 15ch;
-        max-width: 30ch;
-        line-height: 1.1;
-        background-color: #fff;
-        background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-        border: 1px solid var(--select-border);
-        border-radius: 0.25em;
-        padding: 0.25em 0.5em;
-        font-size: 1rem;
-        cursor: pointer;
-    }
 
     .g-recaptcha {
         transform: scale(0.4);
