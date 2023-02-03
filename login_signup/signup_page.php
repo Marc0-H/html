@@ -41,21 +41,13 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 
     <div class="userInfo">
-    <!-- <label for="tag"></label>
-        <select name="select" class="select">
-        <option value="mavo"> MAVO student</option>
-        <option value="havo"> HAVO student</option>
-        <option value="vwo"> VWO student</option>
-        <option value="hbo/wo"> HBO/WO student </option>
-        <option value="teacher"> teacher </option> -->
-
         <select name="select" class="select">
             <?php
                 $sql = "SELECT tag_name FROM user_tags";
                 $result = mysqli_query($connection, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
                     $tag_name = $row["tag_name"];
-                    echo "<option value='$id'>$tag_name</option>";
+                    echo "<option value='$tag_name'>$tag_name</option>";
                 }
             ?>
     </select>
