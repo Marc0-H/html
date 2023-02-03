@@ -20,7 +20,7 @@ function test_input($data) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $user_tag = test_input($_POST["new_user_tag_name"]);
+  $user_tag = strtolower(test_input($_POST["new_user_tag_name"]));
 }
 
 try {
