@@ -137,6 +137,7 @@ function fetchData(){
                 handleResize();
 
                 $.getScript("cards.js");
+                resize();
             }
         });
     }
@@ -196,6 +197,7 @@ function toggleDropdown(buttonEl, dropdownEl) {
     }
 }
 
+// Ajax event for filter on index.php
 $(".filter_form").submit(function(event) {
     $('#start').val(0); // Start value for the database offset
 
@@ -231,6 +233,7 @@ $(".filter_form").submit(function(event) {
     });
 });
 
+// Ajax event for filter on thread.php
 $(".search_form").submit(function(event) {
     $('#start').val(0); // Start value for the database offset
 

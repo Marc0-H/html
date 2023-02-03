@@ -28,3 +28,4 @@ window.addEventListener('resize', () => {
 window.addEventListener('load', () => {
     resize();
 });
+
