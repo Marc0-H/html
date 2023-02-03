@@ -912,7 +912,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
   align-items: center;
 }
 
-.remove_tag_submit, .add_tag_submit, .remove_user_submit, .add_user_tag_submit, .remove_user_tag_submit {
+.admin_submit {
   width: 20%;
   background-color: var(--secondary_background_color);
 }
