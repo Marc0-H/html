@@ -1,7 +1,7 @@
 # EduZone
 
  
-1. Group IN-07: Robby Ching Jong, 14656116; Max Boot, nmr; Georgie Arushanov, nmr; Vincent Schoonderwoerd, nmr; Remco Hogerwerf, nmr; Marcello Hermans, nmr;
+1. Group IN-07: Robby Ching Jong, 14656116; Max Boot, 14606704; Georgie Arushanov, 14275139; Vincent Schoonderwoerd, 13753002; Remco Hogerwerf, 14348462; Marcello Hermans, 14621951;
 
 
 2. https://webtech-in07.webtech-uva.nl
