@@ -320,6 +320,11 @@ input[type="checkbox"]:checked, input[type="radio"] {
     accent-color: var(--primary_complement_hover);
 }
 
+label {
+    text-transform: capitalize;
+}
+
+
 .filter-button {
     width: calc(100% - 40px);
     width: 100%;
@@ -366,8 +371,19 @@ input[type="checkbox"]:checked, input[type="radio"] {
 }
 
 .post_container > .post_content_container > .post_content {
-    max-height: 200px;
+    /* max-height: 200px; */
     overflow: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    display: -moz-box;
+    -moz-line-clamp: 10;
+    -moz-box-orient: vertical;
+    display: box;
+    line-clamp: 10;
+    box-orient: vertical;
 }
 
 .post_content > p {
@@ -402,6 +418,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
     padding: 5px 20px;
     border-radius: 5px;
     margin-right: 20px;
+    text-transform: capitalize;
     /* background-color: var(--tag_color); */
 
     font-size: large;
@@ -898,6 +915,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
   width: 75%;
   margin-right: 5%;
   background-color: var(--secondary_background_color);
+  text-transform: capitalize;
 
 }
 .admin_add_tag_subdiv, .admin_add_user_tag_subdiv {
@@ -1184,6 +1202,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
     .post_title {
         font-size: 24px;
+        
     }
 
     .post_tag {
@@ -1212,6 +1231,14 @@ input[type="checkbox"]:checked, input[type="radio"] {
 
     .subcomment_container {
         width: calc(100% - 45px);
+    }
+
+    .thread_content_container {
+        margin-top: 20px;
+    }
+
+    .main_content_title {
+        margin-top: 30px;
     }
 }
 /*Mobile view style end*/

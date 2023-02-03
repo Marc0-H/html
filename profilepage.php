@@ -12,9 +12,9 @@
         <link rel="stylesheet" href="stylesheet.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
-        <script src="masonry.js" defer></script>
         <script src="header.js" defer></script>
         <script src="cards.js" defer></script>
+        <script src="index.js" defer></script>
         <script src="user_info_resize.js" defer></script>
     </head>
     <body>
@@ -50,6 +50,22 @@
                             </div>
                           <?php } ?>
                     </div>
+                        <?php
+                            $session_id = $_SESSION["userId"];
+
+                            $rowperpage = 6;
+
+                            // counting total number of posts
+                            $postcount_query = "SELECT count(*) AS postcount FROM posts WHERE user_id = $session_id";
+                            $postcount_result = mysqli_query($connection,$postcount_query);
+                            $postcount_fetch = mysqli_fetch_array($postcount_result);
+                            $postcount = $postcount_fetch['postcount'];
+                        ?>
+
+                        <input type="hidden" id="start" value="0">
+                        <input type="hidden" id="rowperpage" value="<?php echo $rowperpage ?>">
+                        <input type="hidden" id="totalrecords" value="<?php echo $postcount ?>">
+
                     <div class="main_content_posts">
                         <?php include 'filtered_results_profile.php'  ?>
                     </div>
