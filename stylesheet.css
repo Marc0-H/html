@@ -555,6 +555,7 @@ label {
     font-size: 38px;
     font-weight: bold;
     margin-bottom: 30px;
+    margin-top: 30px;
     color: var(--text_font_color);
     display: flex;
 }
@@ -1229,6 +1230,10 @@ label {
 
     .subcomment_container {
         width: calc(100% - 45px);
+    }
+
+    .thread_content_container {
+        margin-top: 20px;
     }
 }
 /*Mobile view style end*/
