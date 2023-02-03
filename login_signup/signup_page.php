@@ -4,7 +4,7 @@ if ($_SERVER['HTTPS'] != 'on') {
     header("location: $url");
     exit;
 }
-include '../../connection.php'
+include '../../connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
