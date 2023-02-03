@@ -320,6 +320,11 @@ input[type="checkbox"]:checked, input[type="radio"] {
     accent-color: var(--primary_complement_hover);
 }
 
+label {
+    text-transform: capitalize;
+}
+
+
 .filter-button {
     width: calc(100% - 40px);
     width: 100%;
