@@ -50,22 +50,16 @@ include 'header.php';
                 </div>
                 <div class="tag_container">
                   <p class="tag_text">Tag:</p>
-                  
-                  
+
+
                   <select class="tag_selector" name="post_tag" id="tag_selector" form="new_post_form">
 
                     <!-- <option value="General"  >General</option> -->
                     <?php
                     while ($row = mysqli_fetch_array($tag_result)) {
                       echo "<option class='tag_option' value=" . $row['post_tag'] . ">" . $row['post_tag'] . "</option>";
-                    } 
+                    }
                     ?>
-                    <!-- <option value="Biology" >Biology</option>
-                    <option value="English" >English</option>
-                    <option value="History" >History</option>
-                    <option value="Math" >Math</option>
-                    <option value="Physics" >Physics</option>
-                    <option value="Science" >Science</option> -->
                   </select>
                 </div>
                 <input type="submit" onclick="return VerifyUploadSizeIsOK()" class="new_post_button" value="Submit">

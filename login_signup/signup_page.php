@@ -43,16 +43,18 @@ include '../../connection.php';
 
         <select name="select" class="select">
             <?php
+            if ($connection) {
                 $sql = "SELECT tag_name FROM user_tags";
                 $result = mysqli_query($connection, $sql);
                 while ($row = mysqli_fetch_assoc($result)) {
                     $tag_name = $row["tag_name"];
                     echo "<option value='$tag_name'>$tag_name</option>";
                 }
+            }
             ?>
         </select>
 
-  <div>
+    <div>
 
     <div class="g-recaptcha" data-sitekey="6LdHu0ckAAAAAFHmqSLGQWVmhjV40wFi-BNnp190">
     </div>
@@ -63,7 +65,7 @@ include '../../connection.php';
 
 <?php
 //error checking by checking url for error codes made by program.
-//had to manually  add
+//had to manually  add red because user agent sheet is overwrting color
     if (isset($_GET["error"])) {
         if ($_GET["error"] === "userexists") {
             echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
@@ -102,7 +104,7 @@ include '../../connection.php';
         }
         else if ($_GET["error"] === "recaptchafailed") {
            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
-            <p> Verification failed. Stop being a bot.</p>
+            <p> Verification failed. Try again.</p>
             </div>";
         }
 }

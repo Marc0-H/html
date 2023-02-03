@@ -24,54 +24,56 @@ if (isset($_POST['submit'])) {
         header("location: ../signup_page.php?error=recaptchafailed");
         exit();
     }
-$tag_query = "SELECT user_tag FROM user_tags";
-$tag_result = mysqli_query($connection, $tag_query);
-while ($row = mysqli_fetch_array($tag_result)) {
-    echo "<option class='tag_option' value=" . $row['user_tag'] . ">" . $row['user_tag'] . "</option>";
-}
 
-if (!in_array($tag, $tagArray)) {
-    header("location: ../signup_page.php?error=invalidusertag");
-    exit();
-}
-if (checkUid($name) === FALSE) {
-    header("location: ../signup_page.php?error=invalidusername");
-    exit();
-}
-if (checkEmail($email) === FALSE) {
-    header("location: ../signup_page.php?error=invalidemail");
-    exit();
-}
-if (checkPW($password) === FALSE) {
-    header("location: ../signup_page.php?error=pwshort");
-    exit();
-}
-
-if (userExists($connection, $name, $email) === FALSE) {
-    try {
-        $sql = "INSERT INTO users (userEmail, userUid, userPwd, tag) VALUES (?, ?, ?, ?)";
-        $stmt = mysqli_stmt_init($connection);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("location: ../signup_page.php?error=stmtfailed");
-            exit();
-        }
-        else {
-            $hashed_pw = password_hash($password, PASSWORD_DEFAULT);
-            mysqli_stmt_bind_param($stmt, "ssss", $email, $name, $hashed_pw, $tag);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_close($stmt);
-            header("location: ../../index.php");
-        }
-    }catch(PDOexception $e) {
-        echo $sql . "<br>" . $e->getMessage();
+    $tags = array();
+    $tag_query = "SELECT tag_name FROM user_tags";
+    $tag_result = mysqli_query($connection, $tag_query);
+    while ($row = mysqli_fetch_array($tag_result)) {
+        array_push($tags, $row['user_tag']);
     }
-}
-// if there was an error in the function exit the script.
-else if (userExists($connection, $name, $email) === NULL) {
-    exit();
-}
-else {
+
+    if (!in_array($tag, $tags)) {
+        header("location: ../signup_page.php?error=invalidusertag");
+        exit();
+    }
+    if (checkUid($name) === FALSE) {
+        header("location: ../signup_page.php?error=invalidusername");
+        exit();
+    }
+    if (checkEmail($email) === FALSE) {
+        header("location: ../signup_page.php?error=invalidemail");
+        exit();
+    }
+    if (checkPW($password) === FALSE) {
+        header("location: ../signup_page.php?error=pwshort");
+        exit();
+    }
+
+    if (userExists($connection, $name, $email) === FALSE) {
+        try {
+            $sql = "INSERT INTO users (userEmail, userUid, userPwd, tag) VALUES (?, ?, ?, ?)";
+            $stmt = mysqli_stmt_init($connection);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: ../signup_page.php?error=stmtfailed");
+                exit();
+            }
+            else {
+                $hashed_pw = password_hash($password, PASSWORD_DEFAULT);
+                mysqli_stmt_bind_param($stmt, "ssss", $email, $name, $hashed_pw, $tag);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_close($stmt);
+                header("location: ../../index.php");
+            }
+        } catch(PDOexception $e) {
+            echo $sql . "<br>" . $e->getMessage();
+        }
+    }
+    // if there was an error in the function exit the script.
+    else if (userExists($connection, $name, $email) === NULL) {
+        exit();
+    }
+    else {
     header("location: ../signup_page.php?error=userexists");
-}
+    }
 }
 ?>
