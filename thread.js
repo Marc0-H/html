@@ -48,7 +48,7 @@ function thread_buttons() {
 
         for (i = 0; i < subComments.length; i++) {
             var subComment = document.getElementById(subComments[i]);
-            subComment.style.display = "none";
+            subComment.style.display = "flex";
         }
     }
 
@@ -64,7 +64,7 @@ function thread_buttons() {
                 var form = $('<form action="' + url + '" method="post" style="display: none;">' + '<input type="text" name="comment_id" value="' + id + '" />' + '<input type="text" name="post_id" value=""/></form>');
             }
 
-            var subCommentArray = $('.subcomment_container[style="display: none;"]').map(function() {
+            var subCommentArray = $('.subcomment_container[style="display: flex;"]').map(function() {
                 return this.id;
             }).get();
 
