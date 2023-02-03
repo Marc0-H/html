@@ -51,11 +51,12 @@ if ($_SERVER['HTTPS'] != 'on') {
     </select>
     </div>
   <div>
-        <button class="submit_button" style="transform: translateY(10px);
-        transform:translateX(5px)" type="submit" name="submit">submit</a>
-    </div>
 
     <div class="g-recaptcha" data-sitekey="6LdHu0ckAAAAAFHmqSLGQWVmhjV40wFi-BNnp190">
+    </div>
+
+        <button class="submit_button" style="transform: translateY(10px);
+        transform:translateX(5px)" type="submit" name="submit">submit</a>
     </div>
 
 <?php
