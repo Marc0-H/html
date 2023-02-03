@@ -871,6 +871,7 @@ label {
 }
 
 .tag_selector {
+  text-transform: capitalize;
   color: black;
 }
 
