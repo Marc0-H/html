@@ -29,12 +29,11 @@ if (isset($_POST['submit'])) {
     $tag_query = "SELECT tag_name FROM user_tags";
     $tag_result = mysqli_query($connection, $tag_query);
     while ($row = mysqli_fetch_array($tag_result)) {
-        array_push($tags, $row['user_tag']);
+        array_push($tags, $row['tag_name']);
     }
 
     if (!in_array($tag, $tags)) {
-        print_r($tags);
-        // header("location: ../signup_page.php?error=invalidusertag");
+        header("location: ../signup_page.php?error=invalidusertag");
         exit();
     }
     if (checkUid($name) === FALSE) {
