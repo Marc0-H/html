@@ -4,6 +4,7 @@ if ($_SERVER['HTTPS'] != 'on') {
     header("location: $url");
     exit;
 }
+include '../../connection.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +41,6 @@ if ($_SERVER['HTTPS'] != 'on') {
     <input required type="email" id="email" name="email" placeholder="Enter your email">
     </div>
 
-    <div class="userInfo">
         <select name="select" class="select">
             <?php
                 $sql = "SELECT tag_name FROM user_tags";
@@ -50,8 +50,8 @@ if ($_SERVER['HTTPS'] != 'on') {
                     echo "<option value='$tag_name'>$tag_name</option>";
                 }
             ?>
-    </select>
-    </div>
+        </select>
+
   <div>
 
     <div class="g-recaptcha" data-sitekey="6LdHu0ckAAAAAFHmqSLGQWVmhjV40wFi-BNnp190">
