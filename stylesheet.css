@@ -371,8 +371,19 @@ label {
 }
 
 .post_container > .post_content_container > .post_content {
-    max-height: 200px;
+    /* max-height: 200px; */
     overflow: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    display: -moz-box;
+    -moz-line-clamp: 10;
+    -moz-box-orient: vertical;
+    display: box;
+    line-clamp: 10;
+    box-orient: vertical;
 }
 
 .post_content > p {
