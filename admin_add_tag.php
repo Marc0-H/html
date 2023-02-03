@@ -20,7 +20,7 @@ function test_input($data) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $post_tag = strtolower(test_input($_POST["new_tag_name"]));
-  $tag_color = test_input($_POST["tag_color_picker"]);
+  $tag_color = $_POST["tag_color_picker"];
 }
 
 try {
