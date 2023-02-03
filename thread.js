@@ -27,10 +27,10 @@ function thread_buttons() {
         hide_button.addEventListener("click", () => {
             let subcomments = document.querySelectorAll('.' + hide_button.id);
             subcomments.forEach(subcomment => {
-                if (subcomment.style.display != "none") {
-                    subcomment.style.display = "none";
-                } else {
+                if (subcomment.style.display != "flex") {
                     subcomment.style.display = "flex";
+                } else {
+                    subcomment.style.display = "none";
                 }
             })
 
