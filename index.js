@@ -38,6 +38,8 @@ function generateMasonryGrid(columns, posts) {
 
     // Scroll back to stored position.
     window.scrollTo(0, scrollPosition);
+
+    $.getScript("user_info_resize.js");
 }
 
 window.addEventListener('resize', () => {
@@ -59,7 +61,6 @@ function handleResize() {
         generateMasonryGrid(1, posts);
     }
 }
-
 
 handleResize();
 
@@ -97,7 +98,6 @@ function checkWindowSize(){
    if($(window).height() >= $(document).height()){
       // Fetch records
       fetchData();
-      handleResize();
    }
 }
 
