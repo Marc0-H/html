@@ -38,8 +38,6 @@ function generateMasonryGrid(columns, posts) {
 
     // Scroll back to stored position.
     window.scrollTo(0, scrollPosition);
-
-    $.getScript("user_info_resize.js");
 }
 
 window.addEventListener('resize', () => {
@@ -126,12 +124,8 @@ function fetchData(){
             data: queryData,
             success: function(response){
 
-                console.log(response);
-
                 // Add new cards to post array
                 cards = $($.parseHTML(response)).filter(".post_container");
-
-                console.log(cards);
 
                 for (let i = 0; i < cards.length; i++) {
                     posts.push(cards[i]);
@@ -228,10 +222,11 @@ $(".filter_form").submit(function(event) {
 
             handleResize();
 
-            $.getScript("cards.js");
-
             let sidebarContainer = document.querySelector(".sidebar_container");
             sidebarContainer.classList.toggle("sidebar_active");
+
+            $.getScript("cards.js");
+            $.getScript("user_info_resize.js");
         }
     });
 });
@@ -259,10 +254,11 @@ $(".search_form").submit(function(event) {
 
             handleResize();
 
-            $.getScript("cards.js");
-
             let sidebarContainer = document.querySelector(".sidebar_container");
             sidebarContainer.classList.toggle("sidebar_active");
+
+            $.getScript("cards.js");
+            $.getScript("user_info_resize.js");
         }
     });
 });
