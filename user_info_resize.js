@@ -12,9 +12,10 @@ function resize() {
     }
 
     let allPosts = document.querySelectorAll(".user_info_container");
+    let userTagWidth = document.querySelector(".user_tag").offsetWidth;
 
     allPosts.forEach(post => {
-        post.style.maxWidth = maxSize - 90 + "px";
+        post.style.maxWidth = maxSize - 40 - userTagWidth + "px";
     });
 }
 
