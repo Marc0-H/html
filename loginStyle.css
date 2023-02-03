@@ -143,7 +143,7 @@
     justify-self: center;
     color: rgb(255, 0, 0);
     font-size: bolder;
-    padding-left: 80px;
+    padding-left: 99px;
     margin-top: -130px;
 }
 
@@ -230,6 +230,15 @@ form .userinfo {
 .submit_button:hover {
     color: #2572d6;
     background-color: rgba(0, 132, 255, 0.05);
+}
+.signup_error_message {
+    display: flex;
+    position: static;
+    justify-self: center;
+    color: rgb(255, 0, 0);
+    font-size: bolder;
+    padding-left: 80px;
+    margin-top: -166px;
 }
 
 select {
@@ -382,6 +391,19 @@ select,
         border-bottom: 1px solid gray;
     }
 
+
+    .signup_error_message {
+        display: flex;
+        position: static;
+        justify-self: center;
+        color: rgb(255, 0, 0);
+        padding-left: 31px;
+        margin-top: -56px;
+    }
+
+    .signup_error_message p {
+        font-size: 9px;
+    }
     .reset_error_message {
         margin-left: 94px;
         margin-top: 9px;
@@ -417,7 +439,7 @@ select,
         justify-self: center;
         color: rgb(255, 0, 0);
         font-size: bolder;
-        padding-left: 50px;
+        padding-left: 69px;
         margin-top: -92px;
         font-size: 11px;
 

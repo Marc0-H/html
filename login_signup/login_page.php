@@ -41,7 +41,7 @@ if ($_SERVER['HTTPS'] != 'on') {
                     <p> Incorrect username/password. Try again. </p>
                     </div>";
                 }
-                else if ($_GET["error"] === "unkownerror") {
+                else if ($_GET["error"] === "unknownerror") {
                     echo "<div class='login_error_message'>
                     <p> Verification error occured. Try again. </p>
                     </div>";

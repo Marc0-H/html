@@ -27,7 +27,7 @@ function loginUser($connection, $name, $password) {
         exit();
     }
     else {
-        header("location: ../login_page.php?error=verifyfailed");
+        header("location: ../login_page.php?error=unknownerror");
         exit();
     }
 }

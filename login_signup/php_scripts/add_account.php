@@ -38,7 +38,7 @@ if (checkEmail($email) === FALSE) {
     exit();
 }
 if (checkPW($password) === FALSE) {
-    header("location: ../signup_page?error=pwshort");
+    header("location: ../signup_page.php?error=pwshort");
     exit();
 }
 
