@@ -1,4 +1,5 @@
 
+// Let the username and date take up all available space based on width of the parent div.
 function resize() {
     let mainContentWidth = document.querySelector(".main_content_container").offsetWidth;
     let maxSize = mainContentWidth;
@@ -10,14 +11,10 @@ function resize() {
         maxSize = mainContentWidth / 2;
     }
 
-
-
-
     let allPosts = document.querySelectorAll(".user_info_container");
 
     allPosts.forEach(post => {
         post.style.maxWidth = maxSize - 90 + "px";
-        // AAA HET WERKT!!!
     });
 }
 
