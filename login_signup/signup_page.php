@@ -61,44 +61,45 @@ if ($_SERVER['HTTPS'] != 'on') {
 
 <?php
 //error checking by checking url for error codes made by program.
+//had to manually  add
     if (isset($_GET["error"])) {
         if ($_GET["error"] === "userexists") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Username/email taken. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "invalidusername") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Invalid username. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "invalidemail") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Invalid email. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "stmtfailed") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Something went wrong. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "fetchfailed") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> No account to reset. Make one here. </p>
             </div>";
         }
         else if ($_GET["error"] === "invalidusertag") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Invalid tag entered. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "pwshort") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Your password is too short.</p>
             </div>";
         }
         else if ($_GET["error"] === "recaptchafailed") {
-           echo "<div class='signup_error_message'>
+           echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Verification failed. Stop being a bot.</p>
             </div>";
         }
