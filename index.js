@@ -97,6 +97,7 @@ function checkWindowSize(){
    if($(window).height() >= $(document).height()){
       // Fetch records
       fetchData();
+      handleResize();
    }
 }
 
