@@ -12,8 +12,7 @@
         <link rel="stylesheet" href="stylesheet.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
-        <script src="filter.js" defer></script>
-        <script src="masonry.js" defer></script>
+        <script src="index.js" defer></script>
         <script src="header.js" defer></script>
         <script src="cards.js" defer></script>
         <script src="user_info_resize.js" defer></script>
@@ -66,7 +65,7 @@
                                     <input name="filter-sortby" value="latest" type="radio" checked>Latest
                                 </label>
                                 <label class="dropdown-label">
-                                    <input name="filter-sortby" value="populairity" type="radio">Populairity
+                                    <input name="filter-sortby" value="popularity" type="radio">Popularity
                                 </label>
                                 <label class="dropdown-label">
                                     <input name="filter-sortby" value="controversial" type="radio">Controversial
@@ -102,7 +101,7 @@
                             <i id="create_post<?php if (isset($_SESSION["userId"])) {?>_logged_in<?php }?>" class="material-icons tooltip create_post">add<div class="tooltip_text">Create post</div></i>
                     </div>
                         <?php
-                             $rowperpage = 9;
+                             $rowperpage = 6;
 
                              // counting total number of posts
                              $postcount_query = "SELECT count(*) AS postcount FROM posts";

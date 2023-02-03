@@ -92,7 +92,7 @@
         </div>
 
         <?php
-            // Vraag alle comments onder post info op van database.
+            // Vraag solution op van database als de post een solution heeft.
             
             $solution_id = 0; // Zero is not used as a possible id
             if (!is_null($post_result["solution_id"])) {
@@ -159,7 +159,7 @@
                     </div>
                 </div>
             <?php
-                // Vraag subcomments van post van database.
+                // Vraag subcomments van solution op van database.
 
                 $subcomment_query = "SELECT * FROM comments WHERE parent_comment_id = $comment_id ORDER BY comment_datetime ASC";
                 $subcomment_result = mysqli_query($connection, $subcomment_query);
@@ -247,7 +247,7 @@
         // Alle comment resultaten.
         $comment_result = mysqli_query($connection, $comment_query);
 
-        // Laat de nodige comments zien.
+        // Vraag comment data van de database op.
         while($comment_row = mysqli_fetch_assoc($comment_result)) {
             $user_id = $comment_row['user_id'];
             $user_query = "SELECT userUid, profile_image, tag FROM users WHERE userId = $user_id";
@@ -306,7 +306,7 @@
             </div>
 
             <?php
-                // Laat de nodige subcomments zien.
+                // Vraag subcomment data bij elke comment van de database op.
                 $subcomment_query = "SELECT * FROM comments WHERE parent_comment_id = $comment_id ORDER BY comment_datetime ASC";
                 $subcomment_result = mysqli_query($connection, $subcomment_query);
 
