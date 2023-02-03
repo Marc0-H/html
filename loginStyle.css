@@ -33,7 +33,7 @@
 
 .signup_prompt {
 
-    height: 669px;
+    height: 712px;
     width: 400px;
     background-color: var(--secondary_background_color);
     position: absolute;
@@ -213,7 +213,7 @@ form .userinfo {
 
 .submit_button {
     color: red;
-    margin-top: 25px;
+    margin-top: 45px;
     margin-bottom: 10px;
 
     width: 100%;
@@ -288,7 +288,7 @@ select {
 
 .select {
     display: grid;
-    margin-left: 37px;
+    margin-left: 28px;
     margin-top: 20px;
 }
 
@@ -311,6 +311,7 @@ select,
 
 .g-recaptcha {
     margin-left:50px;
+    margin-top: 20px;
 }
 
 @media only screen and (max-width: 590px) {
@@ -404,6 +405,7 @@ select,
 
     .signup_error_message p {
         font-size: 9px;
+        color: rgb(255, 0, 0);
     }
     .reset_error_message {
         margin-left: 94px;
