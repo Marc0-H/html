@@ -102,9 +102,9 @@ try {
   //userID from users
   $user_id = $_SESSION["userId"];
   if (!canPost($user_id, $connection)) {
-    header("location: ../newthread.php?error=toomanyrequests");
     echo "<script>window.alert('You need to wait a bit before posting again.');
     </script>";
+    header("location: ../newthread.php?error=toomanyrequests");
     exit();
   }
   else {
