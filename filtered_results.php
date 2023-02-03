@@ -30,26 +30,35 @@
         $role_query = "AND 2 = 1";
     }
 
+    $start = 0;
+    $rowperpage = 6;
+    if(isset($_GET['start'])){
+        $start = mysqli_real_escape_string($connection,$_GET['start']); 
+    }
+    if(isset($_GET['rowperpage'])){
+        $rowperpage = mysqli_real_escape_string($connection,$_GET['rowperpage']); 
+    }
+
     if (isset($_GET["filter-sortby"])) {
         $sortby = $_GET["filter-sortby"];
         if (!empty($sortby)) {
             if ($sortby == "latest") {
-                $query = "SELECT * FROM posts JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " ORDER BY post_id DESC";
-            } else if ($sortby == "populairity") {
-                $query = "SELECT posts.*,COUNT(post_upvote_link.post_id) AS likes FROM posts LEFT JOIN post_upvote_link ON posts.post_id = post_upvote_link.post_id JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " GROUP BY posts.post_id ORDER BY likes DESC";
+                $query = "SELECT * FROM posts JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " ORDER BY post_id DESC LIMIT $start, $rowperpage";
+            } else if ($sortby == "popularity") {
+                $query = "SELECT posts.*,COUNT(post_upvote_link.post_id) AS likes FROM posts LEFT JOIN post_upvote_link ON posts.post_id = post_upvote_link.post_id JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " GROUP BY posts.post_id ORDER BY likes DESC, post_id DESC LIMIT $start, $rowperpage";
             } else if ($sortby == "controversial") {
-                $query = "SELECT posts.*, COUNT(comments.post_id) AS comments_count FROM posts LEFT JOIN comments ON posts.post_id = comments.post_id JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " GROUP BY posts.post_id ORDER BY comments_count DESC";
+                $query = "SELECT posts.*, COUNT(comments.post_id) AS comments_count FROM posts LEFT JOIN comments ON posts.post_id = comments.post_id JOIN users ON posts.user_id = users.userId " . $subjects_query . " " . $role_query . " GROUP BY posts.post_id ORDER BY comments_count DESC, post_id DESC LIMIT $start, $rowperpage";
             }
         }
     } else {
-        $query = "SELECT * FROM posts ORDER BY post_id DESC";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT $start, $rowperpage";
     }
 
     $stmt;
 
     if (!empty($_GET["search"])) {
         $search = "%" . $_GET["search"] . "%";
-        $stmt = $connection->prepare("SELECT * FROM posts WHERE post_title LIKE ? OR post_content LIKE ?");
+        $stmt = $connection->prepare("SELECT * FROM posts WHERE post_title LIKE ? OR post_content LIKE ? LIMIT $start, $rowperpage");
 
         $stmt->bind_param("ss", $search, $search);
     } else {
