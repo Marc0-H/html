@@ -5,11 +5,10 @@
 
 
 2. https://webtech-in07.webtech-uva.nl
-3. Admin account username (case sensitive): EduZone
+3. Admin account username (case sensitive): EDUZONE
                  password                 : BrainyBunch
                  
 4. function VerifyUploadSizeIsOK()
    source: Will Bontrager Software LLC, https://www.willmaster.com
 
-   function generateMasonryGrid(columns, posts)
-   source: https://stackoverflow.com/
+  
