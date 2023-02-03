@@ -24,8 +24,13 @@ if (isset($_POST['submit'])) {
         header("location: ../signup_page.php?error=recaptchafailed");
         exit();
     }
+$tag_query = "SELECT user_tag FROM user_tags";
+$tag_result = mysqli_query($connection, $tag_query);
+while ($row = mysqli_fetch_array($tag_result)) {
+    echo "<option class='tag_option' value=" . $row['user_tag'] . ">" . $row['user_tag'] . "</option>";
+}
 
-if (!in_array($tag, array('MAVO','HAVO','VWO','teacher','HBO/WO'))) {
+if (!in_array($tag, $tagArray)) {
     header("location: ../signup_page.php?error=invalidusertag");
     exit();
 }

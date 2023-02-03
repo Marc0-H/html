@@ -21,10 +21,8 @@
         <link rel="stylesheet" href="stylesheet.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
-        <script src="masonry.js" defer></script>
+        <script src="adminpage.js" defer></script>
         <script src="header.js" defer></script>
-        <script src="cards.js" defer></script>
-        <script src="user_info_resize.js" defer></script>
     </head>
     <body>
         <?php
@@ -58,13 +56,12 @@
                   <br>  
                       <div class= "admin_add_tag_div">
                         <h1> Add tag </h1>
-                        <p>Capitilize the first letter!</p>
                         <form class="add_tag_form" id="add_tag_form" action="admin_add_tag.php" method="post">
                           <div class="admin_add_tag_subdiv">
                             <input name="new_tag_name" class="new_tag_name" type="text" placeholder="New tag name">
                             <input type="color" class="tag_color_picker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" >
                           </div>
-                          <input type="submit" id="add_tag_submit" form="add_tag_form" class="add_tag_submit" name="add_tag_submit" value="Add tag!">
+                          <input type="submit" id="add_tag_submit" form="add_tag_form" class="admin_submit"  name="add_tag_submit" value="Add tag">
                         </form>
                       </div>
                       <div class= "admin_add_user_tag_div">
@@ -73,7 +70,7 @@
                           <div class="admin_add_tag_subdiv">
                             <input name="new_user_tag_name" class="new_user_tag_name" type="text" placeholder="New user-tag name">
                           </div>
-                          <input type="submit" id="add_user_tag_submit" class="add_user_tag_submit" name="add_user_tag_submit" value="Add usertag!">
+                          <input type="submit" id="add_user_tag_submit" class="admin_submit" name="add_user_tag_submit" value="Add usertag">
                         </form>
                       </div>
                       <div class="admin_remove_tag_div">
@@ -86,7 +83,7 @@
                                 echo "<option class='tag_option' value=" . $row['post_tag'] . ">" . $row['post_tag'] . "</option>";
                               } 
                               ?>
-                            <input type="submit" id="remove_tag_submit" class="remove_tag_submit" name="remove_tag_submit" value="Remove tag!">
+                            <input type="submit" id="remove_tag_submit" class="admin_submit" name="remove_tag_submit" value="Remove tag">
                         </form>
                       </div>
                       <div class="admin_remove_user_tag_div">
@@ -99,7 +96,7 @@
                                 echo "<option class='tag_option' value=" . $usrtag_row['tag_name'] . ">" . $usrtag_row['tag_name'] . "</option>";
                               } 
                               ?>
-                            <input type="submit" id="remove_user_tag_submit" class="remove_user_tag_submit" name="remove_user_tag_submit" value="Remove usertag">
+                            <input type="submit" id="remove_user_tag_submit" class="admin_submit" name="remove_user_tag_submit" value="Remove usertag">
                         </form>
                       </div>
                       <div class="admin_delete_user_div">
@@ -116,12 +113,11 @@
                               echo "Query failed: " . mysqli_error($conn);
                             }
                             ?>
-                            <input type="submit" class="remove_user_submit" id="remove_user_submit" name="remove_user_submit" value="Remove user!">
+                            <input type="submit" class="admin_submit" id="remove_user_submit" name="remove_user_submit" value="Remove user">
                         </form>
                       </div>
                     <?php } ?>
                     <div class="main_content_posts">
-                      <p>HALLO TEST</p>
                     </div>
                   </div>
                 </div>

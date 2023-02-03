@@ -41,13 +41,15 @@ if ($_SERVER['HTTPS'] != 'on') {
     </div>
 
     <div class="userInfo">
-    <label for="tag"></label>
         <select name="select" class="select">
-        <option value="MAVO"> MAVO student</option>
-        <option value="HAVO"> HAVO student</option>
-        <option value="VWO"> VWO student</option>
-        <option value="HBO/WO"> HBO/WO student </option>
-        <option value="teacher"> teacher </option>
+            <?php
+                $sql = "SELECT tag_name FROM user_tags";
+                $result = mysqli_query($connection, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $tag_name = $row["tag_name"];
+                    echo "<option value='$tag_name'>$tag_name</option>";
+                }
+            ?>
     </select>
     </div>
   <div>
@@ -61,44 +63,45 @@ if ($_SERVER['HTTPS'] != 'on') {
 
 <?php
 //error checking by checking url for error codes made by program.
+//had to manually  add
     if (isset($_GET["error"])) {
         if ($_GET["error"] === "userexists") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Username/email taken. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "invalidusername") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Invalid username. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "invalidemail") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Invalid email. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "stmtfailed") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Something went wrong. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "fetchfailed") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> No account to reset. Make one here. </p>
             </div>";
         }
         else if ($_GET["error"] === "invalidusertag") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Invalid tag entered. Try again. </p>
             </div>";
         }
         else if ($_GET["error"] === "pwshort") {
-            echo "<div class='signup_error_message'>
+            echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Your password is too short.</p>
             </div>";
         }
         else if ($_GET["error"] === "recaptchafailed") {
-           echo "<div class='signup_error_message'>
+           echo "<div class='signup_error_message' style='color: rgb(255, 0, 0);'>
             <p> Verification failed. Stop being a bot.</p>
             </div>";
         }
