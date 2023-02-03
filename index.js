@@ -144,7 +144,7 @@ function fetchData(){
 
 function onScroll(){
     var position = $(window).scrollTop();
-    var bottom = $(document).height() - $(window).height();
+    var bottom = $(document).height() - $(window).height() - 1;
 
     if(position >= bottom) {
         fetchData();
