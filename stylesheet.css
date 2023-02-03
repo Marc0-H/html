@@ -898,6 +898,7 @@ input[type="checkbox"]:checked, input[type="radio"] {
   width: 75%;
   margin-right: 5%;
   background-color: var(--secondary_background_color);
+  text-transform: capitalize;
 
 }
 .admin_add_tag_subdiv, .admin_add_user_tag_subdiv {
