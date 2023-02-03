@@ -33,7 +33,8 @@ if (isset($_POST['submit'])) {
     }
 
     if (!in_array($tag, $tags)) {
-        header("location: ../signup_page.php?error=invalidusertag");
+        print_r($tags);
+        // header("location: ../signup_page.php?error=invalidusertag");
         exit();
     }
     if (checkUid($name) === FALSE) {
