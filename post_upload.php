@@ -63,9 +63,8 @@ function canPost($id, $connection) {
     $latestPost = $row['latestPost'];
 
     $current_time = time();
-    echo 'latestPost: ' . $latestPost;
 
-    if ($current_time - $latestPost < 180) {
+    if ($current_time - $latestPost < 60) {
         return FALSE;
     }
     else return TRUE;
@@ -103,6 +102,8 @@ try {
   //userID from users
   $user_id = $_SESSION["userId"];
   if (!canPost($user_id, $connection)) {
+    echo "<script>window.alert('You need to wait a bit before posting again.');
+    </script>";
     header("location: ../newthread.php?error=toomanyrequests");
     exit();
   }
