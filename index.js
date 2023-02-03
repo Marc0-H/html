@@ -125,16 +125,21 @@ function fetchData(){
             data: queryData,
             success: function(response){
 
+                console.log(response);
+
                 // Add new cards to post array
                 cards = $($.parseHTML(response)).filter(".post_container");
+
+                console.log(cards);
+
                 for (let i = 0; i < cards.length; i++) {
                     posts.push(cards[i]);
                 }
 
-                handleResize();
-
                 // Check if the page has enough content or not. If not then fetch records
                 checkWindowSize();
+
+                handleResize();
 
                 $.getScript("cards.js");
             }
@@ -144,9 +149,11 @@ function fetchData(){
 
 function onScroll(){
     var position = $(window).scrollTop();
-    var bottom = $(document).height() - $(window).height() - 3;
+    var bottom = $(document).height() - $(window).height();
 
-    fetchData();
+    if(position >= bottom) {
+        fetchData();
+    }
 }
 
 $(document).on('touchmove', onScroll); // for mobile
@@ -174,14 +181,15 @@ if (typeof(subjectEl) != 'undefined' && subjectEl != null)
     });
 }
 
-
-sortbyEl.addEventListener("click", () => {
-    toggleDropdown(sortbyEl, sortbyDropdownEl)
-});
-
-userRoleEl.addEventListener("click", () => {
-    toggleDropdown(userRoleEl, userRoleDropdownEl)
-});
+if (window.location.toString().includes("index.php")) {
+    sortbyEl.addEventListener("click", () => {
+        toggleDropdown(sortbyEl, sortbyDropdownEl)
+    });
+    
+    userRoleEl.addEventListener("click", () => {
+        toggleDropdown(userRoleEl, userRoleDropdownEl)
+    });
+}
 
 function toggleDropdown(buttonEl, dropdownEl) {
     if (dropdownEl.style.display === "block") {
@@ -215,9 +223,9 @@ $(".filter_form").submit(function(event) {
                 posts.push(cards[i]);
             }
 
-            handleResize();
-
             checkWindowSize();
+
+            handleResize();
 
             $.getScript("cards.js");
 
@@ -246,9 +254,9 @@ $(".search_form").submit(function(event) {
                 posts.push(cards[i]);
             }
 
-            handleResize();
-
             checkWindowSize();
+
+            handleResize();
 
             $.getScript("cards.js");
 
