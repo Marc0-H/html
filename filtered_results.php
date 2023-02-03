@@ -1,7 +1,7 @@
 <?php
     include '../connection.php';
-    // $search = $_GET["search"];
 
+    // Laat de nodige posts zien gebaseerd op de filter opties gekozen door de gebruiker met het filter systeem in de filter sidebar.
     $query;
     $subjects_query = "";
     $role_query = "";
@@ -9,50 +9,26 @@
     if (isset($_GET['filter-subject']) && !empty($_GET['filter-subject'])) {
         $subjects = array();
 
-
         foreach($_GET["filter-subject"] as $filter) {
             $subjects[] = $filter;
         }
     
-
         $subjects_query = "WHERE post_tag IN ('".implode("','", $subjects)."')";
-
     } else {
         $subjects_query = "WHERE 2 = 1";
     }
 
     if (isset($_GET["filter-role"])) {
-        ?>
-            <script>console.log("WOWOFOWOFJ");</script>
-
-        <?php
         $roles = array();
-        foreach($_GET["filter-role"] as $filter) {
 
-            if (strpos($filter, "MAVO") !== false) {
-                $roles[] = "MAVO";
-            }
-            if (strpos($filter, "HAVO") !== false) {
-                $roles[] = "HAVO";
-            }
-            if (strpos($filter, "VWO") !== false) {
-                $roles[] = "VWO";
-            }
-            if (strpos($filter, "HBO/WO") !== false) {
-                $roles[] = "HBO/WO";
-            }
-            if (strpos($filter, "teacher") !== false) {
-                $roles[] = "Teacher";
-            }
+        foreach($_GET["filter-role"] as $filter) {
+            $roles[] = $filter;
         }
 
-
         $role_query = "AND tag IN ('".implode("','", $roles)."')";
-
     } else {
         $role_query = "AND 2 = 1";
     }
-
 
     if (isset($_GET["filter-sortby"])) {
         $sortby = $_GET["filter-sortby"];
@@ -69,9 +45,6 @@
         $query = "SELECT * FROM posts ORDER BY post_id DESC";
     }
 
-
-
-
     $stmt;
 
     if (!empty($_GET["search"])) {
@@ -82,10 +55,12 @@
     } else {
         $stmt = $connection->prepare($query);
     }
+
     $stmt->execute();
     $result = $stmt->get_result();
     $results = $result->fetch_all(MYSQLI_ASSOC);
 
+    // Genereer voor elke post gevonden met de query de html code.
     foreach($results as $row) {
         $user_id = $row['user_id'];
         $post_id = $row['post_id'];
