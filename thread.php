@@ -14,6 +14,7 @@ session_start();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="header.js" defer></script>
         <script src="thread.js" defer></script>
+        <script src="filter_thread.js" defer></script>
         <script src="textarea_resize.js" defer></script>
     </head>
     <body>

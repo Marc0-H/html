@@ -12,9 +12,9 @@
         <link rel="stylesheet" href="stylesheet.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" defer></script>
-        <script src="masonry.js" defer></script>
         <script src="header.js" defer></script>
         <script src="cards.js" defer></script>
+        <script src="index.js" defer></script>
         <script src="user_info_resize.js" defer></script>
     </head>
     <body>

@@ -58,8 +58,8 @@
                         <h1> Add tag </h1>
                         <form class="add_tag_form" id="add_tag_form" action="admin_add_tag.php" method="post">
                           <div class="admin_add_tag_subdiv">
-                            <input name="new_tag_name" class="new_tag_name" type="text" placeholder="New tag name">
-                            <input type="color" class="tag_color_picker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" >
+                            <input type="text" placeholder="New tag name" autocomplete="off" name="new_tag_name" class="new_tag_name" >
+                            <input type="color" name="tag_color_picker" class="tag_color_picker" onchange="clickColor(0, -1, -1, 5)" value="#ff0000" >
                           </div>
                           <input type="submit" id="add_tag_submit" form="add_tag_form" class="admin_submit"  name="add_tag_submit" value="Add tag">
                         </form>
@@ -68,7 +68,7 @@
                         <h1> Add user-tag </h1>
                         <form class="add_user_tag_form" id="add_user_tag_form" action="admin_add_user_tag.php" method="post">
                           <div class="admin_add_tag_subdiv">
-                            <input name="new_user_tag_name" class="new_user_tag_name" type="text" placeholder="New user-tag name">
+                            <input type="text" placeholder="New user-tag name" autocomplete="off" name="new_user_tag_name" class="new_user_tag_name">
                           </div>
                           <input type="submit" id="add_user_tag_submit" class="admin_submit" name="add_user_tag_submit" value="Add usertag">
                         </form>
@@ -77,7 +77,7 @@
                           <h1> Remove tag </h1>
                           <form id="remove_tag_form" action="admin_remove_tag.php" method="post">
                             <p class="tag_text">Tag:</p>
-                            <select class="admin_tag_selector" name="remove_tag"  form="remove_tag_form">
+                            <select class="admin_tag_selector" name="remove_tag" form="remove_tag_form">
                               <?php
                               while ($row = mysqli_fetch_array($tag_result)) {
                                 echo "<option class='tag_option' value=" . $row['post_tag'] . ">" . $row['post_tag'] . "</option>";

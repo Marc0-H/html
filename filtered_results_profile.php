@@ -1,5 +1,4 @@
 <?php
-  session_start();
   if (!isset($_SESSION["userId"])) { 
     ?> <div>Create an account to view your profile page</div>
   <?php

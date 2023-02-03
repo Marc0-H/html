@@ -113,8 +113,14 @@ function fetchData(){
         queryData = 'start=' + start + '&rowperpage=' + rowperpage;
         queryData += '&' + filterData;
 
+        if (window.location.toString().includes("index.php")) {
+            url = "filtered_results.php"
+        } else {
+            url = "filtered_results_profile.php"
+        }
+
         $.ajax({
-            url:"filtered_results.php",
+            url: url,
             type: 'GET',
             data: queryData,
             success: function(response){
